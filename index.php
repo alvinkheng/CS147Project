@@ -47,16 +47,10 @@
 		<p><a href="#popup" data-role="button" data-rel="dialog" data-transition="pop">Show page "popup" (as a dialog)</a></p>
 	</div><!-- /content -->
 	
-	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="c">
-			<ul>
-				<li><a href="index.php" id="home" data-icon="custom" class="ui-btn-active">Feed</a></li>
-				<li><a href="dashboard.php" id="dashboard" data-icon="custom">Dashboard</a></li>
-				<li><a href="add.php" id="beer" data-icon="custom">Add</a></li>
-				<li><a href="settings.php" id="settings" data-icon="custom">Settings</a></li>
-			</ul>
-		</div>
-	</div>
+	<?php
+	   $select0 = "ui-btn-active";
+	   include("footer.php");
+	   ?>
 </div>
 	
 </div><!-- /page one -->
@@ -77,17 +71,11 @@
 		
 	</div><!-- /content -->
 	
-	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="c">
-		
-		<ul>
-			<li><a href="index.php" id="home" data-icon="custom">Home</a></li>
-			<li><a href="dashboard.php" id="dashboard" data-icon="custom" class="ui-btn-active">Dashboard</a></li>
-			<li><a href="add.php" id="beer" data-icon="custom">Filter</a></li>
-			<li><a href="settings.php" id="settings" data-icon="custom">Settings</a></li>
-		</ul>
-		</div>
-	</div>
+	<?php
+           $select1 = "ui-btn-active";
+           include("footer.php");
+           ?>
+	
 </div>
 </div><!-- /page two -->
 
@@ -105,16 +93,10 @@
 		<p><a href="#one" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back to page "one"</a></p>	
 	</div><!-- /content -->
 	
-	<div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="c">
-		<ul>
-			<li><a href="index.php" id="home" data-icon="custom">Home</a></li>
-			<li><a href="dashboard.php" id="dashboard" data-icon="custom">Dashboard</a></li>
-			<li><a href="add.php" id="beer" data-icon="custom" class="ui-btn-active">Filter</a></li>
-			<li><a href="settings.php" id="settings" data-icon="custom">Settings</a></li>
-		</ul>
-		</div>
-	</div>
+	<?php
+           $select2 = "ui-btn-active";
+           include("footer.php");
+           ?>
 </div>
 </div><!-- /page popup -->
 
