@@ -27,7 +27,7 @@
 	<div data-role="header">
 		<h1></h1>
 		
-		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn-center">
+		<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn-right">
 		     	<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
 		     	<label for="radio-choice-1">Personal</label>
 		
@@ -39,17 +39,10 @@
 
 	<div data-role="content">	
 	
-	$(#radio-choice-1).bind("click", function() {
 		<?php
 		   include("personalfeed.php");
 		   ?>
-		   });
-		   
-	$(#radio-choice-2).bind("click", function() {
-		<?php
-		   include("globalfeed.php");
-		   ?>
-		   });
+		  
 		   
 	</div><!-- /content -->
 	
