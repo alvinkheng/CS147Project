@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Emotionly | Global</title> 
+	<title>Dashboard</title> 
 	<meta charset="utf-8">
 	<meta name="apple-mobile-web-app-capable" content="yes">
  	<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -22,55 +22,15 @@
 <div data-role="page">
 
 	<div data-role="header">
-	<h1>Log in</h1>
-	<a href="#" data-icon="check" id="logout" class="ui-btn-right">Logout</a>
-
-	</div><!-- /header -->
-
-	<div data-role="content">
+	<h1></h1>
+	</div><!-- header -->
 	
-	<form action="enter.php" method="post">
-	<label for="foo">Username:</label>label>
-	<input type="text" name="username" id="foo">
-	<label for="bar">Password:</label>label>
-	<input type="password"
-		<div data-role="fieldcontain">
-			
-		</div>	
+	<?php
+	   $select1 = "ui-btn-active";
+	   include("footer.php");
+	   ?>
 	
-		
-	<div id="info">
-		<p>Thank you for logging. You should be able to see all sorts of user information here.</p>
-	</div>	
-	</div><!-- /content -->
-
-    <div data-role="footer" data-id="samebar" class="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar" class="nav-glyphish-example" data-grid="c">
-		<ul>
-			<li><a href="index.php" id="home" data-icon="custom">Home</a></li>
-			<li><a href="login.php" id="key" data-icon="custom" class="ui-btn-active">Login</a></li>
-			<li><a href="filter.php" id="beer" data-icon="custom">Filter</a></li>
-			<li><a href="#" id="skull" data-icon="custom">Settings</a></li>
-		</ul>
-		</div>
-	</div>
-	<script type="text/javascript">
-	$("#logout").hide();
-	$("#info").hide();
-	var retrievedObject = localStorage.getItem('username');
-	if (retrievedObject == "test") {
-		$("#form").hide();	
-		$("#logout").show();
-		$("#info").show();
-	}
-	$("#logout").click(function() {
-		localStorage.removeItem('username');
-		$("#form").show();
-		$("#logout").hide();
-		$("#info").hide();
-	});
-	</script>
-</div><!-- /page -->
+	</div><!-- /page -->
 
 </body>
 </html>
