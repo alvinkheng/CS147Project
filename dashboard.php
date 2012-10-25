@@ -24,6 +24,12 @@
 	<div data-role="header">
 	<h1></h1>
 	</div><!-- header -->
+	
+	<?php
+	   $select1 = "ui-btn-active";
+	   include("footer.php");
+	   ?>
+	
 	</div><!-- /page -->
 
 </body>
