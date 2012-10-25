@@ -17,21 +17,6 @@
 	<script src="jquery.mobile-1.2.0.js"></script>
 
 </head> 
-<!-- <body> 
-
-<div data-role="page">
-
-	<div data-role="header">
-		<h1>Settings</h1>
-
-	</div><!-- /header -->
-
-	<div data-role="content">	
-
-	</div><!-- /content -->
-
-
-</body> -->
 
 <body>
 <div data-role="page" id="filter">
@@ -95,7 +80,7 @@
 	</div><!-- /content -->
 
 	<?php
-		select3="ui-btn-active";
+		$select3="ui-btn-active";
 		include ("footer.php");
 	?>
 	
