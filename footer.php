@@ -5,7 +5,7 @@
     <ul>
       <li><a href="index.php" id="home" data-icon="custom" class=<?= $select0; ?>>Feed</a></li>
       <li><a href="dashboard.php" id="dashboard" data-icon="custom" class=<?= $select1; ?>>Dashboard</a></li>
-      <li><a href="addStatus.php" id="addStatus" data-icon="custom" class=<?= $select2; ?>>Add Status</a></li>
+      <li><a href="addStatus.php" id="add" data-icon="custom" class=<?= $select2; ?>>Add Status</a></li>
       <li><a href="settings.php" id="settings" data-icon="custom" class=<?= $select3; ?>>Settings</a></li>
     </ul>
   </div>
