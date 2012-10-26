@@ -24,11 +24,11 @@
 	     ?>
 	  <h2>What's up?</h2> <br>
 	  <fieldset data-role="controlgroup" data-type="horizontal"
-		    data-mini="true" class="ui-btn-right">
+		    data-mini="true" class="ui-btn-right" data-icon="custom">
             <input type="radio" name="radio-choice"
                    id="radio-choice-1" value="choice-1"
                    checked="checked" />
-            <label for="radio-choice-1">:)</label>
+            <label for="radio-choice-1"></label>
 	    
             <input type="radio" name="radio-choice"
                    id="radio-choice-2" value="choice-2"  />

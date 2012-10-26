@@ -12,3 +12,8 @@ h2 {
     text-align: center;
     font-family: Helvetica;
 }
+
+#radio-choice-1 {
+	background:  url(images/happy.png) 50% 50% no-repeat; 
+	background-size: 24px 22px;
+}
