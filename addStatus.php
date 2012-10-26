@@ -23,24 +23,24 @@
 	     include("header.php");
 	     ?>
 	  <h2>What's up?</h2> <br>
-	  <form>
-	    <table border="1">
-	      <tr>
-		<td>:)</td>
-		<td>:|</td>
-		<td>:(</td>
-	      </tr>
-	      <tr>
-		<td>
-		  Status: <input type="text" name="status">
-		</td>
-	      </tr>
-	      <tr>
-		<td>
-		  <input type="submit" name ="submit">
-		</td>
-	      </tr>
-	    </table>
-	  </form>
+	  <fieldset data-role="controlgroup" data-type="horizontal"
+		    data-mini="true" class="ui-btn-right">
+            <input type="radio" name="radio-choice"
+                   id="radio-choice-1" value="choice-1"
+                   checked="checked" />
+            <label for="radio-choice-1">:)</label>
+	    
+            <input type="radio" name="radio-choice"
+                   id="radio-choice-2" value="choice-2"  />
+            <label for="radio-choice-2">:|</label>
+
+	    <input type="radio" name="radio-choice"
+		   id="radio-choice-3" value="choice-3" />
+	    <label for="radio-choice-3">:(</label>
+          </fieldset>
+	  <label for="textarea-a">Status:</label>
+	  <textarea name="textarea" id="textarea-a"></textarea>
+	  Location: Stanford, CA
+	  
 	</body>
 </html>
