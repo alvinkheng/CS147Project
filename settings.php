@@ -74,7 +74,13 @@
 				<option value="all">Public</option>
 			</select>
 		</div>
-		<div class="ui-block-b"><button type="submit" data-theme="a">Logout</button></div>
+		
+		
+		<center> <div>
+		
+		<a href="logout.php" data-role="button">Logout</a>
+		
+		</div> </center>
 
 	</form>
 	</div><!-- /content -->
@@ -84,28 +90,7 @@
 		include ("footer.php");
 	?>
 	
-	<script type="text/javascript">
-		$('#filter').live( 'pageinit',function(event){
-			$(".taphold").on('taphold', function(event){
-				alert("You tapped and held");
-			});
-			
-			$(".tap").on('tap', function(event){
-				alert("You tapped!");
-			});
-			
-			$(".swiperight").on('swiperight', function(event){
-				event.stopImmediatePropagation();
-				alert("You swiped right!");
-			});
-			
-			$(".swipeleft").on('swipeleft', function(event){
-				event.stopImmediatePropagation() 
-				alert("You swiped left!");
-			});
-		});
-</script>	
-</div><!-- /page -->
+	</div><!-- /page -->
 
 
 </body>
