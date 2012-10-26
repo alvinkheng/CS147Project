@@ -12,7 +12,7 @@
   <?php
      if ($isModal) {
      ?>
-  <a href="index.php" data-icon="check" data-theme="b">Save</a>
+  <a href="index.php" data-icon="check" data-theme="b">Add</a>
   <?php
      }
      ?>   

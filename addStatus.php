@@ -17,18 +17,22 @@
 	</head>
 
 	<body>
-	  <?php 
-	     $title = "Add Status";
-	     $isModal = 1;
-	     include("header.php");
-	     ?>
+	
+	<?php 
+	   $title = "Add Status";
+	   $isModal = 1;
+	   include("header.php");
+	   ?>
+	
+	<div data-role="content">
+	  
 	  <h2>What's up?</h2> <br>
 	  <fieldset data-role="controlgroup" data-type="horizontal"
-		    data-mini="true" class="ui-btn-right" data-icon="custom">
+		    class="ui-btn-right">
             <input type="radio" name="radio-choice"
                    id="radio-choice-1" value="choice-1"
                    checked="checked" />
-            <label for="radio-choice-1"></label>
+            <label for="radio-choice-1"><img src="images/happy.png" /></label>
 	    
             <input type="radio" name="radio-choice"
                    id="radio-choice-2" value="choice-2"  />
@@ -38,9 +42,11 @@
 		   id="radio-choice-3" value="choice-3" />
 	    <label for="radio-choice-3">:(</label>
           </fieldset>
+          
 	  <label for="textarea-a">Status:</label>
 	  <textarea name="textarea" id="textarea-a"></textarea>
 	  Location: Stanford, CA
 	  
+	  </div>
 	</body>
 </html>
