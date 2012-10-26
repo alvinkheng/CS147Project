@@ -28,8 +28,7 @@
 
 	</div><!-- /header -->
 
-	<div data-role="content">	
-		<p></p>
+	<div data-role="content">
 	
 	<form action="submit.php" method="post">
 		<div data-role="fieldcontain">
@@ -78,7 +77,7 @@
 		
 		<center> <div>
 		
-		<a href="logout.php" data-role="button">Logout</a>
+		<a href="logout.php" data-role="button" data-theme="a">Logout</a>
 		
 		</div> </center>
 
