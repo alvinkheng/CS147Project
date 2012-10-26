@@ -22,9 +22,9 @@
 <div data-role="page" id="filter">
 
 	<div data-role="header">
-		<a href="index.html" data-icon="delete">Save</a>
+		<a href="index.html" data-icon="delete">Cancel</a>
 		<h1>Settings</h1>
-		<a href="index.html" data-icon="check">Cancel</a>
+		<a href="index.html" data-icon="check">Save</a>
 
 	</div><!-- /header -->
 

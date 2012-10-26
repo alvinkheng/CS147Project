@@ -37,7 +37,7 @@
 		
 	</div><!-- /header -->
 
-	<div data-role="content">	
+	<div>	
 	
 		<?php
 		   include("personalfeed.php");
