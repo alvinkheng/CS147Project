@@ -27,7 +27,7 @@
 	<div data-role="content">
 	  
 	  <h2>What's up?</h2> <br>
-	  <fieldset data-role="controlgroup" data-type="horizontal"
+	  <center><fieldset data-role="controlgroup" data-type="horizontal"
 		    class="ui-btn-right">
             <input type="radio" name="radio-choice"
                    id="radio-choice-1" value="choice-1"
@@ -36,17 +36,17 @@
 	    
             <input type="radio" name="radio-choice"
                    id="radio-choice-2" value="choice-2"  />
-            <label for="radio-choice-2">:|</label>
+            <label for="radio-choice-2"><img src="images/neutral.png" /></label>
 
 	    <input type="radio" name="radio-choice"
 		   id="radio-choice-3" value="choice-3" />
-	    <label for="radio-choice-3">:(</label>
+	    <label for="radio-choice-3"><img src="images/sad.png" /></label>
           </fieldset>
           
 	  <label for="textarea-a">Status:</label>
 	  <textarea name="textarea" id="textarea-a"></textarea>
 	  Location: Stanford, CA
 	  
-	  </div>
+	  </div> </center>
 	</body>
 </html>
