@@ -15,8 +15,27 @@
 	
 	<script src="jquery-1.8.2.min.js"></script>
 	<script src="jquery.mobile-1.2.0.js"></script>
+	
+	<script type="text/javascript">
+	
+	function switchView() {
+	
+		if(document.getElementById('radio-choice-1').checked) {
+		
+			displayPersonalDashboard.style.display="block";
+			displayGlobalDashboard.style.display="none";
+		  
+		} else if(document.getElementById('radio-choice-2').checked) {
+		
+			displayPersonalDashboard.style.display="none";
+			displayGlobalDashboard.style.display="block";
+		}
+	}
+	
+	</script>
 
-</head>  
+</head>
+  
 <body> 
 
 <div data-role="page">
@@ -25,21 +44,30 @@
 	<h1></h1>
 	
 	<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn-right">
-	     	<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
+	     	<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" onclick="switchView()"/>
 	     	<label for="radio-choice-1">Personal</label>
 	
-	     	<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+	     	<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  onclick="switchView()"/>
 	     	<label for="radio-choice-2">Global</label>
 	</fieldset>
 	
 	</div><!-- header -->
 	
 	<div data-role="content">	
+	
+	<div id="displayPersonalDashboard">
 		<?php
 		   include("personaldashboard.php");
 		   ?>
+	</div> <!-- displayPersonalDashboard -->
+	
+	<div id="displayGlobalDashboard">
+		<?php
+		   include("globaldashboard.php");
+		   ?>
+	</div>	<!-- displayGlobalDashboard -->
 		
-	</div><!-- /content -->
+	</div> <!-- content -->
 	
 	<?php
 	   $select1 = "ui-btn-active";

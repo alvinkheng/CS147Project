@@ -1,3 +1,3 @@
 <!DOCTYPE html>
 
-<img src="images/test.png" alt="">
+<h2> Katherine's Feed </h2>
