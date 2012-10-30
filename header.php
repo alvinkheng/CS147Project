@@ -8,6 +8,10 @@
   function closeStatus() {
   $.mobile.changePage( "personal.php", { transition: "slidedown"} );
   }
+
+  function presentSettings() {
+  $.mobile.changePage( "settings.php", {transition: "slide"} );
+  }
 </script>
 
   <?php
@@ -23,7 +27,8 @@
        ?>
     
     <div data-role="header" data-position="fixed" data-id="sameheader">
-      <a data-icon="plus" data-theme="b" class="ui-btn-right" onclick="presentStatus()">Add</a>
+      <a data-icon="gear"  onclick="presentSettings()">Settings</a>
+      <a data-icon="plus" data-theme="b" onclick="presentStatus()">Add</a>
       
       <?php
 	 }
