@@ -41,12 +41,11 @@
 
 <!-- Start of first page: #one -->
 <div data-role="page" id="one">
+	<?php
+	   $title = "emochi";
+	   include("header.php");
+	   ?>
 
-	<div data-role="header" data-position="fixed">
-		<h1></h1>
-		
-	</div><!-- /header -->
-	
 	<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn-right">
 	     	<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" onclick="switchView()" />
 	     	<label for="radio-choice-1">Feed</label>
