@@ -37,11 +37,11 @@
 }
 
 #displayGlobalFeed {
-    display: none;
+    display: block;
 }
 
 #displayPersonalDashboard {
-    display: block;
+    display: none;
 }
 
 #displayGlobalDashboard {
