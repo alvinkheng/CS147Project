@@ -29,11 +29,11 @@ function switchView(id, hideId) {
 
 
 function presentStatus() {
-    $.mobile.changePage( "addStatus.html", { transition: "slideup"} );
+    $.mobile.changePage("addStatus.html", { transition: "slideup"} );
 }
 
 function presentSettings() {
-    $.mobile.changePage( "settings.html", {transition: "slide"} );
+    $.mobile.changePage("settings.html", {transition: "slide"} );
 }
 
 </script>
@@ -41,11 +41,12 @@ function presentSettings() {
 
 <!-- Start of first page: #one -->
 <div data-role="page" id="one">
+    
 <div data-role="header" data-position="fixed" data-id="sameheader">
-<a data-icon="gear"  onclick="presentSettings()">Settings</a>
+<a data-icon="gear" onclick="presentSettings()">Settings</a>
 <a data-icon="plus" data-theme="b" onclick="presentStatus()">Add</a>
 <h1>emochi</h1>
-</div>
+</div> <!-- header -->
 
 <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn-right">
 <input type="radio" name="radio-choice" id="radio-choice-1"
@@ -77,10 +78,14 @@ This is awesome!
 
 </div> <!-- content -->
 
-<?php
-    $select0 = "ui-btn-active";
-    include("footer.php");
-    ?>
+    <div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
+        <div data-role="navbar" class="nav-glyphish-example" data-grid="c">    
+            <ul>
+                <li><a href="personal.html" id="personal" data-icon="custom" class="ui-btn-active"></a></li>
+                <li><a href="global.html" id="global" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div> <!-- footer -->
 
 </div> <!-- page -->
 

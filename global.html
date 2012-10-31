@@ -25,14 +25,23 @@
         document.getElementById(id).style.display = "block";
         document.getElementById(hideId).style.display = "none";
     }
+      
+      function presentStatus() {
+          $.mobile.changePage("addStatus.html", { transition: "slideup"} );
+      }
+      
+      function presentSettings() {
+          $.mobile.changePage("settings.html", {transition: "slide"} );
+      }
   </script>
 
 
 <div data-role="page">
-  <?php
-     $title="emochi";
-     include("header.php");
-     ?>
+    <div data-role="header" data-position="fixed" data-id="sameheader">
+        <a data-icon="gear" onclick="presentSettings()">Settings</a>
+        <a data-icon="plus" data-theme="b" onclick="presentStatus()">Add</a>
+        <h1>emochi</h1>
+    </div> <!-- header -->
   
 	<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn-right">
 	  <input type="radio" name="radio-choice"
@@ -49,23 +58,23 @@
 	<div data-role="content">	
 	
 	<div id="displayGlobalFeed">
-		<?php
-		   include("globalfeed.php");
-		   ?>
+		<h2> Global Feed </h2>
 	</div> <!-- displayGlobalFeed -->
 	
 	<div id="displayGlobalDashboard">
-		<?php
-		   include("globaldashboard.php");
-		   ?>
+		<h2> Global Dashboard </h2>
 	</div>	<!-- displayGlobalDashboard -->
 		
 	</div> <!-- content -->
 	
-	<?php
-	   $select1 = "ui-btn-active";
-	   include("footer.php");
-	   ?>
+    <div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
+        <div data-role="navbar" class="nav-glyphish-example" data-grid="c">    
+            <ul>
+                <li><a href="personal.html" id="personal" data-icon="custom"></a></li>
+                <li><a href="global.html" id="global" data-icon="custom" class="ui-btn-active"></a></li>
+            </ul>
+        </div>
+    </div> <!-- footer -->
 	
 	</div><!-- /page -->
 
