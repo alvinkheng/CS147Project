@@ -8,7 +8,7 @@
 		
 		<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
 		
-		<link rel="stylesheet" href="addStatus.css" />
+		<link rel="stylesheet" href="style.css" />
 		<link rel="apple-touch-icon" href="appicon.png" />
 		<link rel="apple-touch-startup-image" href="startup.png">
 		

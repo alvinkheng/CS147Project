@@ -15,7 +15,11 @@
   
   <script src="jquery-1.8.2.min.js"></script>
   <script src="jquery.mobile-1.2.0.js"></script>
+
+</head>
   
+<body> 
+
   <script type="text/javascript">
     function switchView(id, hideId) {
         document.getElementById(id).style.display = "block";
@@ -23,10 +27,6 @@
     }
   </script>
 
-
-</head>
-  
-<body> 
 
 <div data-role="page">
   <?php

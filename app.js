@@ -33,6 +33,13 @@ app.configure('development', function(){
 app.get('/', routes.home);
 app.get('/users', user.list);
 
+
+app.post('addStatus', function(req, res) {
+    res.send("added!");
+});
+
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

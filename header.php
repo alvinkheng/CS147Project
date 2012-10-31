@@ -5,8 +5,16 @@
   $.mobile.changePage( "addStatus.php", { transition: "slideup"} );
   }
   
-  function closeStatus() {
-  $.mobile.changePage( "personal.php", { transition: "slidedown"} );
+  function closeStatus(save) {
+      if (save) {
+          var request = new XMLHttpRequest();
+          request.open("POST", "http://localhost:3000/addStatus", false);
+          request.send();
+          if (request.status === 200) {
+              console.log(request.responseText);
+          }
+      }
+      $.mobile.changePage( "personal.php", { transition: "slidedown"} );
   }
 
   function presentSettings() {
@@ -19,8 +27,8 @@
      ?>
   
   <div data-role="header">
-    <a data-icon="delete" onclick="closeStatus()">Cancel</a>
-    <a data-icon="check" data-theme="b" onclick="closeStatus()">Add</a>
+    <a data-icon="delete" onclick="closeStatus(0)">Cancel</a>
+    <a data-icon="check" data-theme="b" onclick="closeStatus(1)">Add</a>
     
     <?php
        } else {
