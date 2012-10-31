@@ -5,3 +5,7 @@ exports.home = function(req, res){
 exports.globaldash = function(req, res) {
 	res.render('global.html')
 }
+
+exports.settings = function(req, res) {
+	res.render('settings.html')
+}

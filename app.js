@@ -35,7 +35,10 @@ app.configure('development', function(){
 
 app.get('/', routes.home);
 app.get('/globaldashboard', routes.globaldash)
+app.get('/settings', routes.settings)
+
 app.get('/users', user.list);
+
 
 
 app.post('addStatus', function(req, res) {
