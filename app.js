@@ -33,13 +33,15 @@ app.configure('development', function(){
 app.get('/', routes.home);
 app.get('/users', user.list);
 
-
-app.post('addStatus', function(req, res) {
+app.post('/addStatus', function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.send("added!");
 });
 
-
+app.get('/getPersonalFeed', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.send(['got']);
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
