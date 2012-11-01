@@ -37,6 +37,7 @@ var currUser = {
   'location': 'on'
 }
 
+//variable that holds personal feed
 var globalPosts = [
   { text: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA'},
   { text: 'Did not do so hot on my Chem exam...', emotion: 'sad', location: 'Stanford, CA'},
@@ -50,6 +51,8 @@ app.configure('development', function(){
 app.get('/', routes.home);
 app.get('/globaldashboard', routes.globaldash)
 app.get('/settings', routes.settings) 
+app.get('/personal', routes.personal)
+app.get('/addStatus', routes.addStatus);
 app.post('/save-settings', function(req, res) {
   console.log('got settings')
   var params = req.body;
@@ -72,14 +75,27 @@ app.get('/user-info', function(req, res) {
 
 app.get('/users', user.list);
 
-app.post('/addStatus', function(req, res) {
+app.post('/postStatus', function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send("added!");
+     var status = {};
+     status['text'] = req.body['textarea'];
+     var emotion = req.body['radio-choice'];
+     if (emotion == 'choice-1') {
+        status['emotion'] = 'happy';
+     } else if (emotion == 'choice-2') {
+        status['emotion'] = 'neutral';
+     } else if (emotion == 'choice-3') {
+        status['emotion'] = 'sad';
+     }
+     status['location'] = 'Stanford, CA';
+     globalPosts.push(status);
+     console.log(status);
+     res.render('global.html');
 });
 
 app.get('/getPersonalFeed', function(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send(['got']);
+    res.send(globalPosts);
 });
 
 http.createServer(app).listen(app.get('port'), function(){

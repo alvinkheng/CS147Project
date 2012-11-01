@@ -9,3 +9,11 @@ exports.globaldash = function(req, res) {
 exports.settings = function(req, res) {
 	res.render('settings.html')
 }
+
+exports.personal = function(req, res) {
+	res.render('personal.html')
+}
+
+exports.addStatus = function(req, res) {
+	res.render('addStatus.html')
+}
