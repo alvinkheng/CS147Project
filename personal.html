@@ -8,27 +8,26 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
+<link rel="stylesheet" href="public/css/jquery.mobile-1.2.0.css" />
 
 <link rel="stylesheet" href="style.css" />
 <link rel="apple-touch-icon" href="appicon.png" />
 <link rel="apple-touch-startup-image" href="upstart.png">
 
-<script src="jquery-1.8.2.min.js"></script>
-<script src="jquery.mobile-1.2.0.js"></script>
+<script src="public/js/jquery-1.8.2.min.js"></script>
+<script src="public/js/jquery.mobile-1.2.0.js"></script>
 
 </head> 
 
 <body> 
 
 <script type="text/javascript">
-    
     var arr;
     var request = new XMLHttpRequest();
     request.open("GET", "http://localhost:3000/getPersonalFeed", false);
     request.send();
     if (request.status === 200) {
-        arr = request.response;
+        arr = JSON.parse(request.response);
     } 
     
 function switchView(id, hideId) {
@@ -74,9 +73,9 @@ value="choice-2" onclick="switchView('displayPersonalDashboard', 'displayPersona
 
 <h2> Katherine's Feed </h2>
 <script type="text/javascript">
-    console.log(arr);
-    for (var i = 0; i < arr.size; i++) {
-        document.getElementById("displayPersonalFeed").innerHTML += arr[i];
+    for (var i = 0; i < arr.length; i++) {
+        document.write(arr[i].text + " - " + arr[i].emotion + " - " + arr[i].location);
+        document.write("<br />");
     }
 </script>
 </div> <!-- displayPersonalFeed -->
