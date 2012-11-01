@@ -22,8 +22,10 @@
       function closeStatus(save) {
           if (save) {
               var request = new XMLHttpRequest();
+              var arr = {};
+              arr['text'] = $('#textarea-a').val();
               request.open("POST", "http://localhost:3000/addStatus", false);
-              request.send();
+              request.send(arr);
               if (request.status === 200) {
                   console.log(request.responseText);
               }
