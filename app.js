@@ -51,7 +51,7 @@ app.configure('development', function(){
 app.get('/', routes.home);
 app.get('/globaldashboard', routes.globaldash)
 app.get('/settings', routes.settings) 
-app.get('/personaldashboard', routes.personaldash)
+app.get('/personal', routes.personal)
 app.get('/addStatus', routes.addStatus);
 app.post('/save-settings', function(req, res) {
   console.log('got settings')
@@ -76,7 +76,6 @@ app.get('/user-info', function(req, res) {
 app.get('/users', user.list);
 
 app.post('/postStatus', function(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
      var status = {};
      status['text'] = req.body['textarea'];
      var emotion = req.body['radio-choice'];
@@ -89,13 +88,12 @@ app.post('/postStatus', function(req, res) {
      }
      status['location'] = 'Stanford, CA';
      globalPosts.push(status);
-     console.log(status);
      res.render('personal.html');
 });
 
 app.get('/getPersonalFeed', function(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send(globalPosts);
+    res.write(JSON.stringify(globalPosts));
+    res.end();
 });
 
 http.createServer(app).listen(app.get('port'), function(){
