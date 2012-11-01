@@ -10,7 +10,7 @@ exports.settings = function(req, res) {
 	res.render('settings.html')
 }
 
-exports.personal = function(req, res) {
+exports.personaldash = function(req, res) {
 	res.render('personal.html')
 }
 
