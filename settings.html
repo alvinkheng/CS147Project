@@ -22,15 +22,15 @@
 <div data-role="page" id="filter">
 
 	<div data-role="header">
-		<a href="personal.php" data-icon="delete">Cancel</a>
+		<a href="personal.html" data-icon="delete">Cancel</a>
 		<h1>Settings</h1>
-		<a href="personal.php" data-icon="check" data-theme="b">Save</a>
+		<a href="personal.html" data-icon="check" data-theme="b">Save</a>
 
 	</div><!-- /header -->
 
 	<div data-role="content">
 	
-	<form action="submit.php" method="post">
+	<form action="submit.html" method="post">
 		<div data-role="fieldcontain">
 	     <label for="name">Name:</label>
 	     <input type="text" name="name" id="name" value="Katherine Chen" />
@@ -77,17 +77,22 @@
 		
 		<center> <div>
 		
-		<a href="logout.php" data-role="button" data-theme="a">Logout</a>
+		<a href="logout.html" data-role="button" data-theme="a">Logout</a>
 		
 		</div> </center>
 
 	</form>
 	</div><!-- /content -->
 
-	<?php
-		$select3="ui-btn-active";
-		include ("footer.php");
-	?>
+<div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
+<div data-role="navbar" class="nav-glyphish-example" data-grid="c">    
+<ul>
+<li><a href="personal.html" id="personal" data-icon="custom" class="ui-btn-active"></a></li>
+<li><a href="global.html" id="global" data-icon="custom"></a></li>
+</ul>
+</div>
+</div> <!-- footer -->
+
 	
 	</div><!-- /page -->
 
