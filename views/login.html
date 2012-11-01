@@ -1,7 +1,3 @@
-<!-- DEPRECATED! USE views/login.html -->
-
-
-
 <!DOCTYPE html> 
 <html>
 
@@ -12,13 +8,13 @@
  	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	
-	<link rel="stylesheet" href="public/css/jquery.mobile-1.2.0.css" />
-	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="/css/jquery.mobile-1.2.0.css" />
+	<link rel="stylesheet" href="css/style.css" />
 	<link rel="apple-touch-icon" href="appicon.png" />
 	<link rel="apple-touch-startup-image" href="startup.png">
 	
-	<script src="public/js/jquery-1.8.2.min.js"></script>
-	<script src="public/js/jquery.mobile-1.2.0.js"></script>
+	<script src="/js/jquery-1.8.2.min.js"></script>
+	<script src="/js/jquery.mobile-1.2.0.js"></script>
 
     <script type="text/javascript">
     function switchView(id, hideId) {
@@ -27,11 +23,11 @@
     }
 
     function presentStatus() {
-        $.mobile.changePage("addStatus.html", { transition: "slideup"} );
+        $.mobile.changePage("addStatus", { transition: "slideup"} );
     }
 
     function presentSettings() {
-        $.mobile.changePage("settings.html", {transition: "slide"} );
+        $.mobile.changePage("settings", {transition: "slide"} );
     }
     </script>
 
@@ -50,7 +46,7 @@
       Please log in to start tracking your emotions!<br>
       <small><i>Any username and password combination is fine... for now!</small></i><br>
       </center>
-      <form action="personal.html" method="post">
+      <form action="personal" method="get">
 	<label for="username">Username:</label>
 	<input type="text" name="username" id="username">
 	<label for="password">Password:</label>

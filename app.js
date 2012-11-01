@@ -53,6 +53,8 @@ app.get('/globaldashboard', routes.globaldash)
 app.get('/settings', routes.settings) 
 app.get('/personal', routes.personal)
 app.get('/addStatus', routes.addStatus);
+app.get('/login', routes.login);
+app.get('/logout', routes.logout);
 app.post('/save-settings', function(req, res) {
   console.log('got settings')
   var params = req.body;

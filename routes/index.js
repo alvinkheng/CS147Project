@@ -17,3 +17,11 @@ exports.personal = function(req, res) {
 exports.addStatus = function(req, res) {
 	res.render('addStatus.html')
 }
+
+exports.login = function(req, res) {
+	res.render('login.html')
+}
+
+exports.logout = function(req, res) {
+	res.render('logout.html')
+}
