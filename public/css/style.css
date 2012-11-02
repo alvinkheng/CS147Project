@@ -32,6 +32,14 @@
     background:  url(/icons/10-medical.png) 50% 50% no-repeat;
     background-size: 22px 22px; 
 }
+
+#add .ui-btn { 
+    height: 40px; 
+    width:80px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
 #settings .ui-icon { 
     background:  url(/icons/19-gear.png) 50% 50% no-repeat;  
     background-size: 26px 26px; 
