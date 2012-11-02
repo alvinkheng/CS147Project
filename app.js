@@ -45,7 +45,7 @@ var globalPosts = [
   { text: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX', date: 'Oct 30'}
 ]
 
-
+//variabe that holds personal posts
 var personalPosts = [
     { text: 'I hate midterms!!!', emotion: 'sad', location: 'Stanford, CA'},
     { text: 'Section was great today!', emotion: 'happy', location: 'Stanford, CA'},
