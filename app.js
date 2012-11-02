@@ -27,7 +27,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-//dummy data
+// dummy data
 var currUser = {
   'name': 'Katherine Chen',
   'email': 'kchen12@stanford.edu',
@@ -39,10 +39,12 @@ var currUser = {
 
 //variable that holds global posts
 var globalPosts = [
-  { text: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA'},
-  { text: 'Did not do so hot on my Chem exam...', emotion: 'sad', location: 'Stanford, CA'},
-  { text: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX'}
+  { text: 'Really excited to show off my Halloween costume', emotion: 'happy', location: 'Stanford, CA', date: 'Oct 31'},
+  { text: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA', date: 'Oct 31'},
+  { text: 'Did not do so hot on my Chem exam...', emotion: 'sad', location: 'Stanford, CA', date: 'Oct 30'},
+  { text: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX', date: 'Oct 30'}
 ]
+
 
 var personalPosts = [
     { text: 'I hate midterms!!!', emotion: 'sad', location: 'Stanford, CA'},
@@ -50,19 +52,34 @@ var personalPosts = [
     { text: 'Wheres my unicorn?', emotion: 'neutral', location: 'Stanford, CA'}
 ]
 
+var globalAnalytics = [
+  {}
+]
+// end dummy data
+
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.home);
-app.get('/globaldashboard', routes.globaldash)
+
+// routes
+app.get('/', routes.personal);
+app.get('/global', routes.globaldash)
+app.get('/globalposts', function(req, res) {
+  res.write(JSON.stringify(globalPosts))
+  res.end()
+})
+app.get('/globalanalytics', function(req, res) {
+  res.write(JSON.stringify(globalAnalytics))
+  res.end()
+})
+
 app.get('/settings', routes.settings) 
 app.get('/personal', routes.personal)
 app.get('/addStatus', routes.addStatus);
 app.get('/login', routes.login);
 app.get('/logout', routes.logout);
 app.post('/save-settings', function(req, res) {
-  console.log('got settings')
   var params = req.body;
 
   currUser['name'] = params['name']

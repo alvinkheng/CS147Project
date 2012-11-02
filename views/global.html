@@ -32,6 +32,8 @@
 
 
 <script type="text/javascript">
+
+
   function presentStatus() {
   $.mobile.changePage( "addStatus", { transition: "slideup"} );
   }
@@ -55,6 +57,24 @@
   $(function() {
   	switchView('displayGlobalFeed', 'displayGlobalDashboard');
 
+  	$.get('globalposts', function(data) {
+  		$('#globalFeed').html('')
+  		console.log('got data: '+data)
+  		data = JSON.parse(data)
+
+  		for(var i=0; i < data.length; i++) {
+  			var curr = data[i]
+  			$('#globalFeed').append('<h4> > '+curr['text']+'</h4>')
+  			$('#globalFeed').append(curr['emotion']+'  @'+curr['location'] +' on '+curr['date'] )
+  		}
+  	})
+
+  	$.get('globalanalytics', function(data) {
+  		console.log('got data: '+data)
+  		data = JSON.parse(data)
+
+  		$('#dashboard').html('<h3> Not Enough Data </h3>')
+  	})
   })
   </script>
     <div data-role="header" data-position="fixed" data-id="sameheader">
@@ -81,12 +101,13 @@
 	
 	<div id="displayGlobalFeed">
 		<h2> Global Feed </h2>
-			
+		
+		<div id='globalFeed'></div>
 	</div> <!-- displayGlobalFeed -->
 	
 	<div id="displayGlobalDashboard">
 		<h2> Global Dashboard </h2>
-
+		 <div id='dashboard'>
 	</div>	<!-- displayGlobalDashboard -->
 		
 	</div> <!-- content -->
