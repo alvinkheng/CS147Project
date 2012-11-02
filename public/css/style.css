@@ -16,16 +16,12 @@
 }
 
 #personal .ui-icon { 
-    background:  url(/icons/53-house.png) 50% 50% no-repeat; 
-    background-size: 24px 22px; 
+    background:  url(/icons/personal.png) 50% 50% no-repeat; 
+    background-size: 18px 30px; 
 }
 #global .ui-icon { 
-    background: url(/icons/103-map.png) 50% 50% no-repeat; 
-    background-size: 26px 21px; 
-}
-#dashboard .ui-icon { 
-    background:  url(/icons/17-bar-chart.png) 50% 50% no-repeat;
-    background-size: 29px 24px; 
+    background: url(/icons/globe.png) 50% 50% no-repeat; 
+    background-size: 30px 30px; 
 }
 #add .ui-icon { 
     background:  url(/icons/10-medical.png) 50% 50% no-repeat;
