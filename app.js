@@ -37,11 +37,17 @@ var currUser = {
   'location': 'on'
 }
 
-//variable that holds personal feed
+//variable that holds global posts
 var globalPosts = [
   { text: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA'},
   { text: 'Did not do so hot on my Chem exam...', emotion: 'sad', location: 'Stanford, CA'},
   { text: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX'}
+]
+
+var personalPosts = [
+    { text: 'I hate midterms!!!', emotion: 'sad', location: 'Stanford, CA'},
+    { text: 'Section was great today!', emotion: 'happy', location: 'Stanford, CA'},
+    { text: 'Wheres my unicorn?', emotion: 'neutral', location: 'Stanford, CA'}
 ]
 
 app.configure('development', function(){
@@ -89,12 +95,13 @@ app.post('/postStatus', function(req, res) {
         status['emotion'] = 'sad';
      }
      status['location'] = 'Stanford, CA';
-     globalPosts.push(status);
+     globalPosts.unshift(status);
+     personalPosts.unshift(status);
      res.render('personal.html');
 });
 
 app.get('/getPersonalFeed', function(req, res) {
-    res.write(JSON.stringify(globalPosts));
+    res.write(JSON.stringify(personalPosts));
     res.end();
 });
 
