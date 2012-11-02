@@ -37,6 +37,7 @@ var currUser = {
   'location': 'on'
 }
 
+//variable that holds personal feed
 var globalPosts = [
   { text: 'Really excited to show off my Halloween costume', emotion: 'happy', location: 'Stanford, CA', date: 'Oct 31'},
   { text: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA', date: 'Oct 31'},
@@ -67,6 +68,10 @@ app.get('/globalanalytics', function(req, res) {
 })
 
 app.get('/settings', routes.settings) 
+app.get('/personal', routes.personal)
+app.get('/addStatus', routes.addStatus);
+app.get('/login', routes.login);
+app.get('/logout', routes.logout);
 app.post('/save-settings', function(req, res) {
   var params = req.body;
 
@@ -88,14 +93,26 @@ app.get('/user-info', function(req, res) {
 
 app.get('/users', user.list);
 
-
-
-app.post('addStatus', function(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send("added!");
+app.post('/postStatus', function(req, res) {
+     var status = {};
+     status['text'] = req.body['textarea'];
+     var emotion = req.body['radio-choice'];
+     if (emotion == 'choice-1') {
+        status['emotion'] = 'happy';
+     } else if (emotion == 'choice-2') {
+        status['emotion'] = 'neutral';
+     } else if (emotion == 'choice-3') {
+        status['emotion'] = 'sad';
+     }
+     status['location'] = 'Stanford, CA';
+     globalPosts.push(status);
+     res.render('personal.html');
 });
 
-
+app.get('/getPersonalFeed', function(req, res) {
+    res.write(JSON.stringify(globalPosts));
+    res.end();
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

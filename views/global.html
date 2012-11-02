@@ -35,7 +35,7 @@
 
 
   function presentStatus() {
-  $.mobile.changePage( "addStatus.php", { transition: "slideup"} );
+  $.mobile.changePage( "addStatus", { transition: "slideup"} );
   }
   
   function closeStatus(save) {
@@ -47,7 +47,7 @@
               console.log(request.responseText);
           }
       }
-      $.mobile.changePage( "personal.php", { transition: "slidedown"} );
+      $.mobile.changePage( "personal", { transition: "slidedown"} );
   }
 
   function presentSettings() {
@@ -111,18 +111,18 @@
 	</div>	<!-- displayGlobalDashboard -->
 		
 	</div> <!-- content -->
+    
+    <div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
+        <div data-role="navbar" class="nav-glyphish-example" data-grid="c">    
+            <ul>
+                <li><a href="personal" id="personal" data-icon="custom"></a></li>
+                <li><a href="globaldashboard" id="global" data-icon="custom" class="ui-btn-active"></a></li>
+            </ul>
+        </div>
+    </div> <!-- footer -->
+
 	
 	</div><!-- /page -->
-
-	<div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
-	  <div data-role="navbar" class="nav-glyphish-example" data-grid="c">    
-	    <ul>
-	      <li><a href="personal.php" id="personal" data-icon="custom" class=''></a></li>
-	      <li><a href="global.php" id="global" data-icon="custom" class='ui-btn-active'></a></li>
-	    </ul>
-	  </div>
-	</div>
-
 
 </body>
 </html>

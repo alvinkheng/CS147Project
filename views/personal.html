@@ -2,26 +2,33 @@
 <html>
 
 <head>
-<title></title> 
+<title>Personal</title> 
 <meta charset="utf-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
+<link rel="stylesheet" href="/css/jquery.mobile-1.2.0.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="apple-touch-icon" href="/imgs/appicon.png" />
+<link rel="apple-touch-startup-image" href="/imgs/startup.png">
 
-<link rel="stylesheet" href="style.css" />
-<link rel="apple-touch-icon" href="appicon.png" />
-<link rel="apple-touch-startup-image" href="upstart.png">
-
-<script src="jquery-1.8.2.min.js"></script>
-<script src="jquery.mobile-1.2.0.js"></script>
+<script src="/js/jquery-1.8.2.min.js"></script>
+<script src="/js/jquery.mobile-1.2.0.js"></script>
 
 </head> 
 
 <body> 
 
 <script type="text/javascript">
+    $.get('getPersonalFeed', function(data) {
+          data = JSON.parse(data);
+          for (var i = 0; i < data.length; i++) {
+              document.getElementById('displayPersonalFeed').innerHTML += data[i].text + " - " + data[i].emotion + " - " + data[i].location;
+              document.getElementById('displayPersonalFeed').innerHTML += ("<br />");
+          }
+          });
+    
 function switchView(id, hideId) {
     document.getElementById(id).style.display = "block";
     document.getElementById(hideId).style.display = "none";
@@ -29,11 +36,11 @@ function switchView(id, hideId) {
 
 
 function presentStatus() {
-    $.mobile.changePage("addStatus.html", { transition: "slideup"} );
+    $.mobile.changePage("addStatus", { transition: "slideup"} );
 }
 
 function presentSettings() {
-    $.mobile.changePage("settings.html", {transition: "slide"} );
+    $.mobile.changePage("settings", {transition: "slide"} );
 }
 
 </script>
@@ -62,11 +69,7 @@ value="choice-2" onclick="switchView('displayPersonalDashboard', 'displayPersona
 <div data-role="content">
 
 <div id="displayPersonalFeed">
-
 <h2> Katherine's Feed </h2>
-
-This is awesome!
-
 </div> <!-- displayPersonalFeed -->
 
 
@@ -81,8 +84,8 @@ This is awesome!
     <div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
         <div data-role="navbar" class="nav-glyphish-example" data-grid="c">    
             <ul>
-                <li><a href="personal.html" id="personal" data-icon="custom" class="ui-btn-active"></a></li>
-                <li><a href="global.html" id="global" data-icon="custom"></a></li>
+                <li><a href="personal" id="personal" data-icon="custom" class="ui-btn-active"></a></li>
+                <li><a href="globaldashboard" id="global" data-icon="custom"></a></li>
             </ul>
         </div>
     </div> <!-- footer -->
