@@ -60,7 +60,7 @@
 
 <div data-role="navbar">
     <ul>
-        <li onclick="switchView('displayPersonalFeed', 'displayPersonalDashboard')"><a href="" class="ui-btn-active ui-state-persist">Feed</a></li>
+        <li class="ui-btn-active" onclick="switchView('displayPersonalFeed', 'displayPersonalDashboard')"><a href="" class="ui-btn-active ui-state-persist">Journal</a></li>
         <li onclick="switchView('displayPersonalDashboard', 'displayPersonalFeed')"><a href="">Dashboard</a></li>
     </ul>
 </div><!-- /navbar -->
@@ -70,7 +70,7 @@
 <div data-role="content">
 
 <div id="displayPersonalFeed" >
-<h2> Katherine's Feed </h2>
+<h2> Katherine's Journal </h2>
 
     <ul data-role="listview" id="feedList"></ul>
 </div> <!-- displayPersonalFeed -->
@@ -78,7 +78,18 @@
 
 <div id="displayPersonalDashboard">
 
-<h2> Katherine's Dashboard </h2>
+<h3> Katherine Chen </h3>
+
+<h3> Emotional DNA </h3>
+
+<h3> Analytics Views </h3>
+
+<ul data-role="listview"> 
+    <li><a href="">Calendar</a></li>
+    <li><a href="">Location</a></li>
+    <li><a href="">Weather</a></li>
+    <li><a href="">Friends</a></li>
+</ul>
 
 </div> <!-- displayPersonalDashboard -->
 
