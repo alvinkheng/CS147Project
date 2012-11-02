@@ -56,7 +56,9 @@
 <h1>emochi</h1>
 </div> <!-- header -->
 
-<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn-right">
+<div id="viewToggle">
+
+<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn">
 <input type="radio" name="radio-choice" id="radio-choice-1"
 value="choice-1" checked="checked"
 onclick="switchView('displayPersonalFeed', 'displayPersonalDashboard')" />
@@ -67,9 +69,11 @@ value="choice-2" onclick="switchView('displayPersonalDashboard', 'displayPersona
 <label for="radio-choice-2">Dashboard</label>
 </fieldset>
 
+</div>
+
 <div data-role="content">
 
-<div id="displayPersonalFeed">
+<div id="displayPersonalFeed" data-role="content">
 <h2> Katherine's Feed </h2>
     <ul data-role="listview" id="feedList">
     </ul>

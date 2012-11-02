@@ -11,6 +11,10 @@
     -webkit-border-radius: 0 !important; 
     border-radius: 0 !important; 
 }
+
+#viewToggle .ui-radio {
+}
+
 #personal .ui-icon { 
     background:  url(/icons/53-house.png) 50% 50% no-repeat; 
     background-size: 24px 22px; 
