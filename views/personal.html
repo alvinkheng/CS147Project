@@ -20,33 +20,35 @@
 
 <body> 
 
-<script type="text/javascript">
-    $.get('getPersonalFeed', function(data) {
-          data = JSON.parse(data);
-          for (var i = 0; i < data.length; i++) {
-              document.getElementById('feedList').innerHTML += "<li><p>" + data[i].text + " - " + data[i].emotion + " - " + data[i].location + "</p></li>";
-          }
-          });
-    
-function switchView(id, hideId) {
-    document.getElementById(id).style.display = "block";
-    document.getElementById(hideId).style.display = "none";
-}
-
-
-function presentStatus() {
-    $.mobile.changePage("addStatus", { transition: "slideup"} );
-}
-
-function presentSettings() {
-    $.mobile.changePage("settings", {transition: "slide"} );
-}
-
-</script>
-
-
 <!-- Start of first page: #one -->
 <div data-role="page" id="one">
+    
+    <script type="text/javascript">        
+        $(function() {
+          $.get('getPersonalFeed', function(data) {
+                data = JSON.parse(data);
+                $('#feedList').html('');
+                for (var i = 0; i < data.length; i++) {
+                    $('#feedList').append("<li><p>" + data[i].text + " - " + data[i].emotion + " - " + data[i].location + "</p></li>");
+                }
+            });
+          })
+        
+        function switchView(id, hideId) {
+            document.getElementById(id).style.display = "block";
+            document.getElementById(hideId).style.display = "none";
+        }
+        
+        
+        function presentStatus() {
+            $.mobile.changePage("addStatus", { transition: "slideup"} );
+        }
+        
+        function presentSettings() {
+            $.mobile.changePage("settings", {transition: "slide"} );
+        }
+        
+        </script>
     
 <div data-role="header" data-position="fixed" data-id="sameheader">
 <a data-icon="gear" onclick="presentSettings()">Settings</a>

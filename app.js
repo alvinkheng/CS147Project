@@ -101,9 +101,10 @@ app.get('/user-info', function(req, res) {
 app.get('/users', user.list);
 
 app.post('/postStatus', function(req, res) {
+    var params = req.body;
      var status = {};
-     status['text'] = req.body['textarea'];
-     var emotion = req.body['radio-choice'];
+     status['text'] = params['textarea'];
+     var emotion = params['radio-choice'];
      if (emotion == 'choice-1') {
         status['emotion'] = 'happy';
      } else if (emotion == 'choice-2') {
