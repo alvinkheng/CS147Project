@@ -58,25 +58,21 @@
 
 <div id="viewToggle">
 
-<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn">
-<input type="radio" name="radio-choice" id="radio-choice-1"
-value="choice-1" checked="checked"
-onclick="switchView('displayPersonalFeed', 'displayPersonalDashboard')" />
-<label for="radio-choice-1">Feed</label>
+<div data-role="navbar">
+    <ul>
+        <li onclick="switchView('displayPersonalFeed', 'displayPersonalDashboard')"><a href="" class="ui-btn-active ui-state-persist">Feed</a></li>
+        <li onclick="switchView('displayPersonalDashboard', 'displayPersonalFeed')"><a href="">Dashboard</a></li>
+    </ul>
+</div><!-- /navbar -->
 
-<input type="radio" name="radio-choice" id="radio-choice-2"
-value="choice-2" onclick="switchView('displayPersonalDashboard', 'displayPersonalFeed')" />
-<label for="radio-choice-2">Dashboard</label>
-</fieldset>
-
-</div>
+</div> <!-- viewToggle -->
 
 <div data-role="content">
 
-<div id="displayPersonalFeed" data-role="content">
+<div id="displayPersonalFeed" >
 <h2> Katherine's Feed </h2>
-    <ul data-role="listview" id="feedList">
-    </ul>
+
+    <ul data-role="listview" id="feedList"></ul>
 </div> <!-- displayPersonalFeed -->
 
 

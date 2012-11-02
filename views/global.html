@@ -76,7 +76,6 @@
   		$('#dashboard').html('<h3> Not Enough Data </h3>')
   	})
   })
-
   </script>
     <div data-role="header" data-position="fixed" data-id="sameheader">
       <a data-icon="gear"  onclick="presentSettings()">Settings</a>
@@ -85,18 +84,13 @@
       <h1>Emochi</h1>
       
     </div>
-	  
-	<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" class="ui-btn">
-	  <input type="radio" name="radio-choice"
-	     	 id="radio-choice-1" value="choice-1" checked="checked"
-	     	 onclick="switchView('displayGlobalFeed', 'displayGlobalDashboard')"/>
-	  <label for="radio-choice-1">Feed</label>
-	  
-	  <input type="radio" name="radio-choice"
-	     	 id="radio-choice-2" value="choice-2"
-	     	 onclick="switchView('displayGlobalDashboard', 'displayGlobalFeed')"/>
-	  <label for="radio-choice-2">Dashboard</label>
-	</fieldset>
+
+<div data-role="navbar">
+    <ul>
+        <li onclick="switchView('displayGlobalFeed', 'displayGlobalDashboard')"><a href="">Feed</a></li>
+        <li onclick="switchView('displayGlobalDashboard', 'displayGlobalFeed')"><a href="">Dashboard</a></li>
+    </ul>
+</div><!-- /navbar -->
 	
 	<div data-role="content">	
 	
