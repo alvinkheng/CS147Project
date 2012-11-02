@@ -40,6 +40,10 @@
     line-height: 20px;
 }
 
+#feedList {
+    padding: 10px;
+}
+
 #settings .ui-icon { 
     background:  url(/icons/19-gear.png) 50% 50% no-repeat;  
     background-size: 26px 26px; 
