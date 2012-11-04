@@ -13,24 +13,42 @@
 }
 
 #top-personal-dashboard {
-    height: 60px;
+    height: 100px;
     clear:both;
+    margin-top:5px;  
 }
 
 #emotion-stats {
     width:50%;
+    height:100%;
     text-align:center;
     float: left;
+    background-color:#454545;
+    color:white;
 }
 
 #entry-stats {
     width:100%;
     text-align:center;
+    background-color:#454545;
+    color:white;
+    font-family:tahoma;
+}
+
+#entry-stats-row2 {
+    font-size: 10px;
+}
+
+table {
+    border-collapse: collapse;
 }
 
 #graphs {
     width:100%;
-    text-align:center;
+    background-color:#454545;
+    border-top:1px solid white;
+    height:250px;
+    color:white;
 }
 
 #settings_button.ui-btn {
@@ -41,9 +59,18 @@
 #profile_name {
     width: 50%;
     float: left;
-    height: 33px;
+    height: 50%;
     text-indent: 5px;
     font-weight: bold;
+}
+
+#profile_settings {
+    height:50%;
+    float:left;
+}
+
+#profile_settings.ui-btn {
+    width:100%;
 }
 
 #personal .ui-icon { 
