@@ -12,6 +12,68 @@
     border-radius: 0 !important; 
 }
 
+#top-menu {
+    width: 100%;
+    height: 33px;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.entry-menu {
+    display: block;
+    list-style-type: none;
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+ul.entry-menu li {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.entry-menu li a {
+    display: block;
+    float: left;
+    max-height: 25px;
+    width: 33.33%;
+    margin: 0px;
+    padding: 5px 0px;
+    font-family: tahoma, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    background-color:#E8E8E8;
+    border-right: thick #ff0000;
+}
+
+ul.emotion-menu {
+    display: block;
+    list-style-type: none;
+    width: 50%;
+    margin: 0px auto;
+    padding: 0px;
+}
+
+ul.emotion-menu li {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.emotion-menu li a {
+    display: block;
+    float: left;
+    max-height: 25px;
+    width: 33.33%;
+    margin: 0px;
+    padding: 5px 0px;
+    font-family: tahoma, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    background-color:#E8E8E8;
+    border-right: thick #ff0000;
+}
+
+
 .emotionalDNA {
     padding-top:20px;
     padding-left:40px;
