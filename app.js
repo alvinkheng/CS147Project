@@ -9,6 +9,15 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+                                        host : 'mysql-user-master.stanford.edu',
+                                        user : 'ccs147vinster',
+                                        password : 'fiepheej',
+                                        database : 'c_cs147_vinster',
+});
+connection.connect();
+
 var app = express();
 
 app.configure(function(){
@@ -78,7 +87,26 @@ app.get('/settings', routes.settings)
 app.get('/personal', routes.personal)
 app.get('/addStatus', routes.addStatus);
 app.get('/login', routes.login);
+app.get('/createProfile', routes.createProfile);
 app.get('/logout', routes.logout);
+
+app.post('/create-profile', function(req, res) {
+    var params = req.body;
+    connection.query('SELECT * from Profiles WHERE email = ?', params.email, function(err, rows, fields) {
+        if (err) throw err;
+        if (rows.length === 0) {
+             connection.query('INSERT INTO Profiles SET ?', params, function(err, result) {
+                              if (err) throw err;
+                              res.render('personal.html');
+                              });   
+        }        
+    });
+})
+
+app.post('/attempt-login', function(req, res) {
+         
+         })
+
 app.post('/save-settings', function(req, res) {
   var params = req.body;
 

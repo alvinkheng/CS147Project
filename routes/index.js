@@ -22,6 +22,10 @@ exports.login = function(req, res) {
 	res.render('login.html')
 }
 
+exports.createProfile = function(req, res) {
+	res.render('createProfile.html')
+}
+
 exports.logout = function(req, res) {
 	res.render('logout.html')
 }
