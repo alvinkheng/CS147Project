@@ -92,9 +92,9 @@ app.get('/logout', routes.logout);
 
 app.post('/create-profile', function(req, res) {
     var params = req.body;
-    connection.query('SELECT * from Profiles WHERE email = ?', params.email, function(err, rows, fields) {
+    connection.query('SELECT COUNT(*) from Profiles WHERE email = ?', params.email, function(err, rows) {
         if (err) throw err;
-        if (rows.length === 0) {
+        if (rows[0]['COUNT(*)'] == 0) {
              connection.query('INSERT INTO Profiles SET ?', params, function(err, result) {
                               if (err) throw err;
                               res.render('personal.html');
@@ -104,7 +104,12 @@ app.post('/create-profile', function(req, res) {
 })
 
 app.post('/attempt-login', function(req, res) {
-         
+         var params = req.body;
+         connection.query('SELECT COUNT(*) from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
+                          if (rows[0]['COUNT(*)'] == 1) {
+                          res.render('personal.html');
+                          }
+         })
          })
 
 app.post('/save-settings', function(req, res) {
