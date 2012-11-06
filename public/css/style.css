@@ -114,6 +114,8 @@ table {
     border-top: 1px solid #A3A3A3;
     float: left;
     height: 70px;
+    background-image: url('/imgs/pattern.png');
+    background-repeat: repeat;
 }
 
 .side {
@@ -124,6 +126,8 @@ table {
     height: 70px;
     padding-top: 5px;
     padding-bottom: 5px;
+    background-image: url('/imgs/pattern.png');
+    background-repeat: repeat;
 }
 
 #feedList {
