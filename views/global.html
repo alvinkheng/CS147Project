@@ -64,8 +64,8 @@
 
   		for(var i=0; i < data.length; i++) {
   			var curr = data[i]
-  			$('#globalFeed').append('<h4> > '+curr['text']+'</h4>')
-  			$('#globalFeed').append(curr['emotion']+'  @'+curr['location'] +' on '+curr['date'] )
+  			$('#globalFeed').append("<span class='journal_entries'>"+curr['text']+ curr['emotion']+'  @'+curr['location'] +' on '+curr['date'] +"</span>");
+        $('#globalFeed').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
   		}
   	})
 
