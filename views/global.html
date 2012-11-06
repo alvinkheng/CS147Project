@@ -64,7 +64,7 @@
 
   		for(var i=0; i < data.length; i++) {
   			var curr = data[i]
-  			$('#globalFeed').append("<span class='journal_entries'>"+curr['text']+ '<br> ' + "<span class='small'>" + curr['emotion']+'  - '+curr['location'] +' on '+curr['date'] +"</span></span>");
+  			$('#globalFeed').append("<span class='journal_entries'>"+curr['text']+ '<br> ' + "<span class='small'>" + curr['emotion']+'  - '+curr['location'] +' on '+ curr['date'] +"</span></span>");
         $('#globalFeed').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
   		}
   	})
