@@ -109,8 +109,6 @@ table {
 }
 
 .ui-btn-active {
-    background-image: url('/imgs/stressed_linen.png');
-    background-repeat: repeat;
     text-shadow: 0px;
     font-family: "Helvetica Neue";
 }
