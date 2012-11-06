@@ -9,6 +9,15 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+                                        host : 'mysql-user-master.stanford.edu',
+                                        user : 'ccs147vinster',
+                                        password : 'fiepheej',
+                                        database : 'c_cs147_vinster',
+});
+connection.connect();
+
 var app = express();
 
 app.configure(function(){
@@ -45,7 +54,7 @@ var globalPosts = [
   { text: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX', date: 'Oct 30'}
 ]
 
-
+//variabe that holds personal posts
 var personalPosts = [
     { text: 'I hate midterms!!!', emotion: 'sad', location: 'Stanford, CA'},
     { text: 'Section was great today!', emotion: 'happy', location: 'Stanford, CA'},
@@ -78,7 +87,31 @@ app.get('/settings', routes.settings)
 app.get('/personal', routes.personal)
 app.get('/addStatus', routes.addStatus);
 app.get('/login', routes.login);
+app.get('/createProfile', routes.createProfile);
 app.get('/logout', routes.logout);
+
+app.post('/create-profile', function(req, res) {
+    var params = req.body;
+    connection.query('SELECT COUNT(*) from Profiles WHERE email = ?', params.email, function(err, rows) {
+        if (err) throw err;
+        if (rows[0]['COUNT(*)'] == 0) {
+             connection.query('INSERT INTO Profiles SET ?', params, function(err, result) {
+                              if (err) throw err;
+                              res.render('personal.html');
+                              });   
+        }        
+    });
+})
+
+app.post('/attempt-login', function(req, res) {
+         var params = req.body;
+         connection.query('SELECT COUNT(*) from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
+                          if (rows[0]['COUNT(*)'] == 1) {
+                          res.render('personal.html');
+                          }
+         })
+         })
+
 app.post('/save-settings', function(req, res) {
   var params = req.body;
 

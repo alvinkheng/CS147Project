@@ -64,8 +64,8 @@
 
   		for(var i=0; i < data.length; i++) {
   			var curr = data[i]
-  			$('#globalFeed').append('<h4> > '+curr['text']+'</h4>')
-  			$('#globalFeed').append(curr['emotion']+'  @'+curr['location'] +' on '+curr['date'] )
+  			$('#globalFeed').append("<span class='journal_entries'>"+curr['text']+ '<br> ' + "<span class='small'>" + curr['emotion']+'  - '+curr['location'] +' on '+curr['date'] +"</span></span>");
+        $('#globalFeed').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
   		}
   	})
 
@@ -78,12 +78,11 @@
   })
   </script>
     <div data-role="header" data-position="fixed" data-id="sameheader">
-      <a data-icon="gear"  onclick="presentSettings()">Settings</a>
-      <a data-icon="plus" data-theme="b" onclick="presentStatus()">Add</a>
       
-      <h1>emochi</h1>
-      
-    </div>
+<a id="settings" data-icon="custom" onclick="presentSettings()">Settings</a>
+<a id="add" data-icon="custom" onclick="presentStatus()">Add</a>
+<h1>emochi</h1>
+</div> <!-- header -->
 
 <div data-role="navbar">
     <ul>
@@ -92,16 +91,14 @@
     </ul>
 </div><!-- /navbar -->
 	
-	<div data-role="content">	
+	<div>	
 	
 	<div id="displayGlobalFeed">
-		<h2> Global Feed </h2>
 		
 		<div id='globalFeed'></div>
 	</div> <!-- displayGlobalFeed -->
 	
 	<div id="displayGlobalDashboard">
-		<h2> Global Dashboard </h2>
 		 <div id='dashboard'>
 
       <h3> Analytics Views </h3>
