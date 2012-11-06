@@ -29,7 +29,7 @@
                 data = JSON.parse(data);
                 $('#feedList').html('');
                 for (var i = 0; i < data.length; i++) {
-                    $('#feedList').append("<li><p>" + data[i].text + " - " + data[i].emotion + " - " + data[i].location + "</p></li>");
+                    $('#feedList').append("<li class='journal_entries'><p>" + data[i].text + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
                 }
             });
           })
@@ -71,7 +71,7 @@
 
 <div id="displayPersonalFeed">
 
-    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search through your journal..." id="feedList"></ul>
+    <ul data-role="listview" id="feedList"></ul>
 </div> <!-- displayPersonalFeed -->
 
 

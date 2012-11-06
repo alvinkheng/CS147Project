@@ -97,8 +97,17 @@ table {
     line-height: 20px;
 }
 
-#feedList {
+.small {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.journal_entries {
     padding: 10px;
+    border: 1px solid black;
+}
+
+#feedList {
 }
 
 #settings .ui-icon { 
