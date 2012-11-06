@@ -30,6 +30,7 @@
                 $('#feedList').html('');
                 for (var i = 0; i < data.length; i++) {
                     $('#feedList').append("<li class='journal_entries'><p>" + data[i].text + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
+                    $('#feedList').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
                 }
             });
           })
@@ -38,7 +39,6 @@
             document.getElementById(id).style.display = "block";
             document.getElementById(hideId).style.display = "none";
         }
-        
         
         function presentStatus() {
             $.mobile.changePage("addStatus", { transition: "slideup"} );
