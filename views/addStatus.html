@@ -34,8 +34,8 @@
       <h1>Add Status</h1>
     </div><!-- HEADER -->
     
-    <div data-role="content">
-  
+    <div>
+        <br>
         <form id="statusForm" action="postStatus" method="post">
         <center>
           <fieldset data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
@@ -49,22 +49,17 @@
               <label for="radio-choice-3"><img src="/imgs/sad.png" /></label>
           </fieldset>
         
-          <label for="textarea-a">Status:</label>
+          <label for="textarea-a"></label>
           <textarea name="textarea" id="textarea-a" value="What's on your mind?" data-mini="true"></textarea>
         
-          <fieldset data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-              <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" />
-              <label for="radio-choice-1"><img src="/imgs/friend.png" /></label>
-
-              <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2" />
-              <label for="radio-choice-2"><img src="/imgs/camera.png" /></label>
-
-              <input type="radio" name="radio-choice" id="radio-choice-3" value="choice-3"  />
-              <label for="radio-choice-3"><img src="/imgs/location.png" /></label>
-              
-              <input type="radio" name="raio-choice" id="radio-choice-4" value="choice-4" />
-              <label for="radio-choice-4"><img src="/imgs/privacy.png" /></label>
-          </fieldset>
+          <table id="addstatus_options">
+            <tr>
+                <td><center><img src="/imgs/friend.png" /></center></td>
+                <td><center><img src="/imgs/camera.png" /></center></td>
+                <td><center><img src="/imgs/location.png" /></center></td>
+                <td><center><img src="/imgs/privacy.png" /></center></td>
+            </tr>
+        </table>
 
         </center>
         </form>
