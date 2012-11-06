@@ -11,7 +11,7 @@ exports.settings = function(req, res) {
 }
 
 exports.personal = function(req, res) {
-	res.render('personal.html')
+	res.render('personal')
 }
 
 exports.addStatus = function(req, res) {

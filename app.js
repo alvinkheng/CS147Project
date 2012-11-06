@@ -23,8 +23,8 @@ var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
-  //app.set('view engine', 'jade');
-  app.engine('html', require('ejs').renderFile);
+  app.set('view engine', 'jade');
+  //app.engine('html', require('ejs').renderFile);
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -72,7 +72,7 @@ app.configure('development', function(){
 
 
 // routes
-app.get('/', routes.personal);
+app.get('/', routes.home);
 app.get('/global', routes.globaldash)
 app.get('/globalposts', function(req, res) {
   res.write(JSON.stringify(globalPosts))
