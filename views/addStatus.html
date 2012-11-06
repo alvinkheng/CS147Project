@@ -34,9 +34,8 @@
       <h1>Add Status</h1>
     </div><!-- HEADER -->
     
-    <div data-role="content">
-      
-      <h2>What's up?</h2> <br>
+    <div>
+        <br>
         <form id="statusForm" action="postStatus" method="post">
         <center>
           <fieldset data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
@@ -50,9 +49,18 @@
               <label for="radio-choice-3"><img src="/imgs/sad.png" /></label>
           </fieldset>
         
-          <label for="textarea-a">Status:</label>
-          <textarea name="textarea" id="textarea-a"></textarea>
-          Location: Stanford, CA
+          <label for="textarea-a"></label>
+          <textarea name="textarea" id="textarea-a" value="What's on your mind?" data-mini="true"></textarea>
+        
+          <table id="addstatus_options">
+            <tr>
+                <td><center><img src="/imgs/friend.png" /></center></td>
+                <td><center><img src="/imgs/camera.png" /></center></td>
+                <td><center><img src="/imgs/location.png" /></center></td>
+                <td><center><img src="/imgs/privacy.png" /></center></td>
+            </tr>
+        </table>
+
         </center>
         </form>
     </div> 

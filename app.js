@@ -72,7 +72,7 @@ app.configure('development', function(){
 
 
 // routes
-app.get('/', routes.personal);
+app.get('/', routes.home);
 app.get('/global', routes.globaldash)
 app.get('/globalposts', function(req, res) {
   res.write(JSON.stringify(globalPosts))

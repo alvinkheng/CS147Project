@@ -124,6 +124,17 @@ table {
     font-family: "Helvetica Neue";
 }
 
+#stretch {
+    width: 100%;
+}
+
+#addstatus_options {
+    width:100%;
+    background-image: url('/imgs/pattern.png');
+    background-repeat: repeat;
+    padding: 20px;
+}
+
 .side {
     width: 22%;
     float: left;
