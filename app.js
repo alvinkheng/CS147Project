@@ -91,18 +91,22 @@ app.get('/createProfile', routes.createProfile);
 app.get('/logout', routes.logout);
 
 app.post('/create-profile', function(req, res) {
-    var params = req.body;
-    connection.query('SELECT COUNT(*) from Profiles WHERE email = ?', params.email, function(err, rows) {
-        if (err) throw err;
-        if (rows[0]['COUNT(*)'] == 0) {
-             connection.query('INSERT INTO Profiles SET ?', params, function(err, result) {
-                              if (err) throw err;
-                              res.render('personal.html');
-                              });   
-                     } else {
-                     res.render('createProfile.html', {valid: 'False'});
-                     }
-    });
+         var params = req.body;
+         if (params.email.indexOf('@') == -1) {
+            res.render('createProfile', {invalid: 'emailFormat'});
+         } else {
+            connection.query('SELECT COUNT(*) from Profiles WHERE email = ?', params.email, function(err, rows) {
+                if (err) throw err;
+                if (rows[0]['COUNT(*)'] == 0) {
+                     connection.query('INSERT INTO Profiles SET ?', params, function(err, result) {
+                                      if (err) throw err;
+                                      res.render('personal');
+                                      });   
+                             } else {
+                             res.render('createProfile', {invalid: 'emailExists'});
+                             }
+            });
+         }
 })
 
 app.post('/attempt-login', function(req, res) {

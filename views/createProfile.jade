@@ -1,0 +1,66 @@
+!!! 5
+html
+  head
+    title Create Profile
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/css/jquery.mobile-1.2.0.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='apple-touch-icon', href='appicon.png')
+    link(rel='apple-touch-startup-image', href='startup.png')
+    script(src='/js/jquery-1.8.2.min.js')
+    script(src='/js/jquery.mobile-1.2.0.js')
+  body
+    div(data-role='page')
+      div(data-role='header')
+        h1 Create Profile
+      //
+         /header 
+      div(data-role='content')
+        form#settingsForm(action='create-profile', method='post')
+          div(data-role='fieldcontain')
+            label(for='name') Name:
+            input#name(type='text', name='name')
+            if (typeof(invalid) != 'undefined' && invalid == 'name')
+                #nameError
+                small
+                    font(color='red') The name you entered is invalid 
+                br
+            label(for='email') Email:
+            input#email(type='text', name='email')
+            if (typeof(invalid) != 'undefined' && invalid == 'emailExists')
+                #emailError
+                small
+                    font(color='red') The email you entered already exists
+                br
+             else if (typeof(invalid) != 'undefined' && invalid == 'emailFormat')
+                #emailError
+                small
+                    font(color='red') The email you entered is invalid
+                br   
+          div(data-role='fieldcontain')
+            label(for='password') Password:
+            input#password(type='password', name='password')
+            if (typeof(invalid) != 'undefined' && invalid == 'password')
+                #passwordError
+                small
+                    font(color='red') The password you entered is invalid
+                br
+          div(data-role='fieldcontain')
+            fieldset(data-role='controlgroup')
+              legend Gender:
+              input#radio-female(type='radio', name='gender', value='f')
+              label(for='radio-female') Female
+              input#radio-male(type='radio', name='gender', value='m')
+              label(for='radio-male') Male
+           if (typeof(invalid) != 'undefined' && invalid == 'gender')
+                #genderError
+                small
+                    font(color='red') The gender you entered is invalid
+                br
+          input(type='submit', value='Create Profile')
+      //
+         /content 
+    //
+       /page 

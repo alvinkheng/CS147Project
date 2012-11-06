@@ -27,13 +27,16 @@
                     <div data-role="fieldcontain">
                         <label for="name">Name:</label>
                         <input type="text" name="name" id="name"/>
+                        <div id="nameError" hidden="true"> The name you entered is invalid </div>
                         <label for="email">Email:</label>
                         <input type="text" name="email" id="email"/>
+                        <div id="emailError" hidden="true"> The email you entered is invalid </div>
                     </div>
                     
                     <div data-role="fieldcontain">
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password"/>
+                        <div id="passwordError" hidden="true"> The password you entered is invalid </div>
                     </div>
                     
                     <div data-role="fieldcontain">
@@ -45,6 +48,7 @@
                             <input type="radio" name="gender" id="radio-male" value="m" />
                             <label for="radio-male">Male</label>
                         </fieldset>
+                        <div id="genderError" hidden="true"> The gender you entered is invalid </div>
                     </div>
                     <input type="submit" value="Create Profile"></input>
                 </form>

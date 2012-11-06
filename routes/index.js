@@ -11,7 +11,7 @@ exports.settings = function(req, res) {
 }
 
 exports.personal = function(req, res) {
-	res.render('personal.html')
+	res.render('personal')
 }
 
 exports.addStatus = function(req, res) {
@@ -23,7 +23,7 @@ exports.login = function(req, res) {
 }
 
 exports.createProfile = function(req, res) {
-	res.render('createProfile.html')
+	res.render('createProfile')
 }
 
 exports.logout = function(req, res) {

@@ -35,10 +35,7 @@ html
           br
           | Please log in to start tracking your emotions!
           br
-          script(type='text/javascript')
-          if (typeof(invalid) == 'undefined')
-            #loginError(hidden='true')
-          else 
+          if (typeof(invalid) != 'undefined')
             #loginError
             small
               font(color='red') The email or password you entered is incorrect.
