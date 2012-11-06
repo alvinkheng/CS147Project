@@ -1,0 +1,57 @@
+!!! 5
+html
+  head
+    title Emotionly
+    meta(charset='utf-8')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/css/jquery.mobile-1.2.0.css')
+    link(rel='stylesheet', href='css/style.css')
+    link(rel='apple-touch-icon', href='appicon.png')
+    link(rel='apple-touch-startup-image', href='startup.png')
+    script(src='/js/jquery-1.8.2.min.js')
+    script(src='/js/jquery.mobile-1.2.0.js')
+    script(type='text/javascript')
+      function switchView(id, hideId) {
+      document.getElementById(id).style.display = "block";
+      document.getElementById(hideId).style.display = "none";
+      }
+      function presentStatus() {
+      $.mobile.changePage("addStatus", { transition: "slideup"} );
+      }
+      function presentSettings() {
+      $.mobile.changePage("settings", {transition: "slide"} );
+      }
+  body
+    div(data-role='page')
+      div(data-role='header')
+        h1 Log in
+      //
+         /header 
+      div(data-role='content')
+        center
+          | Welcome to Emotionly!
+          br
+          | Please log in to start tracking your emotions!
+          br
+          script(type='text/javascript')
+          if (typeof(invalid) == 'undefined')
+            #loginError(hidden='true')
+          else 
+            #loginError
+            small
+              font(color='red') The email or password you entered is incorrect.
+        form(action='attempt-login', method='post')
+          label(for='email') Email:
+          input#email(type='text', name='email')
+          label(for='password') Password:
+          input#password(type='password', name='password')
+          input(type='submit', value='Login')
+        center
+          | New to Emotionly?
+          a(href='createProfile') Sign up now
+      //
+         /content 
+    //
+       /page 

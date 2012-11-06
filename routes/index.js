@@ -19,7 +19,7 @@ exports.addStatus = function(req, res) {
 }
 
 exports.login = function(req, res) {
-	res.render('login.html')
+	res.render('login')
 }
 
 exports.createProfile = function(req, res) {
