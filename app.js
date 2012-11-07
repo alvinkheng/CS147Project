@@ -113,7 +113,7 @@ app.post('/attempt-login', function(req, res) {
          var params = req.body;
          connection.query('SELECT COUNT(*) from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
                           if (rows[0]['COUNT(*)'] == 1) {
-                          res.render('personal.html');
+                          res.render('personal');
                           } else {
                           res.render('login', {invalid: 1});
                           }
@@ -130,7 +130,7 @@ app.post('/save-settings', function(req, res) {
   currUser['privacy'] = params['privacy']
   currUser['location'] = params['flip-s']
 
-  res.render('global.html')
+  res.render('global')
 }) 
 
 app.get('/user-info', function(req, res) {
@@ -156,7 +156,7 @@ app.post('/postStatus', function(req, res) {
      status['location'] = 'Stanford, CA';
      globalPosts.unshift(status);
      personalPosts.unshift(status);
-     res.render('personal.html');
+     res.render('personal');
 });
 
 app.get('/getPersonalFeed', function(req, res) {
