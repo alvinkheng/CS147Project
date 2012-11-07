@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Status</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="/css/jquery.mobile-1.2.0.css" />
+    
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="apple-touch-icon" href="appicon.png" />
+    <link rel="apple-touch-startup-image" href="startup.png">
+    
+    <script src="/js/jquery-1.8.2.min.js"></script>
+    <script src="/js/jquery.mobile-1.2.0.js"></script>
+  </head>
+  
+  <body>
+    
+    <script type="text/javascript">            
+        $('#addButton').click(function() {
+            $('#statusForm').submit()
+                              });
+        
+        function cancelStatus(save) {
+            $.mobile.changePage("personal", { transition: "slidedown"} );          
+      }
+    </script>
+    
+    <div data-role="header">
+      <a data-icon="delete" onclick="cancelStatus()">Cancel</a>
+      <a data-icon="check" data-theme="b" id="addButton">Add</a>
+      <h1>Add Status</h1>
+    </div><!-- HEADER -->
+    
+    <div>
+        <br>
+        <form id="statusForm" action="postStatus" method="post">
+        <center>
+          <fieldset data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+              <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
+              <label for="radio-choice-1"><img src="/imgs/happy.png" /></label>
+
+              <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+              <label for="radio-choice-2"><img src="/imgs/neutral.png" /></label>
+              
+              <input type="radio" name="radio-choice" id="radio-choice-3" value="choice-3" />
+              <label for="radio-choice-3"><img src="/imgs/sad.png" /></label>
+          </fieldset>
+        
+          <label for="textarea-a"></label>
+          <textarea class="composerInput mentions-input" rows="1" data-sigil="composer-textarea" name="textarea" id="textarea-a" placeholder="What's on your mind?" data-mini="true"></textarea>
+        
+          <fieldset data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+              <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
+              <label for="radio-choice-1"><center><img src="/imgs/friend.png" /></center></label>
+
+              <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+              <label for="radio-choice-2"><center><img src="/imgs/camera.png" /></center></label>
+              
+              <input type="radio" name="radio-choice" id="radio-choice-3" value="choice-3" />
+              <label for="radio-choice-3"><center><img src="/imgs/location.png" /></center></label>
+
+               <input type="radio" name="radio-choice" id="radio-choice-4" value="choice-4" />
+              <label for="radio-choice-4"><center><img src="/imgs/privacy.png" /></center></label>
+          </fieldset
+
+        </center>
+        </form>
+    </div> 
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<title>Emotionly</title> 
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+ 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	
+	<link rel="stylesheet" href="/css/jquery.mobile-1.2.0.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="apple-touch-icon" href="appicon.png" />
+	<link rel="apple-touch-startup-image" href="startup.png">
+	
+	<script src="/js/jquery-1.8.2.min.js"></script>
+	<script src="/js/jquery.mobile-1.2.0.js"></script>
+
+    <script type="text/javascript">
+    function switchView(id, hideId) {
+        document.getElementById(id).style.display = "block";
+        document.getElementById(hideId).style.display = "none";
+    }
+
+    function presentStatus() {
+        $.mobile.changePage("addStatus", { transition: "slideup"} );
+    }
+
+    function presentSettings() {
+        $.mobile.changePage("settings", {transition: "slide"} );
+    }
+    </script>
+
+</head>  
+<body> 
+  
+  <div data-role="page">
+    
+    <div data-role="header">
+      <h1>Log in</h1>
+    </div><!-- /header -->
+    
+    <div data-role="content">
+      <center>
+      Welcome to Emotionly!<br>
+      Please log in to start tracking your emotions!<br>
+        <div id="loginError" hidden='true'>
+          <small><font color='red'>Any username and password combination is fine... for now!</font></small>
+        </div>
+      </center>
+      <form action="attempt-login" method="post">
+	<label for="email">Email:</label>
+	<input type="text" name="email" id="email">
+	<label for="password">Password:</label>
+	<input type="password" name="password" id="password">
+        <input type="submit" value="Login">
+      </form>
+   
+        
+        <center>New to Emotionly? <a href="createProfile">Sign up now</a></center>
+    </div><!-- /content -->
+    
+    </script>
+  </div><!-- /page -->
+  
+</body>
+</html>

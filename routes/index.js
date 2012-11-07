@@ -3,11 +3,11 @@ exports.home = function(req, res){
 };
 
 exports.globaldash = function(req, res) {
-	res.render('global.html')
+	res.render('global')
 }
 
 exports.settings = function(req, res) {
-	res.render('settings.html')
+	res.render('settings')
 }
 
 exports.personal = function(req, res) {
@@ -15,7 +15,7 @@ exports.personal = function(req, res) {
 }
 
 exports.addStatus = function(req, res) {
-	res.render('addStatus.html')
+	res.render('addStatus')
 }
 
 exports.login = function(req, res) {
@@ -27,5 +27,5 @@ exports.createProfile = function(req, res) {
 }
 
 exports.logout = function(req, res) {
-	res.render('logout.html')
+	res.render('logout')
 }

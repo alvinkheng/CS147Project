@@ -1,0 +1,141 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+<title>emochi</title> 
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet" href="/css/jquery.mobile-1.2.0.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="apple-touch-icon" href="/imgs/appicon.png" />
+<link rel="apple-touch-startup-image" href="/imgs/startup.png" />
+
+<script src="/js/jquery-1.8.2.min.js"></script>
+<script src="/js/jquery.mobile-1.2.0.js"></script>
+
+</head> 
+
+<body> 
+
+<!-- Start of first page: #one -->
+<div data-role="page" id="one">
+    
+    <script type="text/javascript">        
+        $(function() {
+          $.get('getPersonalFeed', function(data) {
+                data = JSON.parse(data);
+                $('#feedList').html('');
+                for (var i = 0; i < data.length; i++) {
+                    $('#feedList').append("<li class='journal_entries'><p>" + data[i].text + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
+                    $('#feedList').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
+                }
+            });
+          })
+        
+        function switchView(id, hideId) {
+            document.getElementById(id).style.display = "block";
+            document.getElementById(hideId).style.display = "none";
+        }
+        
+        function presentStatus() {
+            $.mobile.changePage("addStatus", { transition: "slideup"} );
+        }
+        
+        function presentSettings() {
+            $.mobile.changePage("settings", {transition: "slide"} );
+        }
+        
+        </script>
+    
+<div data-role="header" data-position="fixed" data-id="sameheader">
+<a id="settings" data-icon="custom" onclick="presentSettings()">Settings</a>
+<a id="add" data-icon="custom" onclick="presentStatus()">Add</a> 
+<h1> emochi </h1>
+</div> <!-- header -->
+
+<div id="viewToggle">
+
+<div data-role="navbar">
+    <ul>
+        <li class="ui-btn-active" onclick="switchView('displayPersonalFeed', 'displayPersonalDashboard')"><a href="" class="ui-btn-active ui-state-persist">Journal</a></li>
+        <li onclick="switchView('displayPersonalDashboard', 'displayPersonalFeed')"><a href="">Dashboard</a></li>
+    </ul>
+</div><!-- /navbar -->
+
+</div> <!-- viewToggle -->
+
+<div>
+
+<div id="displayPersonalFeed">
+
+    <ul data-role="listview" id="feedList"></ul>
+</div> <!-- displayPersonalFeed -->
+
+
+<div id="displayPersonalDashboard">
+
+<div id="top-personal-dashboard">
+
+<table id="emotion-stats">
+    <tr>
+        <td>62%</td>
+        <td>18%</td>
+        <td>20%</td>
+    </tr>
+    <tr>
+        <td>Happy</td>
+        <td>Neutral</td>
+        <td>Sad</td>
+    </tr>
+</table>
+
+<div id="profile_name"> 
+    Katherine Chen
+    <div id="profile_settings"><center><a data-role="button" onclick="presentSettings()">Settings</a></center></div>
+</div>
+
+</div>
+
+<table id="entry-stats">
+    <tr>
+        <td>12</td>
+        <td>5</td>
+        <td>1</td>
+    </tr>
+    <tr id="entry-stats-row2">
+        <td>Entries</td>
+        <td>This Week</td>
+        <td>Today</td>
+    </tr>
+</table>
+
+<table id="graphs">
+    <tr>
+        <td>Calendar</td>
+        <td>Location</td>
+    </tr>
+    <tr>
+        <td>Weather</td>
+        <td>Friends</td>
+    </tr>
+</table>
+
+
+</div> <!-- content -->
+
+    <div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
+        <div data-role="navbar" class="nav-glyphish-example" data-grid="a">    
+            <ul>
+                <li><a href="personal" id="personal" data-icon="custom" class="ui-btn-active"></a></li>
+                <li><a href="global" id="global" data-icon="custom"></a></li>
+            </ul>
+        </div>
+    </div> <!-- footer -->
+
+</div> <!-- page -->
+
+</body>
+</html>

@@ -1,90 +1,106 @@
-extends layout
-
-block content
-	//
-		Start of first page: #one 
-
-	#one(data-role='page')
-		script(type='text/javascript')
-			$(function() {
-				$.get('getPersonalFeed', function(data) {
-					data = JSON.parse(data);
-					$('#feedList').html('');
-					for (var i = 0; i < data.length; i++) {
-						$('#feedList').append("<li class='journal_entries'><p>" + data[i].text + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
-						$('#feedList').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
-					}
-				});
-			})
-			function switchView(id, hideId) {
-				document.getElementById(id).style.display = "block";
-				document.getElementById(hideId).style.display = "none";
-			}
-			function presentStatus() {
-				$.mobile.changePage("addStatus", { transition: "slideup"} );
-			}
-			function presentSettings() {
-				$.mobile.changePage("settings", {transition: "slide"} );
-			}
-
-		div(data-role='header', data-position='fixed', data-id='sameheader')
-			a#settings(data-icon='custom', onclick='presentSettings()') Settings
-			a#add(data-icon='custom', onclick='presentStatus()') Add
-			h1 emochi 
-		//
-			header 
-		#viewToggle
-			div(data-role='navbar')
-				ul
-					li.ui-btn-active(onclick='switchView(\'displayPersonalFeed\', \'displayPersonalDashboard\')')
-						a.ui-btn-active.ui-state-persist(href='') Journal
-					li(onclick='switchView(\'displayPersonalDashboard\', \'displayPersonalFeed\')')
-						a(href='') Dashboard
-			//
-				/navbar 
-		//
-			viewToggle 
-		div
-			#displayPersonalFeed
-				ul#feedList(data-role='listview')
-			//
-				displayPersonalFeed 
-			#displayPersonalDashboard
-				#top-personal-dashboard
-					table#emotion-stats
-						tr
-							td 62%
-							td 18%
-							td 20%
-						tr
-							td Happy
-							td Neutral
-							td Sad
-					#profile_name
-						| Katherine Chen
-						#profile_settings
-							center
-								a(data-role='button', onclick='presentSettings()') Settings
-				table#entry-stats
-					tr
-						td 12
-						td 5
-						td 1
-					tr#entry-stats-row2
-						td Entries
-						td This Week
-						td Today
-				table#graphs
-					tr
-						td Calendar
-						td Location
-					tr
-						td Weather
-						td Friends
-			//
-				content 
-				
-			//
-				footer 
-		//
-			page 
+!!! 5
+html
+  head
+    title emochi
+    meta(charset='utf-8')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/css/jquery.mobile-1.2.0.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='apple-touch-icon', href='/imgs/appicon.png')
+    link(rel='apple-touch-startup-image', href='/imgs/startup.png')
+    script(src='/js/jquery-1.8.2.min.js')
+    script(src='/js/jquery.mobile-1.2.0.js')
+  body
+    //
+       Start of first page: #one 
+    #one(data-role='page')
+      script(type='text/javascript')
+        $(function() {
+        $.get('getPersonalFeed', function(data) {
+        data = JSON.parse(data);
+        $('#feedList').html('');
+        for (var i = 0; i < data.length; i++) {
+        $('#feedList').append("<li class='journal_entries'><p>" + data[i].text + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
+        $('#feedList').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
+        }
+        });
+        })
+        function switchView(id, hideId) {
+        document.getElementById(id).style.display = "block";
+        document.getElementById(hideId).style.display = "none";
+        }
+        function presentStatus() {
+        $.mobile.changePage("addStatus", { transition: "slideup"} );
+        }
+        function presentSettings() {
+        $.mobile.changePage("settings", {transition: "slide"} );
+        }
+      div(data-role='header', data-position='fixed', data-id='sameheader')
+        a#settings(data-icon='custom', onclick='presentSettings()') Settings
+        a#add(data-icon='custom', onclick='presentStatus()') Add
+        h1  emochi 
+      //
+         header 
+      #viewToggle
+        div(data-role='navbar')
+          ul
+            li.ui-btn-active(onclick='switchView(\'displayPersonalFeed\', \'displayPersonalDashboard\')')
+              a.ui-btn-active.ui-state-persist(href='') Journal
+            li(onclick='switchView(\'displayPersonalDashboard\', \'displayPersonalFeed\')')
+              a(href='') Dashboard
+        //
+           /navbar 
+      //
+         viewToggle 
+      div
+        #displayPersonalFeed
+          ul#feedList(data-role='listview')
+        //
+           displayPersonalFeed 
+        #displayPersonalDashboard
+          #top-personal-dashboard
+            table#emotion-stats
+              tr
+                td 62%
+                td 18%
+                td 20%
+              tr
+                td Happy
+                td Neutral
+                td Sad
+            #profile_name
+              | Katherine Chen
+              #profile_settings
+                center
+                  a(data-role='button', onclick='presentSettings()') Settings
+          table#entry-stats
+            tr
+              td 12
+              td 5
+              td 1
+            tr#entry-stats-row2
+              td Entries
+              td This Week
+              td Today
+          table#graphs
+            tr
+              td Calendar
+              td Location
+            tr
+              td Weather
+              td Friends
+        //
+           content 
+        .nav-glyphish-example(data-role='footer', data-id='samefooter', data-position='fixed', data-tap-toggle='false')
+          .nav-glyphish-example(data-role='navbar', data-grid='a')
+            ul
+              li
+                a#personal.ui-btn-active(href='personal', data-icon='custom')
+              li
+                a#global(href='global', data-icon='custom')
+        //
+           footer 
+      //
+         page 

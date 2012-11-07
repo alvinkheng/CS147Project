@@ -1,0 +1,77 @@
+!!! 5
+html
+  head
+    title Settings
+    meta(charset='utf-8')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/css/jquery.mobile-1.2.0.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='apple-touch-icon', href='/imgs/appicon.png')
+    link(rel='apple-touch-startup-image', href='/imgs/startup.png')
+    script(src='/js/jquery-1.8.2.min.js')
+    script(src='/js/jquery.mobile-1.2.0.js')
+  body
+    #filter(data-role='page')
+      script(type='text/javascript')
+        $(function() {
+        $('#saveBtn').click(function() {
+        $('#settingsForm').submit()
+        })
+        $.get('user-info', function(data) {
+        console.log('got data: '+data)
+        data = JSON.parse(data)
+        $('#name').val(data['name'])
+        $('#email').val(data['email'])
+        $('#pass').val(data['password'])
+        if(data['gender'] == 'f') {
+        $('#radio-female').attr('checked', true).checkboxradio('refresh')
+        } else {
+        $('#radio-male').attr('checked', true).checkboxradio('refresh')
+        }
+        $('#flip-s').val(data['location']).slider('refresh')
+        $('#privacy').val(data['privacy']).selectmenu('refresh')
+        })
+        })
+      div(data-role='header')
+        a(href='global') Cancel
+        h1 Settings
+        a#saveBtn(data-theme='b') Save
+      //
+         /header 
+      div(data-role='content')
+        form#settingsForm(action='save-settings', method='post')
+          div(data-role='fieldcontain')
+            label(for='name') Name:
+            input#name(type='text', name='name')
+            label(for='email') Email:
+            input#email(type='text')
+          div(data-role='fieldcontain')
+            label(for='pass') Password:
+            input#pass(type='password', name='pass')
+          div(data-role='fieldcontain')
+            fieldset(data-role='controlgroup')
+              legend Gender:
+              input#radio-female(type='radio', name='gender', value='f')
+              label(for='radio-female') Female
+              input#radio-male(type='radio', name='gender', value='m')
+              label(for='radio-male') Male
+          div(data-role='fieldcontain')
+            label(for='flip-s') Location Services:
+            select#flip-s(name='flip-s', data-role='slider')
+              option(value='off') Off
+              option(value='on') On
+          div(data-role='fieldcontain')
+            label.select(for='select-choice-x') Stories Privacy:
+            select#privacy(name='privacy')
+              option(value='me') Only Me
+              option(value='friends') Friends
+              option(value='all') Public
+          center
+            div
+              a(href='logout.php', data-role='button', data-theme='a') Logout
+      //
+         /content 
+    //
+       /page 

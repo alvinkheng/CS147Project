@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+  <title>Dashboard</title> 
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  
+  <link rel="stylesheet" href="/css/jquery.mobile-1.2.0.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="apple-touch-icon" href="/imgs/appicon.png" />
+  <link rel="apple-touch-startup-image" href="/imgs/startup.png">
+  
+  <script src="/js/jquery-1.8.2.min.js"></script>
+  <script src="/js/jquery.mobile-1.2.0.js"></script>
+
+</head>
+  
+<body> 
+
+  <script type="text/javascript">
+    function switchView(id, hideId) {
+        document.getElementById(id).style.display = "block";
+        document.getElementById(hideId).style.display = "none";
+    }
+  </script>
+
+
+<div data-role="page">
+
+
+<script type="text/javascript">
+
+
+  function presentStatus() {
+  $.mobile.changePage( "addStatus", { transition: "slideup"} );
+  }
+  
+  function closeStatus(save) {
+      if (save) {
+          var request = new XMLHttpRequest();
+          request.open("POST", "http://localhost:3000/addStatus", false);
+          request.send();
+          if (request.status === 200) {
+              console.log(request.responseText);
+          }
+      }
+      $.mobile.changePage( "personal", { transition: "slidedown"} );
+  }
+
+  function presentSettings() {
+  $.mobile.changePage( "settings", {transition: "slide", reloadPage: true } );
+  }
+
+  $(function() {
+  	switchView('displayGlobalFeed', 'displayGlobalDashboard');
+
+  	$.get('globalposts', function(data) {
+  		$('#globalFeed').html('')
+  		console.log('got data: '+data)
+  		data = JSON.parse(data)
+
+  		for(var i=0; i < data.length; i++) {
+  			var curr = data[i]
+  			$('#globalFeed').append("<span class='journal_entries'>"+curr['text']+ '<br> ' + "<span class='small'>" + curr['emotion']+'  - '+curr['location'] +' on '+ curr['date'] +"</span></span>");
+        $('#globalFeed').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
+  		}
+  	})
+
+  	$.get('globalanalytics', function(data) {
+  		console.log('got data: '+data)
+  		data = JSON.parse(data)
+
+  		$('#dashboard').html('<h3> Not Enough Data </h3>')
+  	})
+  })
+  </script>
+    <div data-role="header" data-position="fixed" data-id="sameheader">
+      
+<a id="settings" data-icon="custom" onclick="presentSettings()">Settings</a>
+<a id="add" data-icon="custom" onclick="presentStatus()">Add</a>
+<h1>emochi</h1>
+</div> <!-- header -->
+
+<div data-role="navbar">
+    <ul>
+        <li class="ui-btn-active" onclick="switchView('displayGlobalFeed', 'displayGlobalDashboard')"><a href="">Feed</a></li>
+        <li onclick="switchView('displayGlobalDashboard', 'displayGlobalFeed')"><a href="">Dashboard</a></li>
+    </ul>
+</div><!-- /navbar -->
+	
+	<div>	
+	
+	<div id="displayGlobalFeed">
+		
+		<div id='globalFeed'></div>
+	</div> <!-- displayGlobalFeed -->
+	
+	<div id="displayGlobalDashboard">
+		 <div id='dashboard'>
+
+      <h3> Analytics Views </h3>
+
+      <ul data-role="listview"> 
+          <li><a href="">Calendar</a></li>
+          <li><a href="">Location</a></li>
+          <li><a href="">Weather</a></li>
+          <li><a href="">Friends</a></li>
+      </ul>
+
+	</div>	<!-- displayGlobalDashboard -->
+		
+	</div> <!-- content -->
+    
+    <div data-role="footer" data-id="samefooter" class ="nav-glyphish-example" data-position="fixed" data-tap-toggle="false">
+        <div data-role="navbar" class="nav-glyphish-example" data-grid="a">    
+            <ul>
+                <li><a href="personal" id="personal" data-icon="custom"></a></li>
+                <li><a href="globaldashboard" id="global" data-icon="custom" class="ui-btn-active"></a></li>
+            </ul>
+        </div>
+    </div> <!-- footer -->
+
+	
+	</div><!-- /page -->
+
+</body>
+</html>

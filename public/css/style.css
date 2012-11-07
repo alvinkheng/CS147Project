@@ -135,6 +135,16 @@ table {
     padding: 20px;
 }
 
+.composerInput {
+    border: 0;
+    height: 110px;
+    width: 100%;
+}
+
+.mentions-input {
+    -webkit-box-shadow: inset 0 1px 1px 0 #DDD;
+}
+
 .side {
     width: 22%;
     float: left;
