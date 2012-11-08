@@ -37,10 +37,10 @@ app.configure(function(){
 
 //variable that holds global posts
 var globalPosts = [
-  { text: 'Really excited to show off my Halloween costume', emotion: 'happy', location: 'Stanford, CA', date: 'Oct 31'},
-  { text: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA', date: 'Oct 31'},
-  { text: 'Did not do so hot on my Chem exam...', emotion: 'sad', location: 'Stanford, CA', date: 'Oct 30'},
-  { text: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX', date: 'Oct 30'}
+  { status: 'Really excited to show off my Halloween costume', emotion: 'happy', location: 'Stanford, CA', date: 'Oct 31'},
+  { status: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA', date: 'Oct 31'},
+  { status: 'Did not do so hot on my Chem exam...', emotion: 'sad', location: 'Stanford, CA', date: 'Oct 30'},
+  { status: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX', date: 'Oct 30'}
 ]
 
 //variables that will current user data after valid login
@@ -175,7 +175,7 @@ app.post('/postStatus', function(req, res) {
     //Add status to the database
     connection.query('INSERT INTO Statuses SET ?', status, function(err, result) {
         if (err) throw err;
-        res.render('personal');
+        res.render('personal', {statuses: JSON.stringify(personalPosts)});
     });   
 });
 
