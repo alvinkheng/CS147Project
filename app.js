@@ -115,7 +115,7 @@ app.post('/attempt-login', function(req, res) {
     //If credentials are in the Profile database, continue
     connection.query('SELECT * from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
         if (rows.length == 1) {
-            currUser = rows;
+            currUser = rows[0];
             //Get the all of the users statuses
             connection.query('SELECT * from Statuses WHERE email = ?', params.email, function(err, rows) {
                 personalPosts = rows;
