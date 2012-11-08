@@ -24,7 +24,6 @@ app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-//  app.engine('html', require('ejs').renderFile);
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
@@ -36,16 +35,6 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-// dummy data
-var currUser = {
-  'name': 'Katherine Chen',
-  'email': 'kchen12@stanford.edu',
-  'password': 'hello',
-  'gender': 'f',
-  'privacy': 'friends',
-  'location': 'on'
-}
-
 //variable that holds global posts
 var globalPosts = [
   { text: 'Really excited to show off my Halloween costume', emotion: 'happy', location: 'Stanford, CA', date: 'Oct 31'},
@@ -54,12 +43,9 @@ var globalPosts = [
   { text: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX', date: 'Oct 30'}
 ]
 
-//variabe that holds personal posts
-var personalPosts = [
-    { text: 'I hate midterms!!!', emotion: 'sad', location: 'Stanford, CA'},
-    { text: 'Section was great today!', emotion: 'happy', location: 'Stanford, CA'},
-    { text: 'Wheres my unicorn?', emotion: 'neutral', location: 'Stanford, CA'}
-]
+//variables that will current user data after valid login
+var currUser;
+var personalPosts = [];
 
 var globalAnalytics = [
   {}
@@ -84,41 +70,64 @@ app.get('/globalanalytics', function(req, res) {
 })
 
 app.get('/settings', routes.settings) 
-app.get('/personal', routes.personal)
+app.get('/personal', function(req, res) {
+    if (currUser == undefined) {
+        res.render('login');
+    } else {
+        res.render('personal', {statuses: JSON.stringify(personalPosts)})
+    }
+}
+)
 app.get('/addStatus', routes.addStatus);
 app.get('/login', routes.login);
-app.get('/createProfile', routes.createProfile);
 app.get('/logout', routes.logout);
 
+app.get('/createProfile', routes.createProfile);
 app.post('/create-profile', function(req, res) {
-         var params = req.body;
-         if (params.email.indexOf('@') == -1) {
-            res.render('createProfile', {invalid: 'emailFormat'});
-         } else {
-            connection.query('SELECT COUNT(*) from Profiles WHERE email = ?', params.email, function(err, rows) {
-                if (err) throw err;
-                if (rows[0]['COUNT(*)'] == 0) {
-                     connection.query('INSERT INTO Profiles SET ?', params, function(err, result) {
-                                      if (err) throw err;
-                                      res.render('personal');
-                                      });   
-                             } else {
-                             res.render('createProfile', {invalid: 'emailExists'});
-                             }
-            });
-         }
+    var params = req.body;
+    //If email has invalid format, refresh page
+    if (params.email.indexOf('@') == -1) {
+        res.render('createProfile', {invalid: 'emailFormat'});
+    } else {
+        //If email isn't already in Profiles database proceed
+        connection.query('SELECT COUNT(*) from Profiles WHERE email = ?', params.email, function(err, rows) {
+            if (err) throw err;
+            if (rows[0]['COUNT(*)'] == 0) {
+                //Insert new user into Profiles database
+                connection.query('INSERT INTO Profiles SET ?', params, function(err, result) {
+                    if (err) throw err;
+                    params.privacy = 'friends'; //STATIC
+                    params.location = 'on'; //STATIC
+                    currUser = params;
+                    //Render personalFeed page
+                    res.render('personal', {statuses: JSON.stringify(personalPosts)});
+                });   
+            } else {
+                //Refresh page if email already exists
+                res.render('createProfile', {invalid: 'emailExists'});
+            }
+        });
+    }
 })
 
 app.post('/attempt-login', function(req, res) {
-         var params = req.body;
-         connection.query('SELECT COUNT(*) from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
-                          if (rows[0]['COUNT(*)'] == 1) {
-                          res.render('personal');
-                          } else {
-                          res.render('login', {invalid: 1});
-                          }
-         })
-         })
+    var params = req.body;
+    //If credentials are in the Profile database, continue
+    connection.query('SELECT * from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
+        if (rows.length == 1) {
+            currUser = rows;
+            //Get the all of the users statuses
+            connection.query('SELECT * from Statuses WHERE email = ?', params.email, function(err, rows) {
+                personalPosts = rows;
+            })
+            //render personalFeed page
+            res.render('personal', {statuses: JSON.stringify(personalPosts)});
+        } else {
+            //Refresh page if login fail
+            res.render('login', {invalid: 1});
+        }
+    })
+})
 
 app.post('/save-settings', function(req, res) {
   var params = req.body;
@@ -143,25 +152,31 @@ app.get('/users', user.list);
 
 app.post('/postStatus', function(req, res) {
     var params = req.body;
-     var status = {};
-     status['text'] = params['textarea'];
-     var emotion = params['radio-choice'];
-     if (emotion == 'choice-1') {
+    var status = {};
+    status['email'] = currUser.email;
+    status['status'] = params['textarea'];
+    var emotion = params['radio-choice'];
+    if (emotion == 'choice-1') {
         status['emotion'] = 'happy';
-     } else if (emotion == 'choice-2') {
+    } else if (emotion == 'choice-2') {
         status['emotion'] = 'neutral';
-     } else if (emotion == 'choice-3') {
+    } else if (emotion == 'choice-3') {
         status['emotion'] = 'sad';
-     }
-     status['location'] = 'Stanford, CA';
-     globalPosts.unshift(status);
-     personalPosts.unshift(status);
-     res.render('personal');
-});
-
-app.get('/getPersonalFeed', function(req, res) {
-    res.write(JSON.stringify(personalPosts));
-    res.end();
+    }
+    status['date'] = new Date();
+    status['privacy'] = 'public'; //STATIC
+    status['location'] = 'Stanford, CA'; //STATIC
+    status['photo'] = ''; //STATIC
+    
+    //Add status to globalPosts array and personalPosts array
+    globalPosts.unshift(status);
+    personalPosts.unshift(status);
+    
+    //Add status to the database
+    connection.query('INSERT INTO Statuses SET ?', status, function(err, result) {
+        if (err) throw err;
+        res.render('personal');
+    });   
 });
 
 http.createServer(app).listen(app.get('port'), function(){

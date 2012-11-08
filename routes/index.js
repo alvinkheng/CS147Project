@@ -10,10 +10,6 @@ exports.settings = function(req, res) {
 	res.render('settings')
 }
 
-exports.personal = function(req, res) {
-	res.render('personal')
-}
-
 exports.addStatus = function(req, res) {
 	res.render('addStatus')
 }

@@ -18,14 +18,12 @@ html
     #one(data-role='page')
       script(type='text/javascript')
         $(function() {
-        $.get('getPersonalFeed', function(data) {
-        data = JSON.parse(data);
+        var data = !{statuses};
         $('#feedList').html('');
         for (var i = 0; i < data.length; i++) {
-        $('#feedList').append("<li class='journal_entries'><p>" + data[i].text + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
+        $('#feedList').append("<li class='journal_entries'><p>" + data[i].status + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
         $('#feedList').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
         }
-        });
         })
         function switchView(id, hideId) {
         document.getElementById(id).style.display = "block";
