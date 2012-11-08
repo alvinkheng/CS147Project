@@ -11,9 +11,11 @@ html
     link(rel='apple-touch-startup-image', href='startup.png')
     script(src='/js/jquery-1.8.2.min.js')
     script(src='/js/jquery.mobile-1.2.0.js')
+    script(src='http://www.geoplugin.net/javascript.gp')
   body
     script(type='text/javascript')
       $('#addButton').click(function() {
+      document.getElementById('locationField').value = _location;
       $('#statusForm').submit()
       });
       function cancelStatus(save) {
@@ -27,8 +29,18 @@ html
        HEADER 
     div
       br
+      script(type='text/javascript')
+        var _location;
+        $(function() {
+            if (navigator.geolocation) {
+                _location = geoplugin_city() + ', ' + geoplugin_region();
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        })
       form#statusForm(action='postStatus', method='post')
         center
+          input#locationField(type='hidden', name='location', value='')
           fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal')
             input#radio-choice-1(type='radio', name='radio-choice', value='choice-1', checked='checked')
             label(for='radio-choice-1')

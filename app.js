@@ -165,7 +165,7 @@ app.post('/postStatus', function(req, res) {
     }
     status['date'] = new Date();
     status['privacy'] = 'public'; //STATIC
-    status['location'] = 'Stanford, CA'; //STATIC
+    status['location'] = params['location'];
     status['photo'] = ''; //STATIC
     
     //Add status to globalPosts array and personalPosts array
