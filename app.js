@@ -71,11 +71,11 @@ app.get('/globalanalytics', function(req, res) {
 
 app.get('/settings', routes.settings) 
 app.get('/personal', function(req, res) {
-    if (currUser == undefined) {
-        res.render('login');
-    } else {
+//    if (currUser == undefined) {
+//        res.render('login');
+//    } else {
         res.render('personal', {statuses: JSON.stringify(personalPosts)})
-    }
+//    }
 }
 )
 app.get('/addStatus', routes.addStatus);
