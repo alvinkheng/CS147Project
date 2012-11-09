@@ -117,7 +117,7 @@ app.post('/attempt-login', function(req, res) {
         if (rows.length == 1) {
             currUser = rows[0];
             //Get the all of the users statuses
-            connection.query('SELECT * from Statuses WHERE email = ?', params.email, function(err, rows) {
+            connection.query('SELECT * from Statuses WHERE email = ? ORDER BY date DESC', params.email, function(err, rows) {
                 personalPosts = rows;
                 //render personalFeed page
                 res.render('personal', {statuses: JSON.stringify(personalPosts)});
