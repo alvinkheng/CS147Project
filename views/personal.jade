@@ -18,12 +18,51 @@ html
        Start of first page: #one 
     #one(data-role='page')
       script(type='text/javascript')
+        function getDayName(day) {
+            if (day == 0) {
+            return 'Sunday';
+            } else if (day == 1) {
+            return 'Monday';
+            } else if (day == 2) {
+            return 'Tuesday';
+            } else if (day == 3) {
+            return 'Wednesday';
+            } else if (day == 4) {
+            return 'Thursday';
+            } else if (day == 5) {
+            return 'Friday';
+            } else if (day == 6) {
+            return 'Saturday';
+            }
+        }
+        
+        function getTime(hours, minutes) {
+            var ampm;
+            if (hours < 12) {
+                ampm = 0;
+                if (hours == 0) {
+                    hours = 12;
+                }
+            } else {
+                ampm = 1;
+                if (hours > 12) {
+                    hours -= 12;
+                }
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            var result = "" + hours + ":" + minutes + ((ampm == 0) ? "AM" : "PM"); 
+            return result;
+        }
+      
         $(function() {
         var data = !{statuses};
         $('#feedList').html('');
         for (var i = 0; i < data.length; i++) {
+        var date = new Date(data[i].date);
         $('#feedList').append("<li class='journal_entries'><p>" + data[i].status + '<br> ' + "<span class='small'>" + data[i].emotion + " - " + data[i].location + "</span></p></li>");
-        $('#feedList').append("<center>"+"<span class='side'>" + '3:44PM' + "<br>" + "<span class='day_date'>" + ' 05' + "</span>" + "<br>" + ' Monday' + "</span>"+"</center>");
+        $('#feedList').append("<center>"+"<span class='side'>" + getTime(date.getHours(), date.getMinutes()) + "<br>" + "<span class='day_date'> " + date.getDate() + "</span>" + "<br> " + getDayName(date.getDay()) + "</span>"+"</center>");
         }
         })
         function switchView(id, hideId) {
