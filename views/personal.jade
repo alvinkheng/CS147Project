@@ -60,7 +60,6 @@ html
       
         $(function() {
         var data = !{statuses};
-        drawGraphs(data)
         $('#feedList').html('');
         for (var i = 0; i < data.length; i++) {
         var date = new Date(data[i].date);

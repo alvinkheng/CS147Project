@@ -1,9 +1,7 @@
-// $(function() {
-// 	var statuses = !{statuses}
-// 	console.log("statuses: "+JSON.stringify(statuses))
+$(function() {
 
-// 	drawGraphs()
-// })
+	drawGraphs()
+})
 
 function drawGraphs(statuses) {
 	console.log("statuses: "+JSON.stringify(statuses))
