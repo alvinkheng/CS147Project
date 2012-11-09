@@ -28,7 +28,6 @@ html
     //
        HEADER 
     div
-      br
       script(type='text/javascript')
         var _location;
         $(function() {
@@ -40,39 +39,26 @@ html
         })
       form#statusForm(action='postStatus', method='post')
         center
-          input#locationField(type='hidden', name='location', value='')
-          fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal')
-            input#radio-choice-1(type='radio', name='radio-choice', value='choice-1')
-            label(for='radio-choice-1')
-              img(src='/imgs/happy.png')
-            input#radio-choice-4(type='radio', name='radio-choice', value='choice-4)
-            label(for='radio-choice-4')
-              img(src='/imgs/happy.png')
-            input#radio-choice-2(type='radio', name='radio-choice', value='choice-2')
-            label(for='radio-choice-2')
-              img(src='/imgs/neutral.png')
-            input#radio-choice-5(type='radio', name='radio-choice', value='choice-5')
-            label(for='radio-choice-5')
-              img(src='/imgs/happy.png')
-            input#radio-choice-3(type='radio', name='radio-choice', value='choice-3')
-            label(for='radio-choice-3')
-              img(src='/imgs/sad.png')
           label(for='textarea-a')
-          textarea#textarea-a.composerInput.mentions-input(rows='1', data-sigil='composer-textarea', name='textarea', placeholder='What\'s on your mind?', data-mini='true')
-          fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal')
-            input#radio-choice-1(type='radio', name='radio-choice', value='choice-1', checked='checked')
-            label(for='radio-choice-1')
-              center
-                img(src='/imgs/friend.png')
+          textarea#textarea-a.composerInput.mentions-input(rows='1', data-sigil='composer-textarea', name='textarea', placeholder='Whats on your mind?', data-mini='true')
+          input#locationField(type='hidden', name='location', value='')
+          fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal', data-mini="true")
+            input#radio-choice-1(type='radio', name='radio-choice', value='choice-1')
+            label(for='radio-choice-1') :D
+            input#radio-choice-4(type='radio', name='radio-choice', value='choice-4)
+            label(for='radio-choice-4') :)
+            input#radio-choice-2(type='radio', name='radio-choice', value='choice-2')
+            label(for='radio-choice-2') :|
+            input#radio-choice-5(type='radio', name='radio-choice', value='choice-5')
+            label(for='radio-choice-5') :(
+            input#radio-choice-3(type='radio', name='radio-choice', value='choice-3')
+            label(for='radio-choice-3') >:|
+          fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal', data-mini="true")
             input#radio-choice-2(type='radio', name='radio-choice', value='choice-2')
             label(for='radio-choice-2')
               center
                 img(src='/imgs/camera.png')
             input#radio-choice-3(type='radio', name='radio-choice', value='choice-3')
             label(for='radio-choice-3')
-              center
-                img(src='/imgs/location.png')
-            input#radio-choice-4(type='radio', name='radio-choice', value='choice-4')
-            label(for='radio-choice-4')
               center
                 img(src='/imgs/privacy.png')
