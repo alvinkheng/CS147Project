@@ -12,6 +12,8 @@ html
     link(rel='apple-touch-startup-image', href='/imgs/startup.png')
     script(src='/js/jquery-1.8.2.min.js')
     script(src='/js/jquery.mobile-1.2.0.js')
+    script(src='/js/d3.v2.js')
+    script(src='/js/graphs.js')
     script(src='http://www.geoplugin.net/javascript.gp')
   body
     //
@@ -99,6 +101,7 @@ html
            displayPersonalFeed 
         #displayPersonalDashboard
           #top-personal-dashboard
+            #emotion-graph
             table#emotion-stats
               tr
                 td 62%
@@ -108,8 +111,8 @@ html
                 td Happy
                 td Neutral
                 td Sad
-            #profile_name
-              | Katherine Chen
+            //- #profile_name
+            //-   | Katherine Chen
               #profile_settings
                 center
                   a(data-role='button', onclick='presentSettings()') Settings
