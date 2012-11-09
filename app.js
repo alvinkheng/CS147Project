@@ -119,9 +119,10 @@ app.post('/attempt-login', function(req, res) {
             //Get the all of the users statuses
             connection.query('SELECT * from Statuses WHERE email = ?', params.email, function(err, rows) {
                 personalPosts = rows;
+                //render personalFeed page
+                res.render('personal', {statuses: JSON.stringify(personalPosts)});
+
             })
-            //render personalFeed page
-            res.render('personal', {statuses: JSON.stringify(personalPosts)});
         } else {
             //Refresh page if login fail
             res.render('login', {invalid: 1});
