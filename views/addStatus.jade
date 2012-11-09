@@ -28,7 +28,6 @@ html
     //
        HEADER 
     div
-      br
       script(type='text/javascript')
         var _location;
         $(function() {
@@ -40,6 +39,8 @@ html
         })
       form#statusForm(action='postStatus', method='post')
         center
+          label(for='textarea-a')
+          textarea#textarea-a.composerInput.mentions-input(rows='1', data-sigil='composer-textarea', name='textarea', placeholder='Whats on your mind?', data-mini='true')
           input#locationField(type='hidden', name='location', value='')
           fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal', data-mini="true")
             input#radio-choice-1(type='radio', name='radio-choice', value='choice-1')
@@ -57,8 +58,6 @@ html
             input#radio-choice-3(type='radio', name='radio-choice', value='choice-3')
             label(for='radio-choice-3')
               img(src='/imgs/test.png')
-          label(for='textarea-a')
-          textarea#textarea-a.composerInput.mentions-input(rows='1', data-sigil='composer-textarea', name='textarea', placeholder='What\'s on your mind?', data-mini='true')
           fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal')
             input#radio-choice-1(type='radio', name='radio-choice', value='choice-1')
             label(for='radio-choice-1')
