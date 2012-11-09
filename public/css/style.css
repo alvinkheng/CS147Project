@@ -133,13 +133,16 @@ table#graphs {
     background-repeat: repeat;
     font-family: "Helvetica Neue";
 }
+#radio-choice-3 {
+    margin-right: 10px;
+}
 
 #stretch {
     width: 100%;
 }
 
 #textarea-a {
-    -webkit-box-shadow: inset 0px 1px 1px 0px #E0E0E0;
+    -webkit-box-shadow: inset 0px 1px 1px 1px #666666;
     background-color:white;
     border-radius: 0px;
 }
