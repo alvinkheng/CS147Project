@@ -17,18 +17,16 @@ html
         h1 Create Profile
       //
          /header 
-      div(data-role='content')
+      div(data-role='content')#createaccountbody
         form#settingsForm(action='create-profile', method='post')
           div(data-role='fieldcontain')
-            label(for='name') Name:
-            input#name(type='text', name='name')
+            input#name(type='text', name='name', placeholder='Name')
             if (typeof(invalid) != 'undefined' && invalid == 'name')
                 #nameError
                 small
                     font(color='red') The name you entered is invalid 
                 br
-            label(for='email') Email:
-            input#email(type='text', name='email')
+            input#email(type='text', name='email', placeholder='Email')
             if (typeof(invalid) != 'undefined' && invalid == 'emailExists')
                 #emailError
                 small
@@ -40,8 +38,7 @@ html
                     font(color='red') The email you entered is invalid
                 br   
           div(data-role='fieldcontain')
-            label(for='password') Password:
-            input#password(type='password', name='password')
+            input#password(type='password', name='password', placeholder='Password')
             if (typeof(invalid) != 'undefined' && invalid == 'password')
                 #passwordError
                 small
