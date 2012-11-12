@@ -34,10 +34,14 @@ html
          br
          br
          br
-          if (typeof(invalid) != 'undefined')
-            #loginError
-            small
-              font(color='red') The email or password you entered is incorrect.
+         if (typeof(invalid) != 'undefined')
+           #loginError
+             small
+               font(color='red') The email or password you entered is incorrect.
+         else if (typeof(loggedout) != 'undefined') 
+           #loggedOut
+             small
+               font(color='white') You have been successfully logged out.
         form#loginform(action='attempt-login', method='post')
           input#email(type='text', name='email', placeholder='Email')
           input#password(type='password', name='password', placeholder='Password')

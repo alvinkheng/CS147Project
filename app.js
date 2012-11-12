@@ -39,7 +39,7 @@ app.configure(function(){
 var globalPosts = [];
 
 //variables that will hold current user data after valid login
-var currUser;
+var currUser = {}
 var personalPosts = [];
 
 var globalAnalytics = [
@@ -74,7 +74,15 @@ app.get('/personal', function(req, res) {
 )
 app.get('/addStatus', routes.addStatus);
 app.get('/login', routes.login);
-app.get('/logout', routes.logout);
+app.get('/logout', function(req, res) {
+        globalPosts = [];
+        currUser = {};
+        personalPosts = [];
+        globalAnalytics = [
+        {}
+        ]
+        res.render('login', {loggedout: 1});
+        });
 
 app.get('/createProfile', routes.createProfile);
 app.post('/create-profile', function(req, res) {

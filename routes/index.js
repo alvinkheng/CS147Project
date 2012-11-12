@@ -21,7 +21,3 @@ exports.login = function(req, res) {
 exports.createProfile = function(req, res) {
 	res.render('createProfile')
 }
-
-exports.logout = function(req, res) {
-	res.render('logout')
-}
