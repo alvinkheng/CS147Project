@@ -36,14 +36,9 @@ app.configure(function(){
 });
 
 //variable that holds global posts
-var globalPosts = [
-  { status: 'Really excited to show off my Halloween costume', emotion: 'happy', location: 'Stanford, CA', date: 'Oct 31'},
-  { status: 'I had the best day ever!', emotion: 'happy', location: 'Boston, MA', date: 'Oct 31'},
-  { status: 'Did not do so hot on my Chem exam...', emotion: 'sad', location: 'Stanford, CA', date: 'Oct 30'},
-  { status: 'Normal day, not much going on', emotion: 'neutral', location: 'Houston, TX', date: 'Oct 30'}
-]
+var globalPosts = [];
 
-//variables that will current user data after valid login
+//variables that will hold current user data after valid login
 var currUser;
 var personalPosts = [];
 
@@ -59,11 +54,10 @@ app.configure('development', function(){
 
 // routes
 app.get('/', routes.home);
-app.get('/global', routes.globaldash)
-app.get('/globalposts', function(req, res) {
-  res.write(JSON.stringify(globalPosts))
-  res.end()
-})
+app.get('/global', function(req, res) {
+        res.render('global', {statuses: JSON.stringify(globalPosts)})
+        })
+
 app.get('/globalanalytics', function(req, res) {
   res.write(JSON.stringify(globalAnalytics))
   res.end()
@@ -117,6 +111,9 @@ app.post('/attempt-login', function(req, res) {
         if (rows.length == 1) {
             currUser = rows[0];
             //Get the all of the users statuses
+                     connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
+                                      globalPosts = rows;
+                                      })
             connection.query('SELECT * from Statuses WHERE email = ? ORDER BY date DESC', params.email, function(err, rows) {
                 personalPosts = rows;
                 //render personalFeed page
@@ -140,7 +137,7 @@ app.post('/save-settings', function(req, res) {
   currUser['privacy'] = params['privacy']
   currUser['location'] = params['flip-s']
 
-  res.render('global')
+  res.render('global', {statuses: JSON.stringify(globalPosts)})
 }) 
 
 app.get('/user-info', function(req, res) {
@@ -156,7 +153,7 @@ app.post('/postStatus', function(req, res) {
     var status = {};
     status['email'] = currUser.email;
     status['status'] = params['textarea'];
-    var emotion = params['radio-choice'];
+    var emotion = params['e-radio-choice'];
     if (emotion == 'choice-1') {
         status['emotion'] = 'happy';
     } else if (emotion == 'choice-2') {
