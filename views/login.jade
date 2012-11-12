@@ -1,7 +1,7 @@
 !!! 5
 html
   head
-    title Emotionly
+    title emochi
     meta(charset='utf-8')
     meta(name='apple-mobile-web-app-capable', content='yes')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
@@ -25,29 +25,26 @@ html
       $.mobile.changePage("settings", {transition: "slide"} );
       }
   body
-    div(data-role='page')
-      div(data-role='header')
-        h1 Log in
-      //
-         /header 
+    div(data-role='page')#loginbody
       div(data-role='content')
         center
-          | Welcome to emochi!
-          br
-          | Log in to start tracking your emotions!
-          br
+         br
+         br
+         br
+         br
+         br
+         br
           if (typeof(invalid) != 'undefined')
             #loginError
             small
               font(color='red') The email or password you entered is incorrect.
-        form(action='attempt-login', method='post')
-          label(for='email') Email:
-          input#email(type='text', name='email')
-          label(for='password') Password:
-          input#password(type='password', name='password')
-          input(type='submit', value='Login')
-        center
-          | New to emochi?
+        form#loginform(action='attempt-login', method='post')
+          input#email(type='text', name='email', placeholder='Email')
+          input#password(type='password', name='password', placeholder='Password')
+          input#loginbutton(type='submit', value='Login')
+        br
+        center#signuptext
+          | New to emochi? 
           a(href='createProfile') Sign up now
       //
          /content 
