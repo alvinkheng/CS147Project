@@ -37,12 +37,18 @@ html
                 alert("Geolocation is not supported by this browser.");
             }
         })
+
       form#statusForm(action='postStatus', method='post')
+            img(src='/imgs/happy.png')
+            img(src='/imgs/happy.png')
+            img(src='/imgs/happy.png')
+            img(src='/imgs/happy.png')
+            img(src='/imgs/happy.png')
         center
           label(for='textarea-a')
           textarea#textarea-a.composerInput.mentions-input(rows='1', data-sigil='composer-textarea', name='textarea', placeholder='Whats on your mind?', data-mini='true')
           input#locationField(type='hidden', name='location', value='')
-          fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal', data-mini="true")
+          fieldset#emotion_selector.ui-btn-right(data-role='controlgroup', data-type='horizontal', data-mini='true', data-theme='c')
             input#radio-choice-1(type='radio', name='radio-choice', value='choice-1')
             label(for='radio-choice-1') :D
             input#radio-choice-4(type='radio', name='radio-choice', value='choice-4)
@@ -54,11 +60,9 @@ html
             input#radio-choice-3(type='radio', name='radio-choice', value='choice-3')
             label(for='radio-choice-3') >:|
           fieldset.ui-btn-right(data-role='controlgroup', data-type='horizontal', data-mini="true")
+            input#radio-choice-1(type='radio', name='radio-choice', value='choice-1')
+            label(for='radio-choice-1')
+                img(src='/imgs/camera.png')
             input#radio-choice-2(type='radio', name='radio-choice', value='choice-2')
             label(for='radio-choice-2')
-              center
-                img(src='/imgs/camera.png')
-            input#radio-choice-3(type='radio', name='radio-choice', value='choice-3')
-            label(for='radio-choice-3')
-              center
                 img(src='/imgs/privacy.png')

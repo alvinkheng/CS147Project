@@ -137,6 +137,29 @@ table#graphs {
     margin-right: 10px;
 }
 
+#emotions {
+    list-style-type:none;  
+    margin:0;  
+    padding:0;  
+    height:30px;  
+    background-color:#600;  
+    font-family:Arial;  
+    font-size:0.9em;  
+}
+
+#emotions li {
+    float:left;  
+    height:30px;  
+    line-height:30px;  
+}
+
+#emotions li a {  
+    display:block;  
+    padding:0 20px;  
+    color:#FFF;  
+    text-decoration:none;  
+}  
+
 #stretch {
     width: 100%;
 }
@@ -179,6 +202,15 @@ height: 150px;
     background-image: url('/imgs/pattern.png');
     background-repeat: repeat;
     font-family: "Helvetica Neue";
+}
+
+.ui-radio {
+    color: black;
+    text-shadow: 0 -1px 1px #A9DCF4;
+}
+
+#radio-choice-3 {
+    background-color: black;
 }
 
 #feedList {
