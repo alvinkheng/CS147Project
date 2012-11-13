@@ -172,7 +172,7 @@ app.post('/postStatus', function(req, res) {
     status['date'] = new Date();
     status['privacy'] = 'public'; //STATIC
     status['location'] = params['location'];
-    status['photo'] = ''; //STATIC
+    status['image'] = params['image'];
     
     //Add status to globalPosts array and personalPosts array
     globalPosts.unshift(status);

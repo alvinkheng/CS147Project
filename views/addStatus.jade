@@ -21,6 +21,20 @@ html
       function cancelStatus(save) {
       $.mobile.changePage("personal", { transition: "slidedown"} );
       }
+      function fileSelected() {
+      var oFile = document.getElementById('imageFile').files[0];
+      
+      // prepare HTML5 FileReader
+      var oReader = new FileReader();
+      oReader.onload = function(e){
+
+      // e.target.result contains the DataURL which we will use as a source of the image
+      document.getElementById('imageField').value = e.target.result;
+      };
+
+      // read selected file as DataURL
+      oReader.readAsDataURL(oFile);
+      };
     div(data-role='header')
       a(data-icon='delete', onclick='cancelStatus()') Cancel
       a#addButton(data-icon='check', data-theme='b') Add
@@ -47,6 +61,10 @@ html
           label(for='textarea-a')
           textarea#textarea-a.composerInput.mentions-input(rows='1', data-sigil='composer-textarea', name='textarea', placeholder='Whats on your mind?', data-mini='true')
           input#locationField(type='hidden', name='location', value='')
+          input#imageField(type='hidden', name='image', value='')
+          | Photo 
+          input#imageFile(type='file', name='image', accept='image/*', capture='camera', onchange='fileSelected();')
+          br
           fieldset#emotion_selector.ui-btn-right(data-role='controlgroup', data-type='horizontal', data-mini='true', data-theme='c')
             input#radio-choice-1(type='radio', name='e-radio-choice', value='choice-1')
             label(for='radio-choice-1') :D
