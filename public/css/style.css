@@ -29,6 +29,10 @@
     color:white;
 }
 
+.photo_formatting {
+    border: 2px solid black;
+}
+
 #createaccountbody {
     color:white;
     background-image: url('/imgs/background.png');

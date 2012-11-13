@@ -48,7 +48,7 @@ html
         $('#globalFeed').append("<span class='journal_entries'>" + curr.status + '<br> ' + "<span class='small'>" + curr.emotion + " - " + curr.location + "</span></span>");
         $('#globalFeed').append("<center>"+"<span class='side'>" + getTime(date.getHours(), date.getMinutes()) + "<br>" + "<span class='day_date'> " + date.getDate() + "</span>" + "<br> " + getDayName(date.getDay()) + "</span>"+"</center>");
         if (curr.image != '') {
-            $('#globalFeed').append("<img src='"+curr.image+"' width=100/>");
+            $('#globalFeed').append("<img src='"+curr.image+"' width=320/>");
         }    
         }
         
