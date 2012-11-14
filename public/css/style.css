@@ -29,6 +29,13 @@
     color:white;
 }
 
+#preview {
+    background-color:#fff;
+    display:block;
+    float:left;
+    width:250px;
+}
+
 .photo_formatting {
     border: 2px solid black;
 }
@@ -256,6 +263,18 @@ height: 150px;
 #settings .ui-icon { 
     background:  url(/icons/19-gear.png) 50% 50% no-repeat;  
     background-size: 26px 26px; 
+}
+
+#emotion_selector {
+    margin:7px;
+}
+
+.ui-btn-inner {
+    padding: 0em 0px;
+}
+
+#radio-choice-1 {
+    background-color:red;
 }
 
 #displayPersonalFeed {
