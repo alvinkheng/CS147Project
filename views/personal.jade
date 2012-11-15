@@ -12,13 +12,11 @@ html
     link(rel='apple-touch-startup-image', href='/imgs/startup.png')
     script(src='/js/jquery-1.8.2.min.js')
     script(src='/js/jquery.mobile-1.2.0.js')
-    script(src='/js/d3.v2.js')
     script(src='/js/graphs.js')
     script(src='http://www.geoplugin.net/javascript.gp')
   body
-    //
-       Start of first page: #one 
     #one(data-role='page')
+      script(src='/js/d3.v2.js')
       script(type='text/javascript')
         function getDayName(day) {
             if (day == 0) {
@@ -36,6 +34,42 @@ html
             } else if (day == 6) {
             return 'Saturday';
             }
+        }
+        function drawGraphs(statuses) {
+            console.log("statuses: "+JSON.stringify(statuses))
+            var w = 400;
+            var h = 100;
+            var barPadding = 1;
+
+            var svg = d3.select("#emotion-graph")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+
+            var emotionIndex = { 'excited':0, 'happy':1, 'neutral':2, 'sad':3, 'angry':4}
+            var dataset = [0,0,0,0,0]
+            for(var i=0; i < statuses.length; i++) {
+                var curr = statuses[i];
+                dataset[emotionIndex[curr['emotion']]]++;
+            }
+
+            var max = Math.max.apply(null, dataset)
+            var scale = h / max;
+            console.log('scale: '+scale)
+
+            console.log('dataset: '+ JSON.stringify(dataset))
+            svg.selectAll("rect")
+               .data(dataset)
+               .enter()
+               .append("rect")
+               .attr("x", function(d, i) {
+                return i * (w / dataset.length);    })
+               .attr("y", function(d) {
+                  return h - d*scale;  })
+               .attr("width", w / dataset.length - barPadding)
+               .attr("height", function(d) {
+                 return d * scale})
+               .attr('fill', 'orange')
         }
         
         function getTime(hours, minutes) {
@@ -60,13 +94,15 @@ html
       
         $(function() {
         var data = !{statuses};
+        drawGraphs(data)
         $('#feedList').html('');
         for (var i = 0; i < data.length; i++) {
         var curr = data[i];
         var date = new Date(curr.date);
         $('#feedList').append("<li class='journal_entries'><p>" + curr.status + '<br> ' + "<span class='small'>" + curr.emotion + " - " + curr.location + "</span></p></li>");
         $('#feedList').append("<center>"+"<span class='side'>" + getTime(date.getHours(), date.getMinutes()) + "<br>" + "<span class='day_date'> " + date.getDate() + "</span>" + "<br> " + getDayName(date.getDay()) + "</span>"+"</center>");
-        if (curr.image != '') {
+        if (curr.image != '' && curr.image != 'none') {
+            console.log("current img:"+curr.image)
             $('#feedList').append("<img src='"+curr.image+"' width=320/>");
         }
         }
@@ -108,30 +144,25 @@ html
             #emotion-graph
             table#emotion-stats
               tr#emotion-stats-row2
+                td Excited
                 td Happy
                 td Neutral
                 td Sad
+                td Angry
             //- #profile_name
             //-   | Katherine Chen
               #profile_settings
                 center
                   a(data-role='button', onclick='presentSettings()') Settings
-          table#entry-stats
-            tr
-              td 12
-              td 5
-              td 1
-            tr#entry-stats-row2
-              td Entries
-              td This Week
-              td Today
-          table#graphs
-            tr
-              td Calendar
-              td Location
-            tr
-              td Weather
-              td Friends
+          //- table#entry-stats
+          //-   tr
+          //-     td 12
+          //-     td 5
+          //-     td 1
+          //-   tr#entry-stats-row2
+          //-     td Entries
+          //-     td This Week
+          //-     td Today
         //
            content 
         .nav-glyphish-example(data-role='footer', data-id='samefooter', data-position='fixed', data-tap-toggle='false')

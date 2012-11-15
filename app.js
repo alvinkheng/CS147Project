@@ -59,7 +59,7 @@ app.get('/global', function(req, res) {
         })
 
 app.get('/globalanalytics', function(req, res) {
-  res.write(JSON.stringify(globalAnalytics))
+  res.write(JSON.stringify(globalPosts))
   res.end()
 })
 
@@ -163,17 +163,23 @@ app.post('/postStatus', function(req, res) {
     status['status'] = params['textarea'];
     var emotion = params['e-radio-choice'];
     if (emotion == 'choice-1') {
-        status['emotion'] = 'happy';
+        status['emotion'] = 'excited';
     } else if (emotion == 'choice-2') {
         status['emotion'] = 'neutral';
     } else if (emotion == 'choice-3') {
-        status['emotion'] = 'sad';
+        status['emotion'] = 'angry';
+    } else if(emotion == 'choice-4') {
+        status['emotion'] = 'happy'
+    } else {
+        status['emotion'] = 'sad'
     }
+
     status['date'] = new Date();
     status['privacy'] = 'public'; //STATIC
     status['location'] = params['location'];
-    status['image'] = params['image'];
-    
+    if(params['image']) status['image'] = params['image'];
+    else status['image'] = 'none'
+
     //Add status to globalPosts array and personalPosts array
     globalPosts.unshift(status);
     personalPosts.unshift(status);
