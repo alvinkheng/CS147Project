@@ -46,8 +46,8 @@ html
                 .attr("width", w)
                 .attr("height", h);
 
-            var emotionIndex = { 'excited':0, 'happy':1, 'neutral':2, 'sad':3, 'angry':4}
-            var dataset = [0,0,0,0,0]
+            var emotionIndex = { 'excited':0, 'happy':1, 'neutral':2, 'sad':3, 'angry':4, 'angel':5, 'devil':7, 'disappoint':8, 'laugh':9, 'surprised':10}
+            var dataset = [0,0,0,0,0,0,0,0,0,0] 
             for(var i=0; i < statuses.length; i++) {
                 var curr = statuses[i];
                 dataset[emotionIndex[curr['emotion']]]++;
@@ -149,6 +149,11 @@ html
                 td Neutral
                 td Sad
                 td Angry
+                td Wholesome
+                td Devilish
+                td Disappointed
+                td Laughing
+                td Surprised
             //- #profile_name
             //-   | Katherine Chen
               #profile_settings

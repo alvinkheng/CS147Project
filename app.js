@@ -170,8 +170,18 @@ app.post('/postStatus', function(req, res) {
         status['emotion'] = 'angry';
     } else if(emotion == 'choice-4') {
         status['emotion'] = 'happy'
-    } else {
+    } else if(emotion == 'choice-5') {
         status['emotion'] = 'sad'
+    } else if(emotion == 'choice-6') {
+        status['emotion'] = 'angel'
+    } else if(emotion == 'choice-7') {
+        status['emotion'] = 'devil'
+    } else if(emotion == 'choice-8') {
+        status['emotion'] = 'disappoint'
+    } else if(emotion == 'choice-9') {
+        status['emotion'] = 'laugh'
+    } else {
+        status['emotion'] = 'surprised'
     }
 
     status['date'] = new Date();
