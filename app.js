@@ -35,12 +35,11 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
+//variables that hold sessions
+var _sessions = {};
+
 //variable that holds global posts
 var globalPosts = [];
-
-//variables that will hold current user data after valid login
-var currUser = {}
-var personalPosts = [];
 
 var globalAnalytics = [
   {}
@@ -65,19 +64,25 @@ app.get('/globalanalytics', function(req, res) {
 
 app.get('/settings', routes.settings) 
 app.get('/personal', function(req, res) {
-//    if (currUser == undefined) {
+//    if (_sessions[req.sessionID].user == undefined) {
 //        res.render('login');
 //    } else {
-        res.render('personal', {statuses: JSON.stringify(personalPosts)})
+        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
 //    }
 }
 )
 app.get('/addStatus', routes.addStatus);
-app.get('/login', routes.login);
+app.get('/login', function(req, res) {
+        console.log(req.sessionID);
+        if (_sessions[req.sessionID] != undefined) {
+        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
+        } else {
+        res.render('login');
+        }
+        })
 app.get('/logout', function(req, res) {
+        delete _sessions[req.sessionID];
         globalPosts = [];
-        currUser = {};
-        personalPosts = [];
         globalAnalytics = [
         {}
         ]
@@ -100,9 +105,10 @@ app.post('/create-profile', function(req, res) {
                     if (err) throw err;
                     params.privacy = 'friends'; //STATIC
                     params.location = 'on'; //STATIC
-                    currUser = params;
+                                 _sessions[req.sessionID] = {}
+                    _sessions[req.sessionID].user = params;
                     //Render personalFeed page
-                    res.render('personal', {statuses: JSON.stringify(personalPosts)});
+                    res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
                 });   
             } else {
                 //Refresh page if email already exists
@@ -117,15 +123,16 @@ app.post('/attempt-login', function(req, res) {
     //If credentials are in the Profile database, continue
     connection.query('SELECT * from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
         if (rows.length == 1) {
-            currUser = rows[0];
+            _sessions[req.sessionID] = {}
+            _sessions[req.sessionID].user = rows[0];
             //Get the all of the users statuses
                      connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
                                       globalPosts = rows;
                                       })
             connection.query('SELECT * from Statuses WHERE email = ? ORDER BY date DESC', params.email, function(err, rows) {
-                personalPosts = rows;
+                _sessions[req.sessionID].personalPosts = rows;
                 //render personalFeed page
-                res.render('personal', {statuses: JSON.stringify(personalPosts)});
+                res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
 
             })
         } else {
@@ -138,19 +145,18 @@ app.post('/attempt-login', function(req, res) {
 app.post('/save-settings', function(req, res) {
   var params = req.body;
 
-  currUser['name'] = params['name']
-  currUser['email'] = params['email']
-  if(params['pass']) currUser['password'] = params['pass']
-  currUser['gender'] = params['gender']
-  currUser['privacy'] = params['privacy']
-  currUser['location'] = params['flip-s']
+  _sessions[req.sessionID].user['name'] = params['name']
+  _sessions[req.sessionID].user['email'] = params['email']
+  if(params['pass']) _sessions[req.sessionID].user['password'] = params['pass']
+  _sessions[req.sessionID].user['gender'] = params['gender']
+  _sessions[req.sessionID].user['privacy'] = params['privacy']
+  _sessions[req.sessionID].user['location'] = params['flip-s']
 
   res.render('global', {statuses: JSON.stringify(globalPosts)})
 }) 
 
 app.get('/user-info', function(req, res) {
-  console.log(JSON.stringify(currUser))
-  res.write(JSON.stringify(currUser))
+  res.write(JSON.stringify(_sessions[req.sessionID].user))
   res.end()
 })
 
@@ -159,7 +165,7 @@ app.get('/users', user.list);
 app.post('/postStatus', function(req, res) {
     var params = req.body;
     var status = {};
-    status['email'] = currUser.email;
+    status['email'] = _sessions[req.sessionID].user.email;
     status['status'] = params['textarea'];
     var emotion = params['e-radio-choice'];
     if (emotion == 'choice-1') {
@@ -192,12 +198,12 @@ app.post('/postStatus', function(req, res) {
 
     //Add status to globalPosts array and personalPosts array
     globalPosts.unshift(status);
-    personalPosts.unshift(status);
+    _sessions[req.sessionID].personalPosts.unshift(status);
     
     //Add status to the database
     connection.query('INSERT INTO Statuses SET ?', status, function(err, result) {
         if (err) throw err;
-        res.render('personal', {statuses: JSON.stringify(personalPosts)});
+        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
     });   
 });
 
