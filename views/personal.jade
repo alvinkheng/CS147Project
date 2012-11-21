@@ -35,6 +35,16 @@ html
             return 'Saturday';
             }
         }
+
+        function getMonthName(month) {
+
+        var monthNames = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+
+        return monthNames[month];
+
+        }
+
         function drawGraphs(statuses) {
             console.log("statuses: "+JSON.stringify(statuses))
             var w = 400;
@@ -98,6 +108,30 @@ html
               }
         }
         
+        function simpleDate(date) {
+            var today = new Date();
+            var statusDate = " " + getMonthName(date.getMonth()) + " " + date.getDate() + ", " + date.getFullYear() + "";
+            today = " " + getMonthName(today.getMonth()) + " " + today.getDate() + ", " + today.getFullYear() + "";
+
+            if(statusDate==today) {
+                return 'Today';
+            } else if(statusDate+1==today) {
+                return ' 1d ago';
+            } else if(statusDate+2==today) {
+                return ' 2d ago';
+            } else if(statusDate+3==today) {
+                return ' 3d ago';
+            } else if(statusDate+4==today) {
+                return ' 4d ago';
+            } else if(statusDate+5==today) {
+                return ' 5d ago';
+            } else if(statusDate+6==today) {
+                return ' 6d ago';
+            } else {
+                return statusDate;
+            }
+        }
+
         function getTime(hours, minutes) {
             var ampm;
             if (hours < 12) {
@@ -126,7 +160,7 @@ html
         var curr = data[i];
         var date = new Date(curr.date);
         var emotion = curr.emotion;
-        $('#feedList').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "</li></div>");
+        $('#feedList').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
         if (curr.image != '' && curr.image != 'none') {
             $('#feedList').append("<img src='" + curr.image + "' width=100%/>");
             }

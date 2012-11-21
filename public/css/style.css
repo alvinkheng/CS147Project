@@ -244,6 +244,11 @@ height: 150px;
     padding: 20px;
 }
 
+.date_format {
+    padding-top:3px;
+    float:right;
+}
+
 .composerInput {
     border: 0;
     height: 110px;
