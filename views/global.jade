@@ -46,11 +46,37 @@ html
         for (var i = 0; i < data.length; i++) {
         var curr = data[i]
         var date = new Date(curr.date);
-        $('#globalFeed').append("<span class='journal_entries'>" + curr.status + '<br> ' + "<span class='small'>" + curr.emotion + " - " + curr.location + "</span></span>");
-        $('#globalFeed').append("<center>"+"<span class='side'>" + getTime(date.getHours(), date.getMinutes()) + "<br>" + "<span class='day_date'> " + date.getDate() + "</span>" + "<br> " + getDayName(date.getDay()) + "</span>"+"</center>");
-        if (curr.image != '' && curr.image !='none') {
-            $('#globalFeed').append("<img src='"+curr.image+"' width=320/>");
+        var emotion = curr.emotion;
+        $('#globalFeed').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "</li></div>");
+        if (curr.image != '' && curr.image != 'none') {
+            $('#globalFeed').append("<img src='" + curr.image + "' width=100%/>");
         }    
+        }
+
+        function getEmoticon(emotion) {
+              if(emotion=="excited") {
+                  return 'excited-01.png';
+              } else if (emotion=="happy") {
+                  return 'happy-01.png';
+              } else if (emotion=="neutral") {
+                  return 'neutral-01.png';
+              } else if (emotion=="sad") {
+                  return 'sad-01.png';
+              } else if (emotion=="angry") {
+                  return 'angry-01.png';
+              } else if (emotion=="angel") {
+                  return 'angel-01.png';
+              } else if (emotion=="devil") {
+                  return 'devil-01.png';
+              } else if (emotion=="dissapoint") {
+                  return 'dissapoint-01.png';
+              } else if (emotion=="laugh") {
+                  return 'laugh-01.png';
+              } else if (emotion=="surprised") {
+                  return 'surprised-01.png';
+              } else {
+                  return 'blank-01.png' ;
+              }
         }
 
         function drawGraphs(statuses) {
@@ -112,7 +138,7 @@ html
          /navbar 
       div
         #displayGlobalFeed
-          #globalFeed
+          ul#globalFeed(data-role='listview')
         //
            displayGlobalFeed 
         #displayGlobalDashboard
