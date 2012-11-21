@@ -18,31 +18,31 @@ html
       //
          /header 
       div(data-role='content')#createaccountbody
+        legend Please enter the following information:
         form#settingsForm(action='create-profile', method='post')
           div(data-role='fieldcontain')
             input#name(type='text', name='name', placeholder='Name')
             if (typeof(invalid) != 'undefined' && invalid == 'name')
                 #nameError
                 small
-                    font(color='red') The name you entered is invalid 
+                    font(color='white') The name you entered is invalid 
                 br
             input#email(type='text', name='email', placeholder='Email')
             if (typeof(invalid) != 'undefined' && invalid == 'emailExists')
                 #emailError
                 small
-                    font(color='red') The email you entered already exists
+                    font(color='white') The email you entered already exists
                 br
              else if (typeof(invalid) != 'undefined' && invalid == 'emailFormat')
                 #emailError
                 small
-                    font(color='red') The email you entered is invalid
+                    font(color='white') The email you entered is invalid
                 br   
-          div(data-role='fieldcontain')
             input#password(type='password', name='password', placeholder='Password')
             if (typeof(invalid) != 'undefined' && invalid == 'password')
                 #passwordError
                 small
-                    font(color='red') The password you entered is invalid
+                    font(color='white') The password you entered is invalid
                 br
           div(data-role='fieldcontain')
             fieldset(data-role='controlgroup')
@@ -54,7 +54,7 @@ html
            if (typeof(invalid) != 'undefined' && invalid == 'gender')
                 #genderError
                 small
-                    font(color='red') The gender you entered is invalid
+                    font(color='white') The gender you entered is invalid
                 br
           input(type='submit', value='Create Profile')
       //
