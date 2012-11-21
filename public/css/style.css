@@ -269,7 +269,7 @@ height: 150px;
     margin:7px;
 }
 
-.ui-btn-inner {
+#emotion_selector .ui-btn-inner {
     padding: 0em 0px;
 }
 
