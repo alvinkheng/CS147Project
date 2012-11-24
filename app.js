@@ -107,7 +107,11 @@ app.post('/create-profile', function(req, res) {
                     params.location = 'on'; //STATIC
                                  _sessions[req.sessionID] = {}
                     _sessions[req.sessionID].user = params;
+                    _sessions[req.sessionID].personalPosts = [];
                     //Render personalFeed page
+                    connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
+                        globalPosts = rows;
+                    })
                     res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
                 });   
             } else {
