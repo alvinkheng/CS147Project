@@ -75,11 +75,11 @@ app.get('/addStatus', routes.addStatus);
 app.get('/login', function(req, res) {
         console.log(req.sessionID);
         if (_sessions[req.sessionID] != undefined) {
-        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
+          res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
         } else {
-        res.render('login');
+          res.render('login');
         }
-        })
+})
 app.get('/logout', function(req, res) {
         delete _sessions[req.sessionID];
         globalPosts = [];
@@ -126,21 +126,25 @@ app.post('/attempt-login', function(req, res) {
     var params = req.body;
     //If credentials are in the Profile database, continue
     connection.query('SELECT * from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
+        console.log("in callback of attempt-login")
         if (rows.length == 1) {
             _sessions[req.sessionID] = {}
             _sessions[req.sessionID].user = rows[0];
             //Get the all of the users statuses
-                     connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
-                                      globalPosts = rows;
-                                      })
+            connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
+                console.log('got global posts')
+                globalPosts = rows;
+            })
             connection.query('SELECT * from Statuses WHERE email = ? ORDER BY date DESC', params.email, function(err, rows) {
                 _sessions[req.sessionID].personalPosts = rows;
                 //render personalFeed page
+               console.log('got personal posts') 
                 res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
 
             })
         } else {
             //Refresh page if login fail
+            console.log("invalid login!")
             res.render('login', {invalid: 1});
         }
     })
