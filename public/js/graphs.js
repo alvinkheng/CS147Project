@@ -22,7 +22,7 @@ function drawLineGraph(statuses, startDate) {
  	 			relevantData.push({ 'date': currDate, 'score': emotionScale[currEmotion] })
   		}
   	}
-  	console.log("Filtered data for line graph: "+JSON.stringify(relevantData))
+//  	console.log("Filtered data for line graph: "+JSON.stringify(relevantData))
 
   	// set up axes
   	var minDate = relevantData[(relevantData.length - 1)]['date']
@@ -109,7 +109,7 @@ function drawLineGraph(statuses, startDate) {
 }
 
 function drawGraphs(statuses) {
- 	console.log('inside drawGraphs!'+JSON.stringify(statuses))
+// 	console.log('inside drawGraphs!'+JSON.stringify(statuses))
 	$('#emotion-graph').html('')
 
   var w = $(window).width();
@@ -144,7 +144,7 @@ function drawGraphs(statuses) {
   var scale = h / max;
   console.log('scale: '+scale)
 
-  console.log('dataset: '+ JSON.stringify(dataset))
+//  console.log('dataset: '+ JSON.stringify(dataset))
   svg.selectAll("rect")
 	.data(dataset)
 	 .enter()
