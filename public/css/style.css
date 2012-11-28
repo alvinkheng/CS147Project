@@ -1,3 +1,13 @@
+svg {
+    border: 1px solid black;
+}
+
+path {
+    fill: none;
+    stroke: lightblue;
+    stroke-width: 5px;
+}
+
 .nav-glyphish-example .ui-btn .ui-btn-inner { 
     padding-top: 40px !important;
 }

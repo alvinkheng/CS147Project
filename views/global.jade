@@ -31,6 +31,7 @@ html
       }
     div(data-role='page')
       script(src='/js/d3.v2.js')
+      script(src='/js/graphs.js')
       script(type='text/javascript')
         function presentStatus() {
         $.mobile.changePage( "addStatus", { transition: "slideup"} );
@@ -122,47 +123,12 @@ html
             return monthNames[month];
         }
 
-        function drawGraphs(statuses) {
-            console.log("statuses: "+JSON.stringify(statuses))
-            var w = 400;
-            var h = 100;
-            var barPadding = 1;
-
-            var svg = d3.select("#emotion-graph")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h);
-
-            var emotionIndex = { 'excited':0, 'happy':1, 'neutral':2, 'sad':3, 'angry':4}
-            var dataset = [0,0,0,0,0]
-            for(var i=0; i < statuses.length; i++) {
-                var curr = statuses[i];
-                dataset[emotionIndex[curr['emotion']]]++;
-            }
-
-            var max = Math.max.apply(null, dataset)
-            var scale = h / max;
-            console.log('scale: '+scale)
-
-            console.log('dataset: '+ JSON.stringify(dataset))
-            svg.selectAll("rect")
-               .data(dataset)
-               .enter()
-               .append("rect")
-               .attr("x", function(d, i) {
-                return i * (w / dataset.length);    })
-               .attr("y", function(d) {
-                  return h - d*scale;  })
-               .attr("width", w / dataset.length - barPadding)
-               .attr("height", function(d) {
-                 return d * scale})
-               .attr('fill', 'orange')
-        }
+        
         
         $.get('globalanalytics', function(data) {
-        console.log('got data: '+data)
-        data = JSON.parse(data)
-        drawGraphs(data)
+          data = JSON.parse(data)
+          $('#emotion-graph').html('')
+          drawGraphs(data)
         })
         })
       div(data-role='header', data-position='fixed', data-id='sameheader')

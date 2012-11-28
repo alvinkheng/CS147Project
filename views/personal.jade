@@ -131,8 +131,9 @@ html
       
         $(function() {
         var data = !{statuses};
+        console.log("rendering page")
         drawGraphs(data)
-        $('#feedList').html('');
+        drawLineGraph(data)
         for (var i = 0; i < data.length; i++) {
         var curr = data[i];
         var date = new Date(curr.date);
@@ -177,9 +178,8 @@ html
         //
            displayPersonalFeed 
         #displayPersonalDashboard
-          #top-personal-dashboard
-            #emotion-graph
-            
+          #emotion-graph
+          #time-graph
             //- table#emotion-stats
             //-   tr#emotion-stats-row2
             //-     td Excited
