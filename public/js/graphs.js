@@ -51,6 +51,61 @@ function drawLineGraph(statuses, startDate) {
 	    .attr("cx", function(d) { return x(d.date) })
 	    .attr("cy", function(d) { return y(d.score) })
 	    .attr("r", 3.5)
+
+	// x-axis
+	g.append("svg:line")
+	    .attr("x1", x(minDate))
+	    .attr("y1", y(0))
+	    .attr("x2", x(maxDate))
+	    .attr("y2", y(0))
+
+	// y-axis
+	g.append("svg:line")
+	    .attr("x1", x(minDate))
+	    .attr("y1", y(-2))
+	    .attr("x2", x(minDate))
+	    .attr("y2", y(2))
+
+	console.log('xTicks')
+	console.log(x.ticks(5))
+	g.selectAll(".xLabel")
+	    .data(x.ticks(5))
+	    .enter().append("svg:text")
+	    .attr("class", "xLabel")
+	    //.text(function(d) { return d.date.getMonth() + '-'+d.date.getDate() })
+	   	.text(String)
+	    .attr("x", function(d) { console.log('x tick:'+d); return x(d.date) })
+	    .attr("y", function() { return y(0) })
+	    .attr("text-anchor", "middle")
+
+	// g.selectAll(".yLabel")
+	//     .data(y.ticks(4))
+	//     .enter().append("svg:text")
+	//     .attr("class", "yLabel")
+	//     .text(String)
+	//     .attr("x", 0)
+	//     .attr("y", function(d) { return y(d.score) })
+	//     .attr("text-anchor", "right")
+	//     .attr("dy", 4)
+
+	// g.selectAll(".xTicks")
+	//     .data(x.ticks(5))
+	//     .enter().append("svg:line")
+	//     .attr("class", "xTicks")
+	//     .attr("x1", function(d) { return x(d.date); })
+	//     .attr("y1", -1 * y(0))
+	//     .attr("x2", function(d) { return x(d.date); })
+	//     .attr("y2", -1 * y(-0.3))
+
+	// g.selectAll(".yTicks")
+	//     .data(y.ticks(4))
+	//     .enter().append("svg:line")
+	//     .attr("class", "yTicks")
+	//     .attr("y1", function(d) { return y(d.score); })
+	//     .attr("x1", x(-0.3))
+	//     .attr("y2", function(d) { return y(d.score); })
+	//     .attr("x2", x(0))
+		
 }
 
 function drawGraphs(statuses) {

@@ -8,6 +8,10 @@ path {
     stroke-width: 5px;
 }
 
+line {
+    stroke: black;
+}
+
 .nav-glyphish-example .ui-btn .ui-btn-inner { 
     padding-top: 40px !important;
 }
