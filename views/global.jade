@@ -24,11 +24,6 @@ html
     script(src='//cdn.optimizely.com/js/141941067.js')
     
   body
-    script(type='text/javascript')
-      function switchView(id, hideId) {
-      document.getElementById(id).style.display = "block";
-      document.getElementById(hideId).style.display = "none";
-      }
     div(data-role='page')
       script(src='/js/d3.v2.js')
       script(src='/js/graphs.js')
@@ -42,7 +37,6 @@ html
         request.open("POST", "http://localhost:3000/addStatus", false);
         request.send();
         if (request.status === 200) {
-        console.log(request.responseText);
         }
         }
         $.mobile.changePage( "personal", { transition: "slidedown"} );
@@ -51,7 +45,6 @@ html
         $.mobile.changePage( "settings", {transition: "slide", reloadPage: true } );
         }
         $(function() {
-        switchView('displayGlobalFeed', 'displayGlobalDashboard');
         var data = !{statuses};
         $('#globalFeed').html('')
         
@@ -139,8 +132,8 @@ html
          header 
       div(data-role='navbar')
         ul
-          li.ui-btn-active(onclick='switchView(\'displayGlobalFeed\', \'displayGlobalDashboard\')')
-            a(href='') Feed
+          li(onclick='switchView(\'displayGlobalFeed\', \'displayGlobalDashboard\')')
+            a.ui-btn-active.ui-state-persist(href='') Feed
           li(onclick='switchView(\'displayGlobalDashboard\', \'displayGlobalFeed\')')
             a(href='') Dashboard
       //
