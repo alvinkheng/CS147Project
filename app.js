@@ -52,7 +52,14 @@ app.configure('development', function(){
 
 
 // routes
-app.get('/', routes.home);
+app.get('/', function(req, res) {
+    if (_sessions[req.sessionID] != undefined) {
+        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
+    } else {
+        res.render('login');
+    }
+});
+
 app.get('/global', function(req, res) {
         res.render('global', {statuses: JSON.stringify(globalPosts)})
         })
@@ -72,14 +79,7 @@ app.get('/personal', function(req, res) {
 }
 )
 app.get('/addStatus', routes.addStatus);
-app.get('/login', function(req, res) {
-        console.log(req.sessionID);
-        if (_sessions[req.sessionID] != undefined) {
-          res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
-        } else {
-          res.render('login');
-        }
-})
+
 app.get('/logout', function(req, res) {
         delete _sessions[req.sessionID];
         globalPosts = [];
@@ -122,6 +122,10 @@ app.post('/create-profile', function(req, res) {
     }
 })
 
+app.get('/attempt-login', function(req, res) {
+    res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
+})
+
 app.post('/attempt-login', function(req, res) {
     var params = req.body;
     //If credentials are in the Profile database, continue
@@ -159,8 +163,17 @@ app.post('/save-settings', function(req, res) {
   _sessions[req.sessionID].user['gender'] = params['gender']
   _sessions[req.sessionID].user['privacy'] = params['privacy']
   _sessions[req.sessionID].user['location'] = params['flip-s']
-
-  res.render('global', {statuses: JSON.stringify(globalPosts)})
+  
+    var statuses;
+    if (params.backPage == 'attempt-login') {
+        params.backPage = 'personal';
+    }
+    if (params.backPage == 'personal') {
+        statuses = _sessions[req.sessionID].personalPosts;
+    } else if (params.backPage == 'global') {
+        statuses = globalPosts;
+    }
+  res.render(params.backPage, {statuses: JSON.stringify(statuses)})
 }) 
 
 app.get('/user-info', function(req, res) {
