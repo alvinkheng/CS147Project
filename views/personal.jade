@@ -154,7 +154,7 @@ html
         function presentSettings() {
         $.mobile.changePage("settings", {transition: "slide"} );
         }
-      div(data-role='header', data-position='fixed', data-id='sameheader')
+      div(data-role='header', data-position='fixed', data-id='sameheader', data-theme='b')
         a(href='#popupPanel', data-rel='popup', data-transition='slide', data-position-to='origin', data-role='button') Open panel
           #popupPanel(data-role='popup', data-corners='false', data-theme='none', data-shadow='false', data-tolerance='0,0')
             button(data-theme='a', data-mini='true', onclick='presentSettings()') Settings
@@ -214,7 +214,7 @@ html
           //-     td Today
         //
            content 
-        .nav-glyphish-example(data-role='footer', data-id='samefooter', data-position='fixed', data-tap-toggle='false')
+        .nav-glyphish-example(data-role='footer', data-id='samefooter', data-position='fixed', data-tap-toggle='false', data-theme='b')
           .nav-glyphish-example(data-role='navbar', data-grid='a')
             ul
               li
