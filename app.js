@@ -52,7 +52,14 @@ app.configure('development', function(){
 
 
 // routes
-app.get('/', routes.home);
+app.get('/', function(req, res) {
+    if (_sessions[req.sessionID] != undefined) {
+        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
+    } else {
+        res.render('login');
+    }
+});
+
 app.get('/global', function(req, res) {
         res.render('global', {statuses: JSON.stringify(globalPosts)})
         })
@@ -72,14 +79,7 @@ app.get('/personal', function(req, res) {
 }
 )
 app.get('/addStatus', routes.addStatus);
-app.get('/login', function(req, res) {
-        console.log(req.sessionID);
-        if (_sessions[req.sessionID] != undefined) {
-          res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
-        } else {
-          res.render('login');
-        }
-})
+
 app.get('/logout', function(req, res) {
         delete _sessions[req.sessionID];
         globalPosts = [];
