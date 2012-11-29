@@ -44,18 +44,27 @@ html
         function presentSettings() {
         $.mobile.changePage( "settings", {transition: "slide", reloadPage: true } );
         }
+                function switchView(id, hideId) {
+        document.getElementById(id).style.display = "block";
+        document.getElementById(hideId).style.display = "none";
+        }
         $(function() {
-        var data = !{statuses};
-        $('#globalFeed').html('')
+          var data = !{statuses};
+          $('#globalFeed').html('')
+
+          $('#emotion-graph').html('')
+          drawGraphs(data) 
+          $('#time-graph').html('')
+          drawLineGraph(data)
         
-        for (var i = 0; i < data.length; i++) {
-        var curr = data[i]
-        var date = new Date(curr.date);
-        var emotion = curr.emotion;
-        $('#globalFeed').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
-        if (curr.image != '' && curr.image != 'none') {
-            $('#globalFeed').append("<img src='" + curr.image + "' width=100%/>");
-        }    
+          for (var i = 0; i < data.length; i++) {
+            var curr = data[i]
+            var date = new Date(curr.date);
+            var emotion = curr.emotion;
+            $('#globalFeed').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
+            if (curr.image != '' && curr.image != 'none') {
+                $('#globalFeed').append("<img src='" + curr.image + "' width=100%/>");
+          }    
         }
 
         function getEmoticon(emotion) {
@@ -120,8 +129,6 @@ html
         
         $.get('globalanalytics', function(data) {
           data = JSON.parse(data)
-          $('#emotion-graph').html('')
-          drawGraphs(data)
         })
         })
       div(data-role='header', data-position='fixed', data-id='sameheader')
@@ -146,6 +153,7 @@ html
         #displayGlobalDashboard
           #dashboard
           #emotion-graph
+          #time-graph
             //- h3  Analytics Views 
             //- ul(data-role='listview')
             //-   li
