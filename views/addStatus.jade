@@ -108,4 +108,10 @@ html
           label(for='imageFile') Photo 
           input#imageFile(type='file', name='image', accept='image/*', capture='camera', onchange='fileSelected();')
 
+          div(data-role='fieldcontain')
+          label(for='flip-5') Keep Post Private: 
+            select#flip-5(name='flip-5', data-role='slider', data-theme='c', data-track-theme='a', data-mini='true')
+              option(value='no') No
+              option(value='yes') Yes
+
           
