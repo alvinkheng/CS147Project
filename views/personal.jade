@@ -155,7 +155,12 @@ html
         $.mobile.changePage("settings", {transition: "slide"} );
         }
       div(data-role='header', data-position='fixed', data-id='sameheader')
-        a#settings(data-icon='custom', onclick='presentSettings()') Settings
+        a(href='#popupPanel', data-rel='popup', data-transition='slide', data-position-to='origin', data-role='button') Open panel
+          #popupPanel(data-role='popup', data-corners='false', data-theme='none', data-shadow='false', data-tolerance='0,0')
+            button(data-theme='a', data-mini='true', onclick='presentSettings()') Settings
+            button(data-theme='a', data-mini='true') Filter
+            button(data-theme='a', data-mini='true') About
+
         a#add(data-icon='custom', onclick='presentStatus()') Add
         h1  emochi 
       //
