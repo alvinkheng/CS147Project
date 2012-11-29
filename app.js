@@ -122,6 +122,10 @@ app.post('/create-profile', function(req, res) {
     }
 })
 
+app.get('/attempt-login', function(req, res) {
+    res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
+})
+
 app.post('/attempt-login', function(req, res) {
     var params = req.body;
     //If credentials are in the Profile database, continue
