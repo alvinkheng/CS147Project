@@ -2,6 +2,10 @@
 function drawLineGraph(statuses, startDate) {
 	$('#time-graph').html('')
 	var emotionScale = { 'excited': 2, 'happy':1, 'neutral': 0, 'sad':-1, 'angry':-2}
+	var invEmotionScale = {}
+	for(emotion in emotionScale) {
+		invEmotionScale[emotionScale[emotion]] = emotion
+	}
 
 	var w = $(window).width();
   	var h = 150;
@@ -11,7 +15,8 @@ function drawLineGraph(statuses, startDate) {
   	var margin = 40;
 
   	var minStartDate = new Date((new Date()).getTime()-1000*60*60*24*7);	// last week, testing
-  	//loop through data
+  	
+  	// loop through data
   	var relevantData = []
   	for(var i=0; i < statuses.length; i++) {
   		var curr = statuses[i]
@@ -22,21 +27,20 @@ function drawLineGraph(statuses, startDate) {
  	 			relevantData.push({ 'date': currDate, 'score': emotionScale[currEmotion] })
   		}
   	}
-//  	console.log("Filtered data for line graph: "+JSON.stringify(relevantData))
 
   	// set up axes
   	var minDate = relevantData[(relevantData.length - 1)]['date']
   	var maxDate = relevantData[0]['date']
   	var y = d3.scale.linear().domain([-2, 2]).range([h, 0])
-    var x = d3.time.scale().domain([minDate, maxDate]).range([0, w-p*2]);
+    var x = d3.time.scale().domain([minDate, maxDate]).range([p, w-p*2]);
 
 	var svg = d3.select("#time-graph")
 	  	.append("svg")
-	  	.attr("width", w)
+	  	.attr("width", w-p)
 	  	.attr("height", h+bottomMargin+topMargin)
 
 	var g = svg.append("svg:g")
-    	.attr("transform", "translate(" + 2*p + "," + p + ")");
+    	.attr("transform", "translate(" + p + "," + p + ")");
 			
 	var line = d3.svg.line()
 	    .x(function(d) { return x(d.date); })
@@ -50,7 +54,8 @@ function drawLineGraph(statuses, startDate) {
 	    .attr("class", "line")
 	    .attr("cx", function(d) { return x(d.date) })
 	    .attr("cy", function(d) { return y(d.score) })
-	    .attr("r", 3.5)
+	    .attr("r", 6)
+	    .attr('fill', "orange")
 
 	// x-axis
 	g.append("svg:line")
@@ -66,46 +71,48 @@ function drawLineGraph(statuses, startDate) {
 	    .attr("x2", x(minDate))
 	    .attr("y2", y(2))
 
-	console.log('xTicks')
-	console.log(x.ticks(5))
+	var datesSeen = {}
 	g.selectAll(".xLabel")
 	    .data(x.ticks(5))
 	    .enter().append("svg:text")
 	    .attr("class", "xLabel")
 	    //.text(function(d) { return d.date.getMonth() + '-'+d.date.getDate() })
-	   	.text(String)
-	    .attr("x", function(d) { console.log('x tick:'+d); return x(d.date) })
-	    .attr("y", function() { return y(0) })
-	    .attr("text-anchor", "middle")
+	   	.text(function(d) {
+	   		var dateStr = (d.getMonth()+1) + '-' + d.getDate()
+	   		if(dateStr in datesSeen) {
+	   			var hours = d.getHours() % 13
+				var minutes = d.getMinutes()
+				if (minutes < 10){
+					minutes = "0" + minutes
+				}
+				dateStr = hours + ":" + minutes + " "
+				if(hours > 11){
+					dateStr += "PM"
+				} else {
+					dateStr += "AM"
+				}
+	   		} else {
+	   			datesSeen[dateStr] = true
+	   		}
+	   		return dateStr
+	   	})
+	    .attr("x", function(d) { return x(d) })
+	    .attr("y", function() { return y(0) + 20 })
+	    .attr("text-anchor", "middle")    
 
-	// g.selectAll(".yLabel")
-	//     .data(y.ticks(4))
-	//     .enter().append("svg:text")
-	//     .attr("class", "yLabel")
-	//     .text(String)
-	//     .attr("x", 0)
-	//     .attr("y", function(d) { return y(d.score) })
-	//     .attr("text-anchor", "right")
-	//     .attr("dy", 4)
-
-	// g.selectAll(".xTicks")
-	//     .data(x.ticks(5))
-	//     .enter().append("svg:line")
-	//     .attr("class", "xTicks")
-	//     .attr("x1", function(d) { return x(d.date); })
-	//     .attr("y1", -1 * y(0))
-	//     .attr("x2", function(d) { return x(d.date); })
-	//     .attr("y2", -1 * y(-0.3))
-
-	// g.selectAll(".yTicks")
-	//     .data(y.ticks(4))
-	//     .enter().append("svg:line")
-	//     .attr("class", "yTicks")
-	//     .attr("y1", function(d) { return y(d.score); })
-	//     .attr("x1", x(-0.3))
-	//     .attr("y2", function(d) { return y(d.score); })
-	//     .attr("x2", x(0))
-		
+	g.selectAll(".yLabel")
+	    .data(y.ticks(5))
+	    .enter().append("image")
+	    .attr("class", "yLabel")
+	    .attr("xlink:href", function(d, i) {
+			return '/imgs/'+invEmotionScale[d]+'-01.png'
+		})
+	    .attr("x", -p)
+	    .attr("y", function(d) { 
+	    	return y(d) - 20 
+	    })
+	    .attr("width", 39)
+	 	.attr("height", 39)
 }
 
 function drawGraphs(statuses) {

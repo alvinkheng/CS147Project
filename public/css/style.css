@@ -1,5 +1,8 @@
 svg {
     border: 1px solid black;
+    font-size: 12px;
+    font-family: "Helvetica Neue";
+    margin: 0 auto;
 }
 
 path {
