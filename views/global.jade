@@ -147,7 +147,8 @@ html
          /navbar 
       div
         #displayGlobalFeed
-          ul#globalFeed(data-role='listview')
+          br(clear='all')
+          ul#globalFeed(data-role='listview', data-filter='true', data-inset='true', data-filter-placeholder='Search through global feed...')
         //
            displayGlobalFeed 
         #displayGlobalDashboard

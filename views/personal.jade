@@ -174,7 +174,8 @@ html
          viewToggle 
       div
         #displayPersonalFeed
-          ul#feedList(data-role='listview')
+          br(clear='all')
+          ul#feedList(data-role='listview', data-filter='true', data-inset='true', data-filter-placeholder='Search through your feed...')
         //
            displayPersonalFeed 
         #displayPersonalDashboard
