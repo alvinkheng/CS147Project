@@ -20,6 +20,7 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+
     script(src='//cdn.optimizely.com/js/141941067.js')
 
     script(src='/js/jquery.mobile-1.2.0.js')
@@ -56,6 +57,15 @@ html
         center#signuptext
           | New to emochi? 
           a(href='createProfile') Sign up now
+        br
+        center#signuptext
+          a(href='#both', data-rel='popup', data-role='link') About
+          |  / 
+          a(href='mailto:emochiapp@gmail.com') Contact Us
+        #both.ui-content(data-role='popup', data-overlay-theme='a', data-theme='c')
+          p
+            | Emochi is your private emotion journal. Use it to store comments like you would in a journal. With each comment you add to your private feed, you can also associate an emotion with it. The great part about emochi is that it will quantify your emotion for you - it will tell you what percentage of the time you are happy and sad, and how that changes throughout the days. In addition, you can also see how people around you are feeling. With emochi, you can better understand your emotions and those of the people around you!
+          a.ui-btn-right(href='#', data-rel='back', data-role='button', data-theme='a', data-icon='delete', data-iconpos='notext') Close
       //
          /content 
     //
