@@ -218,7 +218,9 @@ app.post('/postStatus', function(req, res) {
     else status['image'] = 'none'
 
     //Add status to globalPosts array and personalPosts array
-    globalPosts.unshift(status);
+    if (params['flip-5'] == 'no') {
+        globalPosts.unshift(status);
+    }
     _sessions[req.sessionID].personalPosts.unshift(status);
     
     //Add status to the database
