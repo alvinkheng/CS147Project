@@ -39,7 +39,7 @@ html
                 small
                     font(color='white') The name you entered is invalid 
                 br
-            input#email(type='text', name='email', placeholder='Email')
+            input#email(type='email', name='email', placeholder='Email')
             if (typeof(invalid) != 'undefined' && invalid == 'emailExists')
                 #emailError
                 small
