@@ -58,8 +58,8 @@ html
         //
            displayPersonalFeed 
         #displayPersonalDashboard
-          #emotion-graph
-          #time-graph
+          #personal-emotion-graph
+          #personal-time-graph
             //- table#emotion-stats
             //-   tr#emotion-stats-row2
             //-     td Excited
@@ -76,7 +76,7 @@ html
             //-   | Katherine Chen
               #profile_settings
                 center
-                  a(data-role='button', onclick='presentSettings()') Settings
+                  a(data-role='button', onclick="presentPage('settings', 'slide')") Settings
           //- table#entry-stats
           //-   tr
           //-     td 12

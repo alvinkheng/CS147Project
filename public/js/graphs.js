@@ -1,6 +1,6 @@
 
-function drawLineGraph(statuses, startDate) {
-	$('#time-graph').html('')
+function drawLineGraph(graphId, statuses, startDate) {
+	$(graphId).html('')
 	var emotionScale = { 'excited': 2, 'happy':1, 'neutral': 0, 'sad':-1, 'angry':-2}
 	var invEmotionScale = {}
 	for(emotion in emotionScale) {
@@ -34,7 +34,7 @@ function drawLineGraph(statuses, startDate) {
   	var y = d3.scale.linear().domain([-2, 2]).range([h, 0])
     var x = d3.time.scale().domain([minDate, maxDate]).range([p, w-p*2]);
 
-	var svg = d3.select("#time-graph")
+	var svg = d3.select(graphId)
 	  	.append("svg")
 	  	.attr("width", w-p)
 	  	.attr("height", h+bottomMargin+topMargin)
@@ -115,9 +115,9 @@ function drawLineGraph(statuses, startDate) {
 	 	.attr("height", 39)
 }
 
-function drawGraphs(statuses) {
+function drawGraphs(graphId, statuses) {
 // 	console.log('inside drawGraphs!'+JSON.stringify(statuses))
-	$('#emotion-graph').html('')
+	$(graphId).html('')
 
   var w = $(window).width();
   var h = 100;
@@ -125,7 +125,7 @@ function drawGraphs(statuses) {
   var topMargin = 10;
   var barPadding = 1;
 
-  var svg = d3.select("#emotion-graph")
+  var svg = d3.select(graphId)
 	  .append("svg")
 	  .attr('class', 'emotion')
 	  .attr("width", w)
