@@ -26,7 +26,7 @@ html
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();      
   body
-    div(data-role='page')#loginbody
+    #loginbody(data-role='page')
       div(data-role='content')
         center
          img(src='/imgs/emochi_login.png')
@@ -47,7 +47,7 @@ html
           | New to emochi? 
           a(href='createProfile') Sign up now
         br
-        center#signuptext
+        center#abouttext
           a(href='#both', data-rel='popup', data-role='link') About
           |  / 
           a(href='mailto:emochiapp@gmail.com') Contact Us

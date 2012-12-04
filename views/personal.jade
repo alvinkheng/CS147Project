@@ -26,7 +26,7 @@ html
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
   body
-    #one(data-role='page')
+    #personalbody(data-role='page')
       script(src='/js/d3.v2.js')
       script(src='/js/graphs.js')
       script(type='text/javascript')
@@ -37,7 +37,6 @@ html
             button(data-theme='a', data-mini='true', onclick="presentPage('settings', 'slide')") Settings
             button(data-theme='a', data-mini='true') Filter
             button(data-theme='a', data-mini='true') About
-
         a#add(data-icon='custom', onclick="presentPage('addStatus', 'slideup')") Add
         h1  emochi 
       //
@@ -50,8 +49,6 @@ html
               a.ui-btn-active.ui-state-persist(href='') Feed
             li(onclick='switchView(\'displayPersonalDashboard\', \'displayPersonalFeed\')')
               a(href='') Dashboard
-        //
-
       //
          viewToggle 
       div
@@ -95,7 +92,7 @@ html
           .nav-glyphish-example(data-role='navbar', data-grid='a')
             ul
               li
-                a#personal.ui-btn-active(href='personal', data-icon='custom')
+                a#personal.ui-btn-active(data-icon='custom')
               li
                 a#global(href='global', data-icon='custom')
         //

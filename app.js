@@ -44,7 +44,6 @@ var globalPosts = [];
 var globalAnalytics = [
   {}
 ]
-// end dummy data
 
 app.configure('development', function(){
   app.use(express.errorHandler());
@@ -60,9 +59,13 @@ app.get('/', function(req, res) {
     }
 });
 
+app.get('/personal', function(req, res) {
+    res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
+})
+
 app.get('/global', function(req, res) {
-        res.render('global', {statuses: JSON.stringify(globalPosts)})
-        })
+    res.render('global', {statuses: JSON.stringify(globalPosts)})
+})
 
 app.get('/globalanalytics', function(req, res) {
   res.write(JSON.stringify(globalPosts))
@@ -70,14 +73,7 @@ app.get('/globalanalytics', function(req, res) {
 })
 
 app.get('/settings', routes.settings) 
-app.get('/personal', function(req, res) {
-//    if (_sessions[req.sessionID].user == undefined) {
-//        res.render('login');
-//    } else {
-        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
-//    }
-}
-)
+
 app.get('/addStatus', routes.addStatus);
 
 app.get('/logout', function(req, res) {
