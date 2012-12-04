@@ -12,6 +12,10 @@ html
     link(rel='apple-touch-startup-image', href='/imgs/startup.png')
     script(src='/js/jquery-1.8.2.min.js')
     script(src='/js/jquery.mobile-1.2.0.js')
+    script(src='/js/graphs.js')
+    script(src='/js/functions.js')
+    script(src='//cdn.optimizely.com/js/141941067.js')
+    script(src='http://www.geoplugin.net/javascript.gp')
     script(type='text/javascript')
       var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-36545479-1']);
@@ -21,119 +25,18 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-    script(src='//cdn.optimizely.com/js/141941067.js')
-    
   body
     div(data-role='page')
       script(src='/js/d3.v2.js')
       script(src='/js/graphs.js')
       script(type='text/javascript')
-        function presentStatus() {
-        $.mobile.changePage( "addStatus", { transition: "slideup"} );
-        }
-        function closeStatus(save) {
-        if (save) {
-        var request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:3000/addStatus", false);
-        request.send();
-        if (request.status === 200) {
-        }
-        }
-        $.mobile.changePage( "personal", { transition: "slidedown"} );
-        }
-        function presentSettings() {
-        $.mobile.changePage( "settings", {transition: "slide", reloadPage: true } );
-        }
-                function switchView(id, hideId) {
-        document.getElementById(id).style.display = "block";
-        document.getElementById(hideId).style.display = "none";
-        }
-        $(function() {
-          var data = !{statuses};
-          $('#globalFeed').html('')
-
-          $('#emotion-graph').html('')
-          drawGraphs(data) 
-          $('#time-graph').html('')
-          drawLineGraph(data)
-        
-          for (var i = 0; i < data.length; i++) {
-            var curr = data[i]
-            var date = new Date(curr.date);
-            var emotion = curr.emotion;
-            $('#globalFeed').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
-            if (curr.image != '' && curr.image != 'none') {
-                $('#globalFeed').append("<img src='" + curr.image + "' width=100%/>");
-          }    
-        }
-
-        function getEmoticon(emotion) {
-              if(emotion=="excited") {
-                  return 'excited-01.png';
-              } else if (emotion=="happy") {
-                  return 'happy-01.png';
-              } else if (emotion=="neutral") {
-                  return 'neutral-01.png';
-              } else if (emotion=="sad") {
-                  return 'sad-01.png';
-              } else if (emotion=="angry") {
-                  return 'angry-01.png';
-              } else if (emotion=="angel") {
-                  return 'angel-01.png';
-              } else if (emotion=="devil") {
-                  return 'devil-01.png';
-              } else if (emotion=="dissapoint") {
-                  return 'dissapoint-01.png';
-              } else if (emotion=="laugh") {
-                  return 'laugh-01.png';
-              } else if (emotion=="surprised") {
-                  return 'surprised-01.png';
-              } else {
-                  return 'blank-01.png' ;
-              }
-        }
-
-        function simpleDate(date) {
-            var today = new Date();
-            var statusDate = " " + getMonthName(date.getMonth()) + " " + date.getDate() + ", " + date.getFullYear() + "";
-            today = " " + getMonthName(today.getMonth()) + " " + today.getDate() + ", " + today.getFullYear() + "";
-
-            if(statusDate==today) {
-                return 'Today';
-            } else if(statusDate+1==today) {
-                return ' 1d ago';
-            } else if(statusDate+2==today) {
-                return ' 2d ago';
-            } else if(statusDate+3==today) {
-                return ' 3d ago';
-            } else if(statusDate+4==today) {
-                return ' 4d ago';
-            } else if(statusDate+5==today) {
-                return ' 5d ago';
-            } else if(statusDate+6==today) {
-                return ' 6d ago';
-            } else {
-                return statusDate;
-            }
-        }
-
-        function getMonthName(month) {
-
-            var monthNames = [ "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December" ];
-
-            return monthNames[month];
-        }
-
-        
-        
+        loadGlobalStatuses(!{statuses});
         $.get('globalanalytics', function(data) {
           data = JSON.parse(data)
         })
-        })
       div(data-role='header', data-position='fixed', data-id='sameheader', data-theme='b')
-        a#settings(data-icon='custom', onclick='presentSettings()') Settings
-        a#add(data-icon='custom', onclick='presentStatus()') Add
+        a#settings(data-icon='custom', onclick="presentPage('settings', 'slide')") Settings
+        a#add(data-icon='custom', onclick="presentPage('addStatus', 'slideup')") Add
         h1 emochi
       //
          header 

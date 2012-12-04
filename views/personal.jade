@@ -13,6 +13,8 @@ html
     script(src='/js/jquery-1.8.2.min.js')
     script(src='/js/jquery.mobile-1.2.0.js')
     script(src='/js/graphs.js')
+    script(src='/js/functions.js')
+    script(src='//cdn.optimizely.com/js/141941067.js')
     script(src='http://www.geoplugin.net/javascript.gp')
     script(type='text/javascript')
       var _gaq = _gaq || [];
@@ -23,145 +25,20 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-    script(src='//cdn.optimizely.com/js/141941067.js')
-    
   body
     #one(data-role='page')
       script(src='/js/d3.v2.js')
       script(src='/js/graphs.js')
       script(type='text/javascript')
-        function getDayName(day) {
-            if (day == 0) {
-            return 'Sunday';
-            } else if (day == 1) {
-            return 'Monday';
-            } else if (day == 2) {
-            return 'Tuesday';
-            } else if (day == 3) {
-            return 'Wednesday';
-            } else if (day == 4) {
-            return 'Thursday';
-            } else if (day == 5) {
-            return 'Friday';
-            } else if (day == 6) {
-            return 'Saturday';
-            }
-        }
-
-        function getMonthName(month) {
-
-        var monthNames = [ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
-
-        return monthNames[month];
-
-        }
-
-        
-
-        function getEmoticon(emotion) {
-              if(emotion=="excited") {
-                  return 'excited-01.png';
-              } else if (emotion=="happy") {
-                  return 'happy-01.png';
-              } else if (emotion=="neutral") {
-                  return 'neutral-01.png';
-              } else if (emotion=="sad") {
-                  return 'sad-01.png';
-              } else if (emotion=="angry") {
-                  return 'angry-01.png';
-              } else if (emotion=="angel") {
-                  return 'angel-01.png';
-              } else if (emotion=="devil") {
-                  return 'devil-01.png';
-              } else if (emotion=="dissapoint") {
-                  return 'dissapoint-01.png';
-              } else if (emotion=="laugh") {
-                  return 'laugh-01.png';
-              } else if (emotion=="surprised") {
-                  return 'surprised-01.png';
-              } else {
-                  return 'blank-01.png' ;
-              }
-        }
-        
-        function simpleDate(date) {
-            var today = new Date();
-            var statusDate = " " + getMonthName(date.getMonth()) + " " + date.getDate() + ", " + date.getFullYear() + "";
-            today = " " + getMonthName(today.getMonth()) + " " + today.getDate() + ", " + today.getFullYear() + "";
-
-            if(statusDate==today) {
-                return 'Today';
-            } else if(statusDate+1==today) {
-                return ' 1d ago';
-            } else if(statusDate+2==today) {
-                return ' 2d ago';
-            } else if(statusDate+3==today) {
-                return ' 3d ago';
-            } else if(statusDate+4==today) {
-                return ' 4d ago';
-            } else if(statusDate+5==today) {
-                return ' 5d ago';
-            } else if(statusDate+6==today) {
-                return ' 6d ago';
-            } else {
-                return statusDate;
-            }
-        }
-
-        function getTime(hours, minutes) {
-            var ampm;
-            if (hours < 12) {
-                ampm = 0;
-                if (hours == 0) {
-                    hours = 12;
-                }
-            } else {
-                ampm = 1;
-                if (hours > 12) {
-                    hours -= 12;
-                }
-            }
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-            var result = "" + hours + ":" + minutes + ((ampm == 0) ? "AM" : "PM"); 
-            return result;
-        }
-      
-        $(function() {
-        var data = !{statuses};
-        console.log("rendering page")
-        drawGraphs(data)
-        drawLineGraph(data)
-        for (var i = 0; i < data.length; i++) {
-        var curr = data[i];
-        var date = new Date(curr.date);
-        var emotion = curr.emotion;
-        $('#feedList').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
-        if (curr.image != '' && curr.image != 'none') {
-            $('#feedList').append("<img src='" + curr.image + "' width=100%/>");
-            }
-        }
-        })
-        function switchView(id, hideId) {
-        document.getElementById(id).style.display = "block";
-        document.getElementById(hideId).style.display = "none";
-        }
-        function presentStatus() {
-        $.mobile.changePage("addStatus", { transition: "slideup"} );
-        }
-        function presentSettings() {
-        $.mobile.changePage("settings", {transition: "slide"} );
-        }
+        loadPersonalStatuses(!{statuses});
       div(data-role='header', data-position='fixed', data-id='sameheader', data-theme='b')
         a(href='#popupPanel', data-rel='popup', data-transition='slide', data-position-to='origin', data-role='button') Open panel
           #popupPanel(data-role='popup', data-corners='false', data-theme='none', data-shadow='false', data-tolerance='0,0')
-            button(data-theme='a', data-mini='true', onclick='presentSettings()') Settings
+            button(data-theme='a', data-mini='true', onclick="presentPage('settings', 'slide')") Settings
             button(data-theme='a', data-mini='true') Filter
             button(data-theme='a', data-mini='true') About
 
-        a#add(data-icon='custom', onclick='presentStatus()') Add
+        a#add(data-icon='custom', onclick="presentPage('addStatus', 'slideup')") Add
         h1  emochi 
       //
          header 
