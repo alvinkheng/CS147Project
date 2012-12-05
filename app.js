@@ -114,13 +114,10 @@ app.post('/create-profile', function(req, res) {
     }
 })
 
-
-
 app.post('/attempt-login', function(req, res) {
     var params = req.body;
     //If credentials are in the Profile database, continue
     connection.query('SELECT * from Profiles WHERE email = ? AND password = ?', [params.email, params.password], function(err, rows) {     
-        console.log("in callback of attempt-login")
         if (rows.length == 1) {
             _sessions[req.sessionID] = {}
             _sessions[req.sessionID].user = rows[0];
@@ -146,7 +143,7 @@ app.post('/attempt-login', function(req, res) {
 
 app.post('/save-settings', function(req, res) {
   var params = req.body;
-
+    console.log(params);
   _sessions[req.sessionID].user['name'] = params['name']
   _sessions[req.sessionID].user['email'] = params['email']
   if(params['pass']) _sessions[req.sessionID].user['password'] = params['pass']
@@ -201,7 +198,7 @@ app.post('/postStatus', function(req, res) {
     else status['image'] = 'none'
 
     //Add status to globalPosts array and personalPosts array
-    if (params['flip-5'] == 'no') {
+    if (params['flip-5'] == 'no') { //check whether privacy button is on or not
         globalPosts.unshift(status);
     }
     _sessions[req.sessionID].personalPosts.unshift(status);
