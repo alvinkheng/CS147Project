@@ -15,6 +15,45 @@ line {
     stroke: black;
 }
 
+.ui-bar-b {
+    background: #454545;
+    border: 0px solid #456F9A;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 1px 1px #3E6790;
+    box-shadow:0px 0px 0px 0px;
+}
+
+.ui-shadow {
+    box-shadow:0px 0px 0px 0px;
+}
+
+.ui-bar-b .ui-shadow {
+    box-shadow: 0px 1px 0 rgba(255, 255, 255, 0);
+}
+
+.ui-btn-up-b {
+    background:#454545;
+}
+
+.ui-btn-active {
+    border: 0px solid #456F9A;
+    background: #3299CC;
+}
+
+.ui-btn {
+    border: 0px solid #456F9A;
+}
+
+#headerbuttons .ui-btn-inner {
+    border: 2px solid #E8E8E8;
+    background: #454545;
+}
+
+.ui-shadow {
+    box-shadow:0px;
+}
+
 .nav-glyphish-example .ui-btn .ui-btn-inner { 
     padding-top: 40px !important;
 }
