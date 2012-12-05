@@ -36,6 +36,13 @@ line {
     background:#454545;
 }
 
+.ui-listview-filter .ui-input-search {
+    height:30px;
+    margin-left:15px;
+    margin-right:15px;
+    margin-top:5px;
+}
+
 .ui-btn-active {
     border: 0px solid #456F9A;
     background: #3299CC;
