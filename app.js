@@ -40,33 +40,31 @@ var _sessions = {};
 //variable that holds global posts
 var globalPosts = [];
 
-var globalAnalytics = [{}]
-
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
 
-// routes
+// routes GET
+
 app.get('/', function(req, res) {
     if (_sessions[req.sessionID] != undefined) {
         res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
     } else {
         res.render('login');
     }
-});
+})
 
 app.get('/personal', function(req, res) {
     res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
 })
 
-app.get('/global', function(req, res) {
-    res.render('global', {statuses: JSON.stringify(globalPosts)})
+app.get('/attempt-login', function(req, res) {
+    res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
 })
 
-app.get('/globalanalytics', function(req, res) {
-  res.write(JSON.stringify(globalPosts))
-  res.end()
+app.get('/global', function(req, res) {
+    res.render('global', {statuses: JSON.stringify(globalPosts)})
 })
 
 app.get('/settings', function(req, res) {
@@ -76,15 +74,14 @@ app.get('/settings', function(req, res) {
 app.get('/addStatus', routes.addStatus);
 
 app.get('/logout', function(req, res) {
-        delete _sessions[req.sessionID];
-        globalPosts = [];
-        globalAnalytics = [
-        {}
-        ]
-        res.render('login', {loggedout: 1});
-        });
+    delete _sessions[req.sessionID];
+    res.render('login', {loggedout: 1});
+});
 
 app.get('/createProfile', routes.createProfile);
+
+// routes POST
+
 app.post('/create-profile', function(req, res) {
     var params = req.body;
     //If email has invalid format, refresh page
@@ -100,7 +97,7 @@ app.post('/create-profile', function(req, res) {
                     if (err) throw err;
                     params.privacy = 'friends'; //STATIC
                     params.location = 'on'; //STATIC
-                                 _sessions[req.sessionID] = {}
+                    _sessions[req.sessionID] = {}
                     _sessions[req.sessionID].user = params;
                     _sessions[req.sessionID].personalPosts = [];
                     //Render personalFeed page
@@ -117,9 +114,7 @@ app.post('/create-profile', function(req, res) {
     }
 })
 
-app.get('/attempt-login', function(req, res) {
-    res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)})
-})
+
 
 app.post('/attempt-login', function(req, res) {
     var params = req.body;
@@ -170,13 +165,6 @@ app.post('/save-settings', function(req, res) {
     }
   res.render(params.backPage, {statuses: JSON.stringify(statuses)})
 }) 
-
-app.get('/user-info', function(req, res) {
-  res.write(JSON.stringify(_sessions[req.sessionID].user))
-  res.end()
-})
-
-app.get('/users', user.list);
 
 app.post('/postStatus', function(req, res) {
     var params = req.body;

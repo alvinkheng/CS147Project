@@ -31,9 +31,6 @@ html
       script(src='/js/graphs.js')
       script(type='text/javascript')
         loadGlobalStatuses(!{statuses});
-        $.get('globalanalytics', function(data) {
-          data = JSON.parse(data)
-        })
       div(data-role='header', data-position='fixed', data-id='sameheader', data-theme='b')
         a#settings(data-icon='custom', onclick="presentPage('settings', 'slide')") Settings
         a#add(data-icon='custom', onclick="presentPage('addStatus', 'slideup')") Add
