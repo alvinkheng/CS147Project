@@ -112,3 +112,24 @@ function loadGlobalStatuses(data) {
         }    
     }
 }
+
+function loadUserInfo(data) {
+    $('#saveBtn').click(function() {
+        var prevPage = $.mobile.urlHistory.getPrev().url.substring(1);
+        if (prevPage.indexOf('&') != -1) {
+            prevPage = prevPage.substring(0, prevPage.indexOf('&'));
+        }
+        $('#backPage').val(prevPage)
+        $('#settingsForm').submit()
+    })
+    $('#settingsName').val(data['name'])
+    $('#settingsEmailField').val(data['email'])
+    $('#settingsPass').val(data['password'])
+    if(data['gender'] == 'f') {
+        $('#radio-female').attr('checked', true).checkboxradio('refresh')
+    } else {
+        $('#radio-male').attr('checked', true).checkboxradio('refresh')
+    }
+    $('#flip-s').val(data['location']).slider('refresh')
+    $('#privacy').val(data['privacy']).selectmenu('refresh')
+}

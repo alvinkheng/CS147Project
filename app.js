@@ -9,8 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-var mysql = require('mysql');
-var connection = mysql.createConnection({
+var connection = require('mysql').createConnection({
                                         host : 'mysql-user-master.stanford.edu',
                                         user : 'ccs147vinster',
                                         password : 'fiepheej',
@@ -41,9 +40,7 @@ var _sessions = {};
 //variable that holds global posts
 var globalPosts = [];
 
-var globalAnalytics = [
-  {}
-]
+var globalAnalytics = [{}]
 
 app.configure('development', function(){
   app.use(express.errorHandler());
@@ -72,7 +69,9 @@ app.get('/globalanalytics', function(req, res) {
   res.end()
 })
 
-app.get('/settings', routes.settings) 
+app.get('/settings', function(req, res) {
+    res.render('settings', {user_info: JSON.stringify(_sessions[req.sessionID].user)})
+}) 
 
 app.get('/addStatus', routes.addStatus);
 

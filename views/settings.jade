@@ -27,26 +27,7 @@ html
   body
     #filter(data-role='page')
       script(type='text/javascript')
-        $(function() {
-        $('#saveBtn').click(function() {
-        $('#backPage').val($.mobile.urlHistory.getPrev().url.substring(1))
-        $('#settingsForm').submit()
-        })
-        $.get('user-info', function(data) {
-        console.log('got data: '+data)
-        data = JSON.parse(data)
-        $('#name').val(data['name'])
-        $('#emailField').val(data['email'])
-        $('#pass').val(data['password'])
-        if(data['gender'] == 'f') {
-        $('#radio-female').attr('checked', true).checkboxradio('refresh')
-        } else {
-        $('#radio-male').attr('checked', true).checkboxradio('refresh')
-        }
-        $('#flip-s').val(data['location']).slider('refresh')
-        $('#privacy').val(data['privacy']).selectmenu('refresh')
-        })
-        })
+        loadUserInfo(!{user_info});
       div(data-role='header', data-theme='b')
         a(href='', data-rel="back") Cancel
         h1 Settings
@@ -65,12 +46,12 @@ html
           div(data-role='fieldcontain')
             input#backPage(type='hidden', name='backPage', value='')  
             label(for='name') Name:
-            input#name(type='text', name='name')
+            input#settingsName(type='text', name='name')
             label(for='email') Email:
-            input#emailField(type='text', name='email')
+            input#settingsEmailField(type='text', name='email')
           div(data-role='fieldcontain')
             label(for='pass') Password:
-            input#pass(type='password', name='pass')
+            input#settingsPass(type='password', name='pass')
           center
             div
               a(href='logout', data-role='button', data-theme='a') Logout
