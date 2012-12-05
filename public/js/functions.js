@@ -81,8 +81,10 @@ function getTime(hours, minutes) {
 
 function loadPersonalStatuses(data) {
     console.log("rendering page")
-    drawGraphs('#personal-emotion-graph', data)
-    drawLineGraph('#personal-time-graph', data)
+    if (data.length > 0) {
+        drawGraphs('#personal-emotion-graph', data)
+        drawLineGraph('#personal-time-graph', data)
+    }
     for (var i = 0; i < data.length; i++) {
         var curr = data[i];
         var date = new Date(curr.date);

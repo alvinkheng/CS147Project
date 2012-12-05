@@ -103,8 +103,8 @@ app.post('/create-profile', function(req, res) {
                     //Render personalFeed page
                     connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
                         globalPosts = rows;
+                        res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
                     })
-                    res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
                 });   
             } else {
                 //Refresh page if email already exists
