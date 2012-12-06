@@ -53,6 +53,7 @@ line {
 }
 
 #headerbuttons .ui-btn-inner {
+    font-family:helvetica;
     border: 2px solid #E8E8E8;
     background: #454545;
 }
@@ -95,6 +96,13 @@ line {
     display:block;
     float:left;
     width:250px;
+}
+
+.center-wrapper {
+    text-align: center;
+}
+.center-wrapper * {
+    margin: 0 auto;
 }
 
 #email {
@@ -208,14 +216,14 @@ table#graphs {
     background: url(/icons/globe.png) 50% 50% no-repeat; 
     background-size: 30px 30px; 
 }
-#add .ui-icon { 
+#add .ui-icon {
     background:  url(/icons/10-medical.png) 50% 50% no-repeat;
     background-size: 22px 22px; 
 }
 
 #add .ui-btn { 
     height: 40px; 
-    width:80px;
+    width: 80px;
     font-size: 20px;
     line-height: 20px;
 }

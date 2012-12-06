@@ -38,7 +38,8 @@ html
             button(data-theme='a', data-mini='true') Filter
             button(data-theme='a', data-mini='true') About
         a#add(data-icon='custom', onclick="presentPage('addStatus', 'slideup')") Add
-        h1  emochi 
+        .center-wrapper
+          img(src='http://i8.photobucket.com/albums/a45/back_off_kid/logo-01-01.png')
       //
          header 
 
@@ -54,7 +55,7 @@ html
       div
         #displayPersonalFeed
           br(clear='all')
-          ul#feedList(data-role='listview', data-filter='true', data-inset='true', data-filter-placeholder='Search through your feed...')
+          ul#feedList(data-role='listview', data-inset='true')
         //
            displayPersonalFeed 
         #displayPersonalDashboard
