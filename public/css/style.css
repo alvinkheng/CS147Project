@@ -43,6 +43,10 @@ line {
     margin-top:5px;
 }
 
+#emotion_selector .ui-btn-active {
+    background:white;
+}
+
 .ui-btn-active {
     border: 0px solid #456F9A;
     background: #3299CC;
@@ -368,6 +372,8 @@ textarea.ui-mini {
 #popupPanel .ui-btn {
     margin: .5em 15px;
 }
+
+
 
 #emotion_selector {
     margin:7px;

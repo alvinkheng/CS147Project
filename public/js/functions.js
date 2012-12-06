@@ -19,6 +19,13 @@ function switchView(showId, hideId) {
     document.getElementById(hideId).style.display = "none";
 }
 
+function selectEmotion(emotion, id) {
+    if (emotion=="excited") {
+        alert('hi!');
+        //document.getElementById("id").src='/imgs/time-01.png';
+    }
+}
+
 function presentPage(page, trans) {
     $.mobile.changePage(page, { transition: trans} );
 }
