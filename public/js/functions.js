@@ -81,7 +81,7 @@ function getTime(hours, minutes) {
 
 function loadPersonalStatuses(data) {
     console.log("rendering page")
-    if (data.length > 0) {
+    if (data.length > 1) {
         drawGraphs('#personal-emotion-graph', data)
         drawLineGraph('#personal-time-graph', data)
     }
@@ -99,10 +99,12 @@ function loadPersonalStatuses(data) {
 function loadGlobalStatuses(data) {
     $('#globalFeed').html('')
     
-    $('#global-emotion-graph').html('')
-    drawGraphs('#global-emotion-graph', data) 
-    $('#global-time-graph').html('')
-    drawLineGraph('#global-time-graph', data)
+    if (data.length > 1) {
+        $('#global-emotion-graph').html('')
+        drawGraphs('#global-emotion-graph', data) 
+        $('#global-time-graph').html('')
+        drawLineGraph('#global-time-graph', data)
+    }
     
     for (var i = 0; i < data.length; i++) {
         var curr = data[i]
