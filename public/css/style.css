@@ -178,6 +178,10 @@ table#graphs {
     text-shadow: 0px;
 }
 
+.ui-btn{
+    border: 1px solid #303030;
+}
+
 #graphs {
     width:100%;
     border-top:1px solid white;
