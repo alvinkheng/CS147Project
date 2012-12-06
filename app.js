@@ -101,7 +101,7 @@ app.post('/create-profile', function(req, res) {
                     _sessions[req.sessionID].user = params;
                     _sessions[req.sessionID].personalPosts = [];
                     //Render personalFeed page
-                    connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
+                    connection.query('SELECT * from Statuses WHERE privacy = ? ORDER BY date DESC', 'public', function(err, rows) {
                         globalPosts = rows;
                         res.render('personal', {statuses: JSON.stringify(_sessions[req.sessionID].personalPosts)});
                     })
@@ -122,7 +122,7 @@ app.post('/attempt-login', function(req, res) {
             _sessions[req.sessionID] = {}
             _sessions[req.sessionID].user = rows[0];
             //Get the all of the users statuses
-            connection.query('SELECT * from Statuses ORDER BY date DESC', function(err, rows) {
+            connection.query('SELECT * from Statuses WHERE privacy = ? ORDER BY date DESC', 'public', function(err, rows) {
                 console.log('got global posts')
                 globalPosts = rows;
             })
@@ -190,9 +190,9 @@ app.post('/postStatus', function(req, res) {
     } else {
         status['emotion'] = 'surprised'
     }
-
+    
     status['date'] = new Date();
-    status['privacy'] = 'public'; //STATIC
+    status['privacy'] = (params['flip-5'] == 'no') ? 'public' : 'private';
     status['location'] = params['location'];
     if(params['image']) status['image'] = params['image'];
     else status['image'] = 'none'
