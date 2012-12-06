@@ -96,7 +96,7 @@ function loadPersonalStatuses(data) {
         var curr = data[i];
         var date = new Date(curr.date);
         var emotion = curr.emotion;
-        $('#feedList').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
+        $('#feedList').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'> <a hidden='true'>" + emotion + "</a>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
         if (curr.image != '' && curr.image != 'none') {
             $('#feedList').append("<img src='" + curr.image + "' width=100%/>");
         }
@@ -117,7 +117,7 @@ function loadGlobalStatuses(data) {
         var curr = data[i]
         var date = new Date(curr.date);
         var emotion = curr.emotion;
-        $('#globalFeed').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
+        $('#globalFeed').append("<div class='feed_entries'>" + "<li class='emoticon'>"+"<img src='/imgs/" + getEmoticon(emotion) + "' />" + "</li>" + "<li class='entry_text'> <a hidden='true'>" + emotion + "</a>" + curr.status + '<br> ' + "<span class='small'>" + curr.location + "<span class='date_format'>" + simpleDate(date) + "</span></li></div>");
         if (curr.image != '' && curr.image != 'none') {
             $('#globalFeed').append("<img src='" + curr.image + "' width=100%/>");
         }    
