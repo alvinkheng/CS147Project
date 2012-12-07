@@ -30,7 +30,9 @@ html
       script(src='/js/d3.v2.js')
       script(src='/js/graphs.js')
       script(type='text/javascript')
-        loadGlobalStatuses(!{statuses});
+        $(function() {
+                    loadGlobalStatuses(!{statuses});
+          })
       div(data-role='header', data-position='fixed', data-id='sameheader', data-theme='b')#headerbuttons
         a#settings(data-icon='custom', onclick="presentPage('settings', 'slide')") Settings
         a#add(data-icon='custom', onclick="presentPage('addStatus', 'slideup')") Add

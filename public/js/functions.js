@@ -88,9 +88,14 @@ function getTime(hours, minutes) {
 
 function loadPersonalStatuses(data) {
     console.log("rendering page")
+    $('#feedList').html('')
     if (data.length > 1) {
+        $('#personal-emotion-graph').html('')
         drawGraphs('#personal-emotion-graph', data)
+        $('#personal-time-graph').html('')
         drawLineGraph('#personal-time-graph', data)
+    } else {
+        $('#personal-emotion-graph').html("Not enough data, add more posts first!")
     }
     for (var i = 0; i < data.length; i++) {
         var curr = data[i];

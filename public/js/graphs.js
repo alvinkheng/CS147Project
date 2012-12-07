@@ -1,6 +1,5 @@
 
 function drawLineGraph(graphId, statuses, startDate) {
-	$(graphId).html('')
 	var emotionScale = { 'excited': 2, 'happy':1, 'neutral': 0, 'sad':-1, 'angry':-2}
 	var invEmotionScale = {}
 	for(emotion in emotionScale) {
@@ -117,7 +116,6 @@ function drawLineGraph(graphId, statuses, startDate) {
 
 function drawGraphs(graphId, statuses) {
 // 	console.log('inside drawGraphs!'+JSON.stringify(statuses))
-	$(graphId).html('')
 
   var w = $(window).width();
   var h = 100;

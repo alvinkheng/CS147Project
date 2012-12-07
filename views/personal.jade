@@ -30,7 +30,10 @@ html
       script(src='/js/d3.v2.js')
       script(src='/js/graphs.js')
       script(type='text/javascript')
-        loadPersonalStatuses(!{statuses});
+        $(function() {
+                  loadPersonalStatuses(!{statuses});          
+          })
+
       div(data-role='header', data-position='fixed', data-id='sameheader', data-theme='b')#headerbuttons
         a(href='#popupPanel', data-rel='popup', data-transition='slide', data-position-to='origin', data-role='button') Open panel
           #popupPanel(data-role='popup', data-corners='false', data-theme='none', data-shadow='false', data-tolerance='0,0')
