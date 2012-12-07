@@ -180,9 +180,9 @@ app.post('/postStatus', function(req, res) {
     } else if(emotion == 'choice-5') {
         status['emotion'] = 'sad'
     } else if(emotion == 'choice-6') {
-        status['emotion'] = 'angel'
+        status['emotion'] = 'bashful'
     } else if(emotion == 'choice-7') {
-        status['emotion'] = 'devil'
+        status['emotion'] = 'disappoint'
     } else if(emotion == 'choice-8') {
         status['emotion'] = 'disappoint'
     } else if(emotion == 'choice-9') {

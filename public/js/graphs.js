@@ -1,13 +1,13 @@
 
 function drawLineGraph(graphId, statuses, startDate) {
-	var emotionScale = { 'excited': 2, 'happy':1, 'neutral': 0, 'sad':-1, 'angry':-2}
+	var emotionScale = { 'excited': 3, 'bashful':2, 'happy':1, 'neutral': 0, 'sad':-1,'disappoint':-2, 'angry':-3}
 	var invEmotionScale = {}
 	for(emotion in emotionScale) {
 		invEmotionScale[emotionScale[emotion]] = emotion
 	}
 
 	var w = $(window).width();
-  	var h = 150;
+  	var h = 200;
   	var p = 20
   	var bottomMargin = 35;
   	var topMargin = 10;
@@ -30,12 +30,12 @@ function drawLineGraph(graphId, statuses, startDate) {
   	// set up axes
   	var minDate = relevantData[(relevantData.length - 1)]['date']
   	var maxDate = relevantData[0]['date']
-  	var y = d3.scale.linear().domain([-2, 2]).range([h, 0])
+  	var y = d3.scale.linear().domain([-3, 3]).range([h, 0])
     var x = d3.time.scale().domain([minDate, maxDate]).range([p, w-p*2]);
 
 	var svg = d3.select(graphId)
 	  	.append("svg")
-	  	.attr("width", w-p)
+	  	.attr("width", w)
 	  	.attr("height", h+bottomMargin+topMargin)
 
 	var g = svg.append("svg:g")
@@ -66,9 +66,9 @@ function drawLineGraph(graphId, statuses, startDate) {
 	// y-axis
 	g.append("svg:line")
 	    .attr("x1", x(minDate))
-	    .attr("y1", y(-2))
+	    .attr("y1", y(-3))
 	    .attr("x2", x(minDate))
-	    .attr("y2", y(2))
+	    .attr("y2", y(3))
 
 	var datesSeen = {}
 	g.selectAll(".xLabel")
@@ -100,7 +100,7 @@ function drawLineGraph(graphId, statuses, startDate) {
 	    .attr("text-anchor", "middle")    
 
 	g.selectAll(".yLabel")
-	    .data(y.ticks(5))
+	    .data(y.ticks(7))
 	    .enter().append("image")
 	    .attr("class", "yLabel")
 	    .attr("xlink:href", function(d, i) {
@@ -129,14 +129,14 @@ function drawGraphs(graphId, statuses) {
 	  .attr("width", w)
 	  .attr("height", h+bottomMargin+topMargin);
 
-  var emotionIndex = { 'excited':0, 'happy':1, 'neutral':2, 'sad':3, 'angry':4, 'angel':5, 'devil':6, 'disappoint':7, 'laugh':8, 'surprised':9}
+  var emotionIndex = { 'excited':0, 'happy':1, 'neutral':2, 'sad':3, 'angry':4, 'bashful':5, 'excited':6, 'disappoint':7}
   var emotions = []
   for(var key in emotionIndex) {
   	emotions.push(key)
   }
-  var colors = ['orange', 'pink', 'gray', 'blue', 'red', 'silver', 'maroon', 'black', 'salmon', 'coral']
+  var colors = ['red', 'yellow', 'green', 'blue', 'purple', 'orange', 'magenta', 'black', 'salmon', 'coral']
 
-  var dataset = [0,0,0,0,0,0,0,0,0,0]
+  var dataset = [0,0,0,0,0,0,0]
 
   for(var i=0; i < statuses.length; i++) {
 	  var curr = statuses[i];
