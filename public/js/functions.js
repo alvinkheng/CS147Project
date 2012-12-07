@@ -8,8 +8,8 @@ var emoticons = {
     'angry' : 'angry-01.png', 
     'angel' : 'angel-01.png',
     'devil' : 'devil-01.png', 
-    'dissapoint' : 'dissapoint-01.png',
-    'laugh' : 'laugh-01.png',
+    'disappoint' : 'disappoint-01.png',
+    'bashful' : 'bashful-01.png',
     'surprised' : 'surprised-01.png',
     '' : 'blank-01.png'
     };

@@ -186,7 +186,7 @@ app.post('/postStatus', function(req, res) {
     } else if(emotion == 'choice-8') {
         status['emotion'] = 'disappoint'
     } else if(emotion == 'choice-9') {
-        status['emotion'] = 'laugh'
+        status['emotion'] = 'bashful'
     } else {
         status['emotion'] = 'surprised'
     }
