@@ -144,12 +144,13 @@ function drawGraphs(graphId, statuses) {
 		dataset[emotionIndex[curr['emotion']]]++;
 	  }
   }
-
+    dataset.pop();
+   
   var max = Math.max.apply(Math, dataset)
   var scale = h / max;
-  console.log('scale: '+scale)
 
 //  console.log('dataset: '+ JSON.stringify(dataset))
+    
   svg.selectAll("rect")
 	.data(dataset)
 	 .enter()
